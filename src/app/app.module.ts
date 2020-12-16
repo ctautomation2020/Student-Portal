@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -36,6 +34,7 @@ import { StudentComponent } from './student-details/student/student.component';
 import { StudentModelComponent} from './student-details/student/student-model/student-model.component';
 import { StudentDetailsComponent } from './student-details/student-details.component'
 import { StudentDetailsRoutingModule } from './student-details/student-details-routing.module';
+import { FamilyComponent } from './student-details/family/family.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +44,8 @@ import { StudentDetailsRoutingModule } from './student-details/student-details-r
     FilterPipe,
     StudentComponent,
     StudentModelComponent,
-    StudentDetailsComponent
+    StudentDetailsComponent,
+    FamilyComponent
   ],
   entryComponents: [AlertboxComponent,StudentModelComponent],
   imports: [

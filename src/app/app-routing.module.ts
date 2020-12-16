@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
@@ -6,7 +6,7 @@ import { StudentDetailsComponent } from './student-details/student-details.compo
 const routes: Routes = [
   {
     path: '',
-    component: StudentDetailsComponent
+    component: LoginComponent
   }
 ];
 
