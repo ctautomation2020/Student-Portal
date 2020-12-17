@@ -26,10 +26,68 @@ export class StudentComponent implements OnInit {
   volunteer: PersonReferenceModel[];
   student: StudentModel;
   queryRef: QueryRef<StudentModel, any>;
+
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
   ngOnInit(): void {
     const id: number = this.studentDetailsService.getRegisterNo();
     console.log(id);
+    const req=gql`
+      query student{
+        student{
+          Register_No
+          First_Name
+          Middle_Name
+          Last_Name
+          Gender_Ref
+          DOB
+          Community_Ref
+          Caste
+          MailID
+          Aadhar_Card
+          Primary_ContactNumber
+          Secondary_ContactNumber
+          Address_Line1
+          Address_Line2
+          Address_Line3
+          Address_Line4
+          Correspondance_Address
+          Residential_Type_Ref
+          FA
+          Programme_Ref
+          Branch_Ref
+          Registration_Mode_Ref
+          Blood_Group_Ref
+          GATE_Cutoff_Mark
+          Admission_Date
+          Admission_Category_Ref
+          Scholarship_Received_Ref
+          Scholarship_Details
+          NSO_NSS_YRC_Volunteer_Ref
+          Hostel_Block_Room
+        }
+      }`;
+    
+    this.queryRef = this.apollo
+    .watchQuery<StudentModel>({
+      query: req
+    });
+    this.queryRef.valueChanges.subscribe(((result: any) => {
+      console.log(result.data.student);
+      this.student = JSON.parse(JSON.stringify(result.data.student));
+      const temp1 = parseFloat(result.data.student.DOB) / 1000;
+      const myDate1 = new Date(0);
+      myDate1.setUTCSeconds(temp1);
+      console.log(myDate1);
+      this.student.DOB = myDate1 ;
+
+      const temp2 = parseFloat(result.data.student.Admission_Date) / 1000;
+      const myDate2 = new Date(0);
+      myDate2.setUTCSeconds(temp2);
+      console.log(myDate2);
+      this.student.Admission_Date = myDate2 ;
+      
+      console.log(this.student);
+    }));
   }
   onOpenModel() {
     let dialogRef = this.dialog.open(StudentModelComponent, { 

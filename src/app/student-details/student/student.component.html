@@ -7,8 +7,8 @@
                     <img src="../../../assets/back.jpg" class="profile-photo">
                     <span class="edit-photo" ></span>
                 </div>
-                <h2 class="student-name">Sivaganesh B</h2>
-                <span class="profession">2018503557</span>
+                <h2 class="student-name">{{student.First_Name}}</h2>
+                <span class="register-no">2018503557</span>
                 <span class="college">Department of Computer Technology</span>
                 <span class="college">Madras Institute of Technology</span>
             </div>
@@ -20,15 +20,15 @@
                 </h3>
                 <div class="text-wrap">
                     <span class="label">Name</span>
-                    <p>Sivaganesh B</p>
+                    <p>{{student.First_Name}}{{student.Middle_Name}} {{student.Last_Name}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Email Address</span>
-                    <p><a>sivaganeshb193@gmail.com</a></p>
+                    <p><a>{{student.MailID}}</a></p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Contact</span>
-                    <p><a>8105101571</a></p>
+                    <p><a>{{student.Primary_ContactNumber}}</a></p>
                 </div>
             </div>
         </div>
@@ -38,11 +38,11 @@
             <div class="input-field">
                 <div class="text-wrap">
                 <span class="label">First Name</span>
-                <p>Sivaganesh</p>
+                <p>{{student.First_Name}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Last Name</span>
-                    <p>B</p>
+                    <p>{{student.Last_Name}}</p>
                 </div>
             </div>
             <div class="input-field">
@@ -64,7 +64,7 @@
                 </div>
                 <div class="text-wrap">
                     <span class="label">Caste</span>
-                    <p>Caste</p>
+                    <p>{{student.Caste}}</p>
                 </div>
             </div>
             <div class="input-field">
@@ -74,17 +74,7 @@
                 </div>
                 <div class="text-wrap">
                     <span class="label">Aadhar Card Number</span>
-                    <p>999988887777</p>
-                </div>
-            </div>
-            <div class="input-field">
-                <div class="text-wrap">
-                    <span class="label">Passport Number</span>
-                    <p>ABC123DE45</p>
-                </div>
-                <div class="text-wrap">
-                    <span class="label">PAN Card</span>
-                    <p>AB122APPPA</p>
+                    <p>{{student.Aadhar_Card}}</p>
                 </div>
             </div>
             <div class="horizontal-line-break"></div>

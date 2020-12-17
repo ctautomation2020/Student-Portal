@@ -17,20 +17,20 @@ export interface StudentModel {
     Address_Line2: string;
     Address_Line3: string;
     Address_Line4: string;
-    Correspondance_Address: string
-    Residential_Type_Ref: number
-    FA: number
-    Programme_Ref: number
-    Branch_Ref: number
-    Registration_Mode_Ref: number
-    Blood_Group_Ref: number
-    GATE_Cutoff_Mark: number
-    Admission_Date: Date
-    Admission_Category_Ref: number
-    Scholarship_Received_Ref: number
-    Scholarship_Details: string
-    NSO_NSS_YRC_Volunteer_Ref: number
-    Hostel_Block_Room: string
+    Correspondance_Address: string;
+    Residential_Type_Ref: number;
+    FA: number;
+    Programme_Ref: number;
+    Branch_Ref: number;
+    Registration_Mode_Ref: number;
+    Blood_Group_Ref: number;
+    GATE_Cutoff_Mark: number;
+    Admission_Date: Date;
+    Admission_Category_Ref: number;
+    Scholarship_Received_Ref: number;
+    Scholarship_Details: string;
+    NSO_NSS_YRC_Volunteer_Ref: number;
+    Hostel_Block_Room: string;
 }
   
 
