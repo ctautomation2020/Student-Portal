@@ -2,21 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import gql from 'graphql-tag';
 import {Apollo, QueryRef} from 'apollo-angular';
+
 import { StudentModelComponent } from './student-model/student-model.component';
 import { StudentModel } from './student.model';
+import { PersonReferenceModel } from './../person-reference.model';
+import { StudentDetailsService } from './../student-details.service';
+
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.scss']
 })
 export class StudentComponent implements OnInit {
-  community;
-  caste;
-  student;
-  gender;
-  queryRef: QueryRef<StudentModel>;
-  constructor(public dialog: MatDialog,private apollo: Apollo) { }
+  gender: PersonReferenceModel[];
+  community: PersonReferenceModel[];
+  residentialType: PersonReferenceModel[];
+  programme: PersonReferenceModel[];
+  branch: PersonReferenceModel[];
+  registrationMode: PersonReferenceModel[];
+  bloodGroup: PersonReferenceModel[];
+  admissionCategory: PersonReferenceModel[];
+  scholarshipReceived: PersonReferenceModel[];
+  volunteer: PersonReferenceModel[];
+  student: StudentModel;
+  queryRef: QueryRef<StudentModel, any>;
+  constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
   ngOnInit(): void {
+    const id: number = this.studentDetailsService.getRegisterNo();
+    console.log(id);
   }
   onOpenModel() {
     let dialogRef = this.dialog.open(StudentModelComponent, { 
