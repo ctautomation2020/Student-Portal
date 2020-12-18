@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class StudentDetailsService {
-  Register_No=6000;
+  Register_No=2018503557;
   constructor(private apollo:Apollo) { }
   getRegisterNo(){
     return this.Register_No;

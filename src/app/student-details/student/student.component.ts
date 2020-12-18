@@ -72,7 +72,7 @@ export class StudentComponent implements OnInit {
       query: req
     });
     this.queryRef.valueChanges.subscribe(((result: any) => {
-      console.log(result.data.student);
+      //console.log(result.data.student);
       this.student = JSON.parse(JSON.stringify(result.data.student));
       const temp1 = parseFloat(result.data.student.DOB) / 1000;
       const myDate1 = new Date(0);
@@ -85,9 +85,39 @@ export class StudentComponent implements OnInit {
       myDate2.setUTCSeconds(temp2);
       console.log(myDate2);
       this.student.Admission_Date = myDate2 ;
-      
       console.log(this.student);
+
     }));
+    this.studentDetailsService.getDropDown('Gender').subscribe(result => {
+      this.gender = result;
+    });
+    this.studentDetailsService.getDropDown('Community').subscribe(result => {
+      this.community = result;
+    });
+    this.studentDetailsService.getDropDown('Residential_Type').subscribe(result => {
+      this.residentialType = result;
+    });
+    this.studentDetailsService.getDropDown('Programme').subscribe(result => {
+      this.programme = result;
+    });
+    this.studentDetailsService.getDropDown('Branch').subscribe(result => {
+      this.branch = result;
+    });
+    this.studentDetailsService.getDropDown('Registration_Mode').subscribe(result => {
+      this.registrationMode = result;
+    });
+    this.studentDetailsService.getDropDown('Blood_Group').subscribe(result => {
+      this.bloodGroup = result;
+    });
+    this.studentDetailsService.getDropDown('Admission_Category').subscribe(result => {
+      this.admissionCategory = result;
+    });
+    this.studentDetailsService.getDropDown('Option').subscribe(result => {
+      this.scholarshipReceived = result;
+    });
+    this.studentDetailsService.getDropDown('CNSS/NSO/YRC_Volunteer').subscribe(result => {
+      this.volunteer = result;
+    });
   }
   onOpenModel() {
     let dialogRef = this.dialog.open(StudentModelComponent, { 
@@ -144,5 +174,35 @@ export class StudentComponent implements OnInit {
         });
       }
     });
+  }
+  filterGender(): PersonReferenceModel {
+    return this.gender.filter(l => l.Ref_Code === this.student.Gender_Ref)[0];
+  }
+  filterCommunity(): PersonReferenceModel {
+    return this.community.filter(l => l.Ref_Code === this.student.Community_Ref)[0];
+  }
+  filterResidentialType(): PersonReferenceModel {
+    return this.residentialType.filter(l => l.Ref_Code === this.student.Residential_Type_Ref)[0];
+  }
+  filterProgramme(): PersonReferenceModel {
+    return this.programme.filter(l => l.Ref_Code === this.student.Programme_Ref)[0];
+  }
+  filterBranch(): PersonReferenceModel {
+    return this.branch.filter(l => l.Ref_Code === this.student.Branch_Ref)[0];
+  }
+  filterRegistrationMode(): PersonReferenceModel {
+    return this.registrationMode.filter(l => l.Ref_Code === this.student.Registration_Mode_Ref)[0];
+  }
+  filterBloodGroup(): PersonReferenceModel {
+    return this.bloodGroup.filter(l => l.Ref_Code === this.student.Blood_Group_Ref)[0];
+  }
+  filterAdmissionCategory(): PersonReferenceModel {
+    return this.admissionCategory.filter(l => l.Ref_Code === this.student.Admission_Category_Ref)[0];
+  }
+  filterScholarshipReceived(): PersonReferenceModel {
+    return this.scholarshipReceived.filter(l => l.Ref_Code === this.student.Scholarship_Received_Ref)[0];
+  }
+  filterVolunteer(): PersonReferenceModel {
+    return this.volunteer.filter(l => l.Ref_Code === this.student.NSO_NSS_YRC_Volunteer_Ref)[0];
   }
 }

@@ -8,7 +8,7 @@
                     <span class="edit-photo" ></span>
                 </div>
                 <h2 class="student-name">{{student.First_Name}}</h2>
-                <span class="register-no">2018503557</span>
+                <span class="register-no">{{student.Register_No}}</span>
                 <span class="college">Department of Computer Technology</span>
                 <span class="college">Madras Institute of Technology</span>
             </div>
@@ -48,19 +48,19 @@
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Date of Birth</span>
-                    <p>Sunday, March 19, 2000</p>
+                    <p>{{student.DOB | date:'longDate'}}</p>
                 </div>
                 <!--<div class="text-wrap" *ngIf="gender != null">-->
                 <div class="text-wrap">
                     <span class="label">Gender</span>
-                  <p>Male</p>
+                  <p>{{filterGender().Ref_Name}}</p>
               </div>
             </div>
             <div class="input-field">
                 <!--<div class="text-wrap" *ngIf="community != null">-->
                 <div class="text-wrap">
                     <span class="label">Community</span>
-                    <p>Community</p>
+                    <p>{{filterCommunity().Ref_Name}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Caste</span>
@@ -70,7 +70,7 @@
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Blood Group</span>
-                    <p>O+</p>
+                    <p>{{filterBloodGroup().Ref_Name}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Aadhar Card Number</span>
@@ -82,47 +82,47 @@
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Residential Type</span>
-                    <p>Day Scholar</p>
+                    <p>{{filterResidentialType().Ref_Name}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Hostel Block & Room No.</span>
-                    <p>-</p>
+                    <p>{{student.Hostel_Block_Room}}</p>
                 </div>
             </div>
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Faculty Advisor</span>
-                    <p>Dr. S</p>
+                    <p>{{student.FA}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Programme</span>
-                    <p>B.E</p>
+                    <p>{{filterProgramme().Ref_Name}}</p>
                 </div>
             </div>
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Branch</span>
-                    <p>CSE</p>
+                    <p>{{filterBranch().Ref_Name}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Registration</span>
-                    <p>Full Time</p>
+                    <p>{{filterRegistrationMode().Ref_Name}}</p>
                 </div>
             </div>
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Cut-Off/GATE Score</span>
-                    <p>197</p>
+                    <p>{{student.GATE_Cutoff_Mark}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Date of Admission</span>
-                    <p>August 2018</p>
+                    <p>{{student.Admission_Date | date:'MMMM yyyy'}}</p>
                 </div>
             </div>
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Admission Category</span>
-                    <p>General</p>
+                    <p>{{filterAdmissionCategory().Ref_Name}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Volunteer</span>
@@ -132,7 +132,7 @@
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Scholarship Received</span>
-                    <p>-</p>
+                    <p>{{filterScholarshipReceived().Ref_Name}}</p>
                 </div>
             </div>
             <div class="horizontal-line-break"></div>
@@ -140,17 +140,17 @@
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Email</span>
-                    <p>sivaganeshb193@gmail.com</p>
+                    <p>{{student.MailID}}</p>
                 </div>
             </div>
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Primary Contact</span>
-                    <p>8105101571</p>
+                    <p>{{student.Primary_ContactNumber}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Secondary Contact</span>
-                    <p>8778280542</p>
+                    <p>{{student.Secondary_ContactNumber}}</p>
                 </div>
             </div>
             <div class="horizontal-line-break"></div>
@@ -158,21 +158,21 @@
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Door Number / Street Name</span>
-                    <p>5/604</p>
+                    <p>{{student.Address_Line1}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Town / Area</span>
-                    <p>Devi N</p>
+                    <p>{{student.Address_Line2}}</p>
                 </div>
             </div>
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">City</span>
-                    <p>Hosur</p>
+                    <p>{{student.Address_Line3}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Pin Code</span>
-                    <p>635109</p>
+                    <p>{{student.Address_Line4}}</p>
               </div>
             </div>
   
