@@ -5,32 +5,32 @@
     <mat-form-field class="form-field"> 
       <mat-label>First Name</mat-label>
       <input matInput formControlName="First_Name">
-      <mat-error *ngIf="studentForm.get('First_Name').invalid">Please Enter Valid Name</mat-error>
+      <mat-error *ngIf="studentForm.get('First_Name').invalid">Please Enter First Name</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Middle Name</mat-label>
       <input matInput formControlName="Middle_Name" >
-      <mat-error *ngIf="studentForm.get('Middle_Name').invalid">Please Enter Valid Name</mat-error>
+      <mat-error *ngIf="studentForm.get('Middle_Name').invalid">Please Enter Middle Name</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Last Name</mat-label>
       <input matInput  formControlName="Last_Name">
-      <mat-error *ngIf="studentForm.get('Last_Name').invalid">Please Enter Valid Name</mat-error>
+      <mat-error *ngIf="studentForm.get('Last_Name').invalid">Please Enter Last Name</mat-error>
     </mat-form-field>
 
     <div class="form-field">
       <mat-label>Gender:</mat-label>
       <mat-radio-group class="form-field" formControlName="Gender_Ref" aria-label="Gender">
-        <mat-radio-button *ngFor="let g of gender" [value]="g.Ref_Code">{{g.Ref_Name}}</mat-radio-button>
+        <mat-radio-button *ngFor="let g of data.gender" [value]="g.Ref_Code">{{g.Ref_Name}}</mat-radio-button>
       </mat-radio-group>
     </div><br>
 
     <mat-form-field  class="form-field-dropdown" appearance="fill">
-      <mat-label>Birth Date</mat-label>
+      <mat-label>Date of Birth</mat-label>
       <input matInput [matDatepicker]="picker_dob" formControlName="DOB">
-      <mat-error *ngIf="studentForm.get('DOB').invalid">Please Enter Valid Date</mat-error>
+      <mat-error *ngIf="studentForm.get('DOB').invalid">Please Choose Valid Date</mat-error>
       <mat-datepicker-toggle matSuffix [for]="picker_dob">
         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
       </mat-datepicker-toggle>
@@ -40,38 +40,26 @@
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Community</mat-label>
       <mat-select formControlName="Community_Ref">
-        <mat-option *ngFor="let c of community" [value]="c.Ref_Code">{{c.Ref_Name}}</mat-option>
+        <mat-option *ngFor="let c of data.community" [value]="c.Ref_Code">{{c.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Caste</mat-label>
       <input matInput formControlName="Caste">
-      <mat-error *ngIf="studentForm.get('Caste').invalid">Please Enter Valid String</mat-error>
+      <mat-error *ngIf="studentForm.get('Caste').invalid">Please Enter Caste</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Email</mat-label>
       <input matInput formControlName="MailID">
-      <mat-error *ngIf="studentForm.get('MailID').invalid">Please Enter Valid Email</mat-error>
+      <mat-error *ngIf="studentForm.get('MailID').invalid">Please Enter Valid Email Id</mat-error>
     </mat-form-field>
     
     <mat-form-field class="form-field">
       <mat-label>Aadhar Card</mat-label>
       <input matInput formControlName="Aadhar_Card">
-      <mat-error *ngIf="studentForm.get('Aadhar_Card').invalid">Please Enter Valid Aadhar No.</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-field">
-      <mat-label>PAN Card</mat-label>
-      <input matInput formControlName="PAN_Card">
-      <mat-error *ngIf="studentForm.get('PAN_Card').invalid">Please Enter Valid PAN Card</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-field">
-      <mat-label>Passport Number</mat-label>
-      <input matInput formControlName="Passport_Number">
-      <mat-error *ngIf="studentForm.get('Passport_Number').invalid">Please Enter Valid Passport Number</mat-error>
+      <mat-error *ngIf="studentForm.get('Aadhar_Card').invalid">Please Enter Valid Aadhar No</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
@@ -86,40 +74,53 @@
       <mat-error *ngIf="studentForm.get('Secondary_ContactNumber').invalid">Please Enter Valid Mobile Number</mat-error>
     </mat-form-field>
 
+    <div class="form-field">
+      <label>Permanent Address</label>
+    </div>
+
     <mat-form-field class="form-field">
       <mat-label>Door No, Street Name</mat-label>
       <input matInput formControlName="Address_Line1">
-      <mat-error *ngIf="studentForm.get('Address_Line1').invalid">Please Enter Valid Entry</mat-error>
+      <mat-error *ngIf="studentForm.get('Address_Line1').invalid">Please Enter Door No/Street Name</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Area</mat-label>
       <input matInput formControlName="Address_Line2" >
-      <mat-error *ngIf="studentForm.get('Address_Line2').invalid">Please Enter Valid Entry</mat-error>
+      <mat-error *ngIf="studentForm.get('Address_Line2').invalid">Please Enter Area</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>City</mat-label>
       <input matInput formControlName="Address_Line3">
-      <mat-error *ngIf="studentForm.get('Address_Line3').invalid">Please Enter Valid Entry</mat-error>
+      <mat-error *ngIf="studentForm.get('Address_Line3').invalid">Please Enter City</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>ZipCode</mat-label>
       <input matInput formControlName="Address_Line4">
-      <mat-error *ngIf="studentForm.get('Address_Line4').invalid">Please Enter Valid Entry</mat-error>
+      <mat-error *ngIf="studentForm.get('Address_Line4').invalid">Please Enter Valid ZipCode</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Correspondence Address</mat-label>
       <input matInput formControlName="Correspondance_Address">
-      <mat-error *ngIf="studentForm.get('Correspondance_Address').invalid">Please Enter Valid Entry</mat-error>
+      <mat-error *ngIf="studentForm.get('Correspondance_Address').invalid">Please Enter Address</mat-error>
     </mat-form-field>
+
+    <div class="form-field">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" formControlName="isSame" (click)="cbox()">Same as Permanent Address
+        </label>
+      </div>
+    </div>
+    <br>
 
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Residential Type</mat-label>
       <mat-select formControlName="Residential_Type_Ref">
-        <mat-option *ngFor="let res of residentialtype" [value]="res.Ref_Code">{{res.Ref_Name}}</mat-option>
+        <mat-option *ngFor="let res of data.residentialType" [value]="res.Ref_Code">{{res.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -133,28 +134,28 @@
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Programme</mat-label>
       <mat-select formControlName="Programme_Ref">
-        <mat-option *ngFor="let prog of programme" [value]="prog.Ref_Code">{{prog.Ref_Name}}</mat-option>
+        <mat-option *ngFor="let prog of data.programme" [value]="prog.Ref_Code">{{prog.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Branch</mat-label>
       <mat-select formControlName="Branch_Ref">
-        <mat-option *ngFor="let bran of branch" [value]="bran.Ref_Code">{{bran.Ref_Name}}</mat-option>
+        <mat-option *ngFor="let bran of data.branch" [value]="bran.Ref_Code">{{bran.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Regisration Mode</mat-label>
       <mat-select formControlName="Registration_Mode_Ref">
-        <mat-option *ngFor="let reg of registration" [value]="reg.Ref_Code">{{reg.Ref_Name}}</mat-option>
+        <mat-option *ngFor="let reg of data.registrationMode" [value]="reg.Ref_Code">{{reg.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Blood Group</mat-label>
       <mat-select formControlName="Blood_Group_Ref">
-        <mat-option *ngFor="let bg of bloodgroup" [value]="bg.Ref_Code">{{bg.Ref_Name}}</mat-option>
+        <mat-option *ngFor="let bg of data.bloodGroup" [value]="bg.Ref_Code">{{bg.Ref_Name}}</mat-option>
       </mat-select>
       <mat-error *ngIf="studentForm.get('Blood_Group_Ref').invalid">Please Enter Blood Group</mat-error>
     </mat-form-field>
@@ -178,14 +179,14 @@
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Admission Category</mat-label>
       <mat-select formControlName="Admission_Category_Ref">
-        <mat-option *ngFor="let adm of admission" [value]="adm.Ref_Code">{{adm.Ref_Name}}</mat-option>
+        <mat-option *ngFor="let adm of data.admissionCategory" [value]="adm.Ref_Code">{{adm.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Scholarship Received</mat-label>
       <mat-select formControlName="Scholarship_Received_Ref">
-        <mat-option *ngFor="let sch of scholarship" [value]="sch.Ref_Code">{{sch.Ref_Name}}</mat-option>
+        <mat-option *ngFor="let sch of data.scholarshipReceived" [value]="sch.Ref_Code">{{sch.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 

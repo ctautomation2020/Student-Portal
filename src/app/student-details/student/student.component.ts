@@ -124,7 +124,15 @@ export class StudentComponent implements OnInit {
       data: {
         student: this.student,
         gender: this.gender,
-        community: this.community
+        community: this.community,
+        residentialType:this.residentialType,
+        programme:this.programme,
+        branch:this.branch,
+        registrationMode:this.registrationMode,
+        bloodGroup:this.bloodGroup,
+        admissionCategory:this.admissionCategory,
+        scholarshipReceived:this.scholarshipReceived,
+        volunteer:this.volunteer
       }
     });
     dialogRef.afterClosed().subscribe(result => {
