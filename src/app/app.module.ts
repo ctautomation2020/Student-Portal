@@ -36,6 +36,8 @@ import { StudentDetailsComponent } from './student-details/student-details.compo
 import { StudentDetailsRoutingModule } from './student-details/student-details-routing.module';
 import { FamilyComponent } from './student-details/family/family.component';
 import { FamilyModelComponent } from './student-details/family/family-model/family-model.component';
+import { ImageModelComponent } from './student-details/student/image-model/image-model.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,8 @@ import { FamilyModelComponent } from './student-details/family/family-model/fami
     StudentModelComponent,
     StudentDetailsComponent,
     FamilyComponent,
-    FamilyModelComponent
+    FamilyModelComponent,
+    ImageModelComponent
   ],
   entryComponents: [AlertboxComponent,StudentModelComponent,FamilyModelComponent],
   imports: [

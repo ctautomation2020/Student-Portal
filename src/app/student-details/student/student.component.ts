@@ -8,6 +8,7 @@ import { StudentModel } from './student.model';
 import { PersonReferenceModel } from './../person-reference.model';
 import { StudentDetailsService } from './../student-details.service';
 import { PersonModel } from './../person.model';
+import { ImageModelComponent } from './image-model/image-model.component';
 
 @Component({
   selector: 'app-student',
@@ -223,5 +224,8 @@ export class StudentComponent implements OnInit {
   }
   filterVolunteer(): PersonReferenceModel {
     return this.volunteer.filter(l => l.Ref_Code === this.student.NSS_NSO_YRC_Volunteer_Ref)[0];
+  }
+  openImageUpload(){
+    let dialogRef = this.dialog.open(ImageModelComponent);
   }
 }
