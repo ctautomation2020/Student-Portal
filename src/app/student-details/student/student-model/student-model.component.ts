@@ -38,19 +38,13 @@ export const MY_FORMATS = {
 })
 export class StudentModelComponent implements OnInit {
   studentForm: FormGroup;
-  facultyadvisor = [
-    {Category: 'facultyadvisor', Ref_Code: 5001, Ref_Name: "Ms.Dhanalaxmi"},
-    {Category: 'facultyadvisor', Ref_Code: 5002, Ref_Name: "Ms.Cinu"},
-    {Category: 'facultyadvisor', Ref_Code: 5003, Ref_Name: "Dr.Valliammai"},
-    {Category: 'facultyadvisor', Ref_Code: 5004, Ref_Name: "Dr.Neelavathy"}
-  ]
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<StudentModelComponent>) {
   }
 
   ngOnInit(): void {
-    //console.log(this.data);
     this.studentForm = new FormGroup({
+      Register_No: new FormControl(this.data.student.Register_No),
       First_Name: new FormControl(this.data.student.First_Name, Validators.required),
       Middle_Name: new FormControl(this.data.student.Middle_Name),
       Last_Name: new FormControl(this.data.student.Last_Name, Validators.required),
@@ -67,7 +61,7 @@ export class StudentModelComponent implements OnInit {
       Address_Line3: new FormControl(this.data.student.Address_Line3, Validators.required),
       Address_Line4: new FormControl(this.data.student.Address_Line4, [Validators.required, Validators.pattern('^[0-9]{6}$')]),
       isSame:new FormControl(),
-      Correspondance_Address: new FormControl(this.data.student.Correspondance_Address,Validators.required),
+      Correspondence_Address: new FormControl(this.data.student.Correspondence_Address,Validators.required),
       Residential_Type_Ref: new FormControl(this.data.student.Residential_Type_Ref,Validators.required),
       FA: new FormControl(this.data.student.FA,Validators.required),
       Programme_Ref: new FormControl(this.data.student.Programme_Ref,Validators.required),
@@ -82,20 +76,21 @@ export class StudentModelComponent implements OnInit {
       NSS_NSO_YRC_Volunteer_Ref: new FormControl(this.data.student.NSS_NSO_YRC_Volunteer_Ref,Validators.required),
       Hostel_Block_Room: new FormControl(this.data.student.Hostel_Block_Room)
     });
-    console.log(this.data.facultyAdvisors);
   }
   onSubmit() {
     console.log(this.studentForm.value);
-    //this.dialogRef.close(this.studentForm.value);
+    //console.log(this.studentForm.value.DOB);
+    //console.log(this.studentForm.value.Admission_Date);
+    this.dialogRef.close(this.studentForm.value);
   }
   cbox(){
     var cval=!(this.studentForm.value.isSame);
     var forms=this.studentForm.value;
     if(cval){
-      this.studentForm.controls.Correspondance_Address.setValue(forms.Address_Line1+", "+forms.Address_Line2+", "+forms.Address_Line3+", "+forms.Address_Line4);
+      this.studentForm.controls.Correspondence_Address.setValue(forms.Address_Line1+", "+forms.Address_Line2+", "+forms.Address_Line3+", "+forms.Address_Line4);
     }
     else{
-      this.studentForm.controls.Correspondance_Address.setValue("");
+      this.studentForm.controls.Correspondence_Address.setValue("");
     }
   }
   date = new FormControl(moment());

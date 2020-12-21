@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: 'student-details',
     component: StudentDetailsComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'student',
@@ -26,7 +26,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  //providers: [AuthGuard]
+  providers: [AuthGuard]
   })
 export class StudentDetailsRoutingModule {
 

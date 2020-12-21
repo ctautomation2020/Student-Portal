@@ -19,7 +19,7 @@ export class ImageModelComponent implements OnInit {
     })
   }
   
-  imageSrc: string;
+  imageSrc: string="../../../../assets/back.jpg";
   get f(){
     return this.imageForm.controls;
   }

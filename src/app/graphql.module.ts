@@ -8,8 +8,8 @@ const uri = 'http://localhost:4000'; // <-- add the URL of the GraphQL server he
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  //const token = localStorage.getItem('token');
-  const token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQZXJzb25fSUQiOjEyMywiaWF0IjoxNjA3ODg0MTc5fQ.0_vCSsSeFp36enlUT3BNTXZhu5zkj-Cnk2Wz45dDat8";
+  const token = localStorage.getItem('token');
+  //const token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQZXJzb25fSUQiOjEyMywiaWF0IjoxNjA3ODg0MTc5fQ.0_vCSsSeFp36enlUT3BNTXZhu5zkj-Cnk2Wz45dDat8";
   // return the headers to the context so httpLink can read them
   return {
     headers: {

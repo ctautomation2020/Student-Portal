@@ -53,7 +53,7 @@ export class StudentComponent implements OnInit {
           Address_Line2
           Address_Line3
           Address_Line4
-          Correspondance_Address
+          Correspondence_Address
           Residential_Type_Ref
           FA
           Programme_Ref
@@ -75,7 +75,6 @@ export class StudentComponent implements OnInit {
       query: req
     });
     this.queryRef.valueChanges.subscribe(((result: any) => {
-      //console.log(result.data.student);
       this.student = JSON.parse(JSON.stringify(result.data.student));
       const temp1 = parseFloat(result.data.student.DOB) / 1000;
       const myDate1 = new Date(0);
@@ -88,7 +87,6 @@ export class StudentComponent implements OnInit {
       myDate2.setUTCSeconds(temp2);
       //console.log(myDate2);
       this.student.Admission_Date = myDate2 ;
-      console.log(this.student);
 
     }));
     this.studentDetailsService.getDropDown('Gender').subscribe(result => {
@@ -126,6 +124,15 @@ export class StudentComponent implements OnInit {
     })
     
   }
+  convertDate(inputDate:any){
+    if(inputDate.isMomentObject){
+      inputDate=inputDate._d;
+    }
+    const dt=new Date(inputDate);
+    const date=new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()));
+    return date;
+  }
+
   onOpenModel() {
     let dialogRef = this.dialog.open(StudentModelComponent, { 
       data: {
@@ -143,46 +150,55 @@ export class StudentComponent implements OnInit {
         facultyAdvisors:this.facultyAdvisors
       }
     });
-    console.log(this.volunteer);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result.DOB);
-        const d = new Date(result.DOB);
-        const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+        console.log(result);
+        const date1=this.convertDate(result.DOB);
+        const date2=this.convertDate(result.Admission_Date);
+        console.log(date1);
+        console.log(date2);
+        const aadata=result.Aadhar_Card.toString();
+        console.log(aadata);
         const req = gql `
-        mutation updatePerson($data: updatePersonInput!) {
-          updatePerson(data: $data) {
-            Person_ID
-            Marital_Status_Ref
+        mutation updateStudent($data: updateStudentInput!) {
+          updateStudent(data: $data) {
+            Register_No
           }
         }`;
         this.apollo.mutate({
           mutation: req,
           variables: {
             data: {
-              Person_ID: result.Person_ID,
-              Prefix_Ref: result.Prefix_Ref,
-              PAN_Card: result.PAN_Card,
+              Register_No: result.Register_No,
               First_Name: result.First_Name,
+              Middle_Name: result.Middle_Name,
               Last_Name: result.Last_Name,
-              Caste: result.Caste,
               Gender_Ref: result.Gender_Ref,
-              Marital_Status_Ref: result.Marital_Status_Ref,
+              DOB: date1,
               Community_Ref: result.Community_Ref,
-              Primary_MailID: result.Primary_MailID,
-              Secondary_MailID: result.Secondary_MailID,
-              Aadhar_Card: result.Aadhar_Card,
-              Passport_Number: result.Passport_Number,
-              DOB: date,
+              Caste: result.Caste,
+              MailID: result.MailID,
+              Aadhar_Card: aadata,
               Primary_ContactNumber: result.Primary_ContactNumber,
               Secondary_ContactNumber: result.Secondary_ContactNumber,
-              Intercom_Number: result.Intercom_Number,
-              Alias_Name: result.Alias_Name,
               Address_Line1: result.Address_Line1,
               Address_Line2: result.Address_Line2,
               Address_Line3: result.Address_Line3,
               Address_Line4: result.Address_Line4,
-              Room_Num: result.Room_Num
+              Correspondence_Address: result.Correspondence_Address,
+              Residential_Type_Ref: result.Residential_Type_Ref,
+              FA: result.FA,
+              Programme_Ref: result.Programme_Ref,
+              Branch_Ref: result.Branch_Ref,
+              Registration_Mode_Ref: result.Registration_Mode_Ref,
+              Blood_Group_Ref: result.Blood_Group_Ref,
+              GATE_Cutoff_Mark: result.GATE_Cutoff_Mark,
+              Admission_Date: date2,
+              Admission_Category_Ref: result.Admission_Category_Ref,
+              Scholarship_Received_Ref: result.Scholarship_Received_Ref,
+              Scholarship_Details: result.Scholarship_Details,
+              NSS_NSO_YRC_Volunteer_Ref: result.NSS_NSO_YRC_Volunteer_Ref,
+              Hostel_Block_Room: result.Hostel_Block_Room
             }
           }
         }).subscribe(({ data }) => {

@@ -8,7 +8,7 @@ export interface StudentModel {
     Community_Ref: number;
     Caste: string;
     MailID: string;
-    Aadhar_Card: number;
+    Aadhar_Card: string;
     PAN_Card: string;
     Passport_Number: string;
     Primary_ContactNumber: string;
@@ -17,7 +17,7 @@ export interface StudentModel {
     Address_Line2: string;
     Address_Line3: string;
     Address_Line4: string;
-    Correspondance_Address: string;
+    Correspondence_Address: string;
     Residential_Type_Ref: number;
     FA: number;
     Programme_Ref: number;
