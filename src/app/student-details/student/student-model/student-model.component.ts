@@ -3,11 +3,38 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {Apollo} from 'apollo-angular';
+import * as _moment from 'moment';
+import { default as _rollupMoment, Moment } from 'moment';
+import { MatDatepicker } from '@angular/material/datepicker';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
+const moment = _rollupMoment || _moment;
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'MM/YYYY',
+  },
+  display: {
+    dateInput: 'MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-student-model',
   templateUrl: './student-model.component.html',
-  styleUrls: ['./student-model.component.scss']
+  styleUrls: ['./student-model.component.scss'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ]
 })
 export class StudentModelComponent implements OnInit {
   studentForm: FormGroup;
@@ -17,17 +44,12 @@ export class StudentModelComponent implements OnInit {
     {Category: 'facultyadvisor', Ref_Code: 5003, Ref_Name: "Dr.Valliammai"},
     {Category: 'facultyadvisor', Ref_Code: 5004, Ref_Name: "Dr.Neelavathy"}
   ]
-  volunteer = [
-    {Category: "volunteer", Ref_Code: 129, Ref_Name: "NSS"},
-    {Category: "volunteer", Ref_Code: 130, Ref_Name: "NSO"},
-    {Category: "volunteer", Ref_Code: 131, Ref_Name: "YRC"}
-  ]
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<StudentModelComponent>) {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
+    //console.log(this.data);
     this.studentForm = new FormGroup({
       First_Name: new FormControl(this.data.student.First_Name, Validators.required),
       Middle_Name: new FormControl(this.data.student.Middle_Name),
@@ -57,10 +79,10 @@ export class StudentModelComponent implements OnInit {
       Admission_Category_Ref: new FormControl(this.data.student.Admission_Category_Ref,Validators.required),
       Scholarship_Received_Ref: new FormControl(this.data.student.Scholarship_Received_Ref,Validators.required),
       Scholarship_Details: new FormControl(this.data.student.Scholarship_Details),
-      NSO_NSS_YRC_Volunteer_Ref: new FormControl(131,Validators.required),
+      NSS_NSO_YRC_Volunteer_Ref: new FormControl(this.data.student.NSS_NSO_YRC_Volunteer_Ref,Validators.required),
       Hostel_Block_Room: new FormControl(this.data.student.Hostel_Block_Room)
     });
-    console.log(this.studentForm);
+    //console.log(this.studentForm);
   }
   onSubmit() {
     console.log(this.studentForm.value);
@@ -75,5 +97,19 @@ export class StudentModelComponent implements OnInit {
     else{
       this.studentForm.controls.Correspondance_Address.setValue("");
     }
+  }
+  date = new FormControl(moment());
+
+  chosenYearHandler(normalizedYear: Moment) {
+    const ctrlValue = this.date.value;
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+  }
+
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.date.value;
+    ctrlValue.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    datepicker.close();
   }
 }

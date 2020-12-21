@@ -167,14 +167,16 @@
     </mat-form-field>
   
     <mat-form-field  class="form-field-dropdown" appearance="fill">
-      <mat-label>Admission Date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="Admission_Date">
-      <mat-error *ngIf="studentForm.get('Admission_Date').invalid">Please Enter Valid Date</mat-error>
-      <mat-datepicker-toggle matSuffix [for]="picker">
-        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-      </mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+        <mat-label>Admission Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="Admission_Date">
+        <mat-error *ngIf="studentForm.get('Admission_Date').invalid">Please Enter Valid Date</mat-error>
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker startView="multi-year" (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, picker)" panelClass="example-month-picker">
+        </mat-datepicker>
+      </mat-form-field>
 
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Admission Category</mat-label>
@@ -198,8 +200,8 @@
 
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>NSS/NSO/YRC volunteer</mat-label>
-      <mat-select formControlName="NSO_NSS_YRC_Volunteer_Ref">
-        <mat-option *ngFor="let vol of volunteer" [value]="vol.Ref_Code">{{vol.Ref_Name}}</mat-option>
+      <mat-select formControlName="NSS_NSO_YRC_Volunteer_Ref">
+        <mat-option *ngFor="let vol of data.volunteer" [value]="vol.Ref_Code">{{vol.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -216,4 +218,3 @@
   <button mat-raised-button mat-dialog-close>Close</button>
   <button mat-raised-button color="primary" [disabled]="studentForm.invalid" (click)="onSubmit()">Confirm</button>
 </mat-dialog-actions>
-

@@ -33,4 +33,19 @@ export class StudentDetailsService {
       JSON.parse(JSON.stringify(result.data['personReference']))
       ));
   }
+  getFA() {
+    const req = gql`
+      query allPersons{
+        allPersons{
+          Person_ID
+          First_Name
+          Last_Name
+        }
+      }`;
+    return this.apollo.watchQuery({
+      query:req
+    }).valueChanges.pipe(map((result: any) =>
+    JSON.parse(JSON.stringify(result.data['allPersons']))
+    ));
+  }
 }

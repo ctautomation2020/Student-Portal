@@ -29,7 +29,7 @@ export interface StudentModel {
     Admission_Category_Ref: number;
     Scholarship_Received_Ref: number;
     Scholarship_Details: string;
-    NSO_NSS_YRC_Volunteer_Ref: number;
+    NSS_NSO_YRC_Volunteer_Ref: number;
     Hostel_Block_Room: string;
 }
   

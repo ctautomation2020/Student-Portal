@@ -7,6 +7,7 @@ import { StudentModelComponent } from './student-model/student-model.component';
 import { StudentModel } from './student.model';
 import { PersonReferenceModel } from './../person-reference.model';
 import { StudentDetailsService } from './../student-details.service';
+import { PersonModel } from './../person.model';
 
 @Component({
   selector: 'app-student',
@@ -25,12 +26,15 @@ export class StudentComponent implements OnInit {
   scholarshipReceived: PersonReferenceModel[];
   volunteer: PersonReferenceModel[];
   student: StudentModel;
+  facultyAdvisors: PersonModel[];
   queryRef: QueryRef<StudentModel, any>;
 
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
   ngOnInit(): void {
     const id: number = this.studentDetailsService.getRegisterNo();
     console.log(id);
+    const val=this.studentDetailsService.getFA();
+    console.log(val);
     const req=gql`
       query student{
         student{
@@ -62,7 +66,7 @@ export class StudentComponent implements OnInit {
           Admission_Category_Ref
           Scholarship_Received_Ref
           Scholarship_Details
-          NSO_NSS_YRC_Volunteer_Ref
+          NSS_NSO_YRC_Volunteer_Ref
           Hostel_Block_Room
         }
       }`;
@@ -115,9 +119,13 @@ export class StudentComponent implements OnInit {
     this.studentDetailsService.getDropDown('Option').subscribe(result => {
       this.scholarshipReceived = result;
     });
-    this.studentDetailsService.getDropDown('CNSS/NSO/YRC_Volunteer').subscribe(result => {
+    this.studentDetailsService.getDropDown('NSS/NSO/YRC_Volunteer').subscribe(result => {
       this.volunteer = result;
     });
+    this.studentDetailsService.getFA().subscribe(result =>{
+      this.facultyAdvisors=result;
+    })
+    console.log(this.facultyAdvisors);
   }
   onOpenModel() {
     let dialogRef = this.dialog.open(StudentModelComponent, { 
@@ -211,6 +219,6 @@ export class StudentComponent implements OnInit {
     return this.scholarshipReceived.filter(l => l.Ref_Code === this.student.Scholarship_Received_Ref)[0];
   }
   filterVolunteer(): PersonReferenceModel {
-    return this.volunteer.filter(l => l.Ref_Code === this.student.NSO_NSS_YRC_Volunteer_Ref)[0];
+    return this.volunteer.filter(l => l.Ref_Code === this.student.NSS_NSO_YRC_Volunteer_Ref)[0];
   }
 }
