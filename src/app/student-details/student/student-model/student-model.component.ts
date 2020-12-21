@@ -66,7 +66,7 @@ export class StudentModelComponent implements OnInit {
       Address_Line2: new FormControl(this.data.student.Address_Line2, Validators.required),
       Address_Line3: new FormControl(this.data.student.Address_Line3, Validators.required),
       Address_Line4: new FormControl(this.data.student.Address_Line4, [Validators.required, Validators.pattern('^[0-9]{6}$')]),
-      isSame:new FormControl(),      
+      isSame:new FormControl(),
       Correspondance_Address: new FormControl(this.data.student.Correspondance_Address,Validators.required),
       Residential_Type_Ref: new FormControl(this.data.student.Residential_Type_Ref,Validators.required),
       FA: new FormControl(this.data.student.FA,Validators.required),

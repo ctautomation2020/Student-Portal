@@ -34,8 +34,6 @@ export class StudentComponent implements OnInit {
   ngOnInit(): void {
     const id: number = this.studentDetailsService.getRegisterNo();
     console.log(id);
-    const val=this.studentDetailsService.getFA();
-    console.log(val);
     const req=gql`
       query student{
         student{
@@ -82,13 +80,13 @@ export class StudentComponent implements OnInit {
       const temp1 = parseFloat(result.data.student.DOB) / 1000;
       const myDate1 = new Date(0);
       myDate1.setUTCSeconds(temp1);
-      console.log(myDate1);
+      //console.log(myDate1);
       this.student.DOB = myDate1 ;
 
       const temp2 = parseFloat(result.data.student.Admission_Date) / 1000;
       const myDate2 = new Date(0);
       myDate2.setUTCSeconds(temp2);
-      console.log(myDate2);
+      //console.log(myDate2);
       this.student.Admission_Date = myDate2 ;
       console.log(this.student);
 
@@ -126,7 +124,6 @@ export class StudentComponent implements OnInit {
     this.studentDetailsService.getFA().subscribe(result =>{
       this.facultyAdvisors=result;
     })
-    console.log(this);
     
   }
   onOpenModel() {

@@ -1,6 +1,5 @@
 <div class="container">
-    <!--<div class="main" *ngIf="person!=null">-->
-        <div class="main">
+    <div class="main" *ngIf="student!=null">
         <div class="profile-section" >
             <div class="profile-left">
                 <div class="image-wrap">
@@ -50,15 +49,13 @@
                     <span class="label">Date of Birth</span>
                     <p>{{student.DOB | date:'longDate'}}</p>
                 </div>
-                <!--<div class="text-wrap" *ngIf="gender != null">-->
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="gender != null">
                     <span class="label">Gender</span>
                   <p>{{filterGender().Ref_Name}}</p>
               </div>
             </div>
             <div class="input-field">
-                <!--<div class="text-wrap" *ngIf="community != null">-->
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="community != null">
                     <span class="label">Community</span>
                     <p>{{filterCommunity().Ref_Name}}</p>
                 </div>
@@ -68,7 +65,7 @@
                 </div>
             </div>
             <div class="input-field">
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="bloodGroup != null">    
                     <span class="label">Blood Group</span>
                     <p>{{filterBloodGroup().Ref_Name}}</p>
                 </div>
@@ -80,7 +77,7 @@
             <div class="horizontal-line-break"></div>
             <h3 class="section-title">College Details</h3>
             <div class="input-field">
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="residentialType != null">  
                     <span class="label">Residential Type</span>
                     <p>{{filterResidentialType().Ref_Name}}</p>
                 </div>
@@ -94,17 +91,17 @@
                     <span class="label">Faculty Advisor</span>
                     <p>{{student.FA}}</p>
                 </div>
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="programme != null">  
                     <span class="label">Programme</span>
                     <p>{{filterProgramme().Ref_Name}}</p>
                 </div>
             </div>
             <div class="input-field">
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="branch != null">  
                     <span class="label">Branch</span>
                     <p>{{filterBranch().Ref_Name}}</p>
                 </div>
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="registrationMode != null">  
                     <span class="label">Registration</span>
                     <p>{{filterRegistrationMode().Ref_Name}}</p>
                 </div>
@@ -120,17 +117,17 @@
                 </div>
             </div>
             <div class="input-field">
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="admissionCategory != null">  
                     <span class="label">Admission Category</span>
                     <p>{{filterAdmissionCategory().Ref_Name}}</p>
                 </div>
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="volunteer != null">  
                     <span class="label">Volunteer</span>
                     <p>{{filterVolunteer().Ref_Name}}</p>
                 </div>
             </div>
             <div class="input-field">
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="scholarshipReceived != null">  
                     <span class="label">Scholarship Received</span>
                     <p>{{filterScholarshipReceived().Ref_Name}}</p>
                 </div>
