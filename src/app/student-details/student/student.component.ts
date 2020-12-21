@@ -125,7 +125,8 @@ export class StudentComponent implements OnInit {
     this.studentDetailsService.getFA().subscribe(result =>{
       this.facultyAdvisors=result;
     })
-    console.log(this.facultyAdvisors);
+    console.log(this);
+    
   }
   onOpenModel() {
     let dialogRef = this.dialog.open(StudentModelComponent, { 
@@ -140,9 +141,11 @@ export class StudentComponent implements OnInit {
         bloodGroup:this.bloodGroup,
         admissionCategory:this.admissionCategory,
         scholarshipReceived:this.scholarshipReceived,
-        volunteer:this.volunteer
+        volunteer:this.volunteer,
+        facultyAdvisors:this.facultyAdvisors
       }
     });
+    console.log(this.volunteer);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result.DOB);

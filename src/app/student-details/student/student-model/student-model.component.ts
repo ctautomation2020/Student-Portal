@@ -12,10 +12,10 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'MM/YYYY',
+    dateInput: 'DD/MM/YYYY',
   },
   display: {
-    dateInput: 'MM/YYYY',
+    dateInput: 'DD/MM/YYYY',
     monthYearLabel: 'MMM YYYY',
     dateA11yLabel: 'LL',
     monthYearA11yLabel: 'MMMM YYYY',
@@ -82,7 +82,7 @@ export class StudentModelComponent implements OnInit {
       NSS_NSO_YRC_Volunteer_Ref: new FormControl(this.data.student.NSS_NSO_YRC_Volunteer_Ref,Validators.required),
       Hostel_Block_Room: new FormControl(this.data.student.Hostel_Block_Room)
     });
-    //console.log(this.studentForm);
+    console.log(this.data.facultyAdvisors);
   }
   onSubmit() {
     console.log(this.studentForm.value);
@@ -100,16 +100,8 @@ export class StudentModelComponent implements OnInit {
   }
   date = new FormControl(moment());
 
-  chosenYearHandler(normalizedYear: Moment) {
-    const ctrlValue = this.date.value;
-    ctrlValue.year(normalizedYear.year());
-    this.date.setValue(ctrlValue);
-  }
-
   chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.date.value;
-    ctrlValue.month(normalizedMonth.month());
-    this.date.setValue(ctrlValue);
+    datepicker.select(normalizedMonth)
     datepicker.close();
   }
 }

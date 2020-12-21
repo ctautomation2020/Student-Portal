@@ -127,7 +127,7 @@
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Faculty Advisor</mat-label>
       <mat-select formControlName="FA">
-        <mat-option *ngFor="let fa of facultyadvisor" [value]="fa.Ref_Code">{{fa.Ref_Name}}</mat-option>
+        <mat-option *ngFor="let fa of data.facultyAdvisors" [value]="fa.Person_ID">{{fa.First_Name}} {{fa.Last_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -167,16 +167,15 @@
     </mat-form-field>
   
     <mat-form-field  class="form-field-dropdown" appearance="fill">
-        <mat-label>Admission Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="Admission_Date">
-        <mat-error *ngIf="studentForm.get('Admission_Date').invalid">Please Enter Valid Date</mat-error>
-        <mat-datepicker-toggle matSuffix [for]="picker">
-          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker startView="multi-year" (yearSelected)="chosenYearHandler($event)"
-                    (monthSelected)="chosenMonthHandler($event, picker)" panelClass="example-month-picker">
-        </mat-datepicker>
-      </mat-form-field>
+      <mat-label>Admission Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="Admission_Date">
+      <mat-error *ngIf="studentForm.get('Admission_Date').invalid">Please Enter Valid Date</mat-error>
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker startView="multi-year" (monthSelected)="chosenMonthHandler($event, picker)">
+      </mat-datepicker>
+    </mat-form-field>
 
     <mat-form-field class="form-field-dropdown" appearance="fill">
       <mat-label>Admission Category</mat-label>
