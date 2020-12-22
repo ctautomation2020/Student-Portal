@@ -52,7 +52,7 @@ import { ImageModelComponent } from './student-details/student/image-model/image
     FamilyModelComponent,
     ImageModelComponent
   ],
-  entryComponents: [AlertboxComponent,StudentModelComponent,FamilyModelComponent],
+  entryComponents: [AlertboxComponent,StudentModelComponent,FamilyModelComponent,ImageModelComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

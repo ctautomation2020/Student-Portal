@@ -19,7 +19,7 @@
                 </h3>
                 <div class="text-wrap">
                     <span class="label">Name</span>
-                    <p>{{student.First_Name}}{{student.Middle_Name}} {{student.Last_Name}}</p>
+                    <p>{{student.First_Name}} {{student.Middle_Name}} {{student.Last_Name}}</p>
                 </div>
                 <div class="text-wrap">
                     <span class="label">Email Address</span>
@@ -40,14 +40,14 @@
                 <p>{{student.First_Name}}</p>
                 </div>
                 <div class="text-wrap">
-                    <span class="label">Last Name</span>
-                    <p>{{student.Last_Name}}</p>
+                    <span class="label">Middle Name</span>
+                    <p>{{student.Middle_Name}}</p>
                 </div>
             </div>
             <div class="input-field">
                 <div class="text-wrap">
-                    <span class="label">Date of Birth</span>
-                    <p>{{student.DOB | date:'longDate'}}</p>
+                    <span class="label">Last Name</span>
+                    <p>{{student.Last_Name}}</p>
                 </div>
                 <div class="text-wrap" *ngIf="gender != null">
                     <span class="label">Gender</span>
@@ -55,23 +55,29 @@
               </div>
             </div>
             <div class="input-field">
+                <div class="text-wrap">
+                    <span class="label">Date of Birth</span>
+                    <p>{{student.DOB | date:'longDate'}}</p>
+                </div>
                 <div class="text-wrap" *ngIf="community != null">
                     <span class="label">Community</span>
                     <p>{{filterCommunity().Ref_Name}}</p>
                 </div>
+            </div>
+            <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Caste</span>
                     <p>{{student.Caste}}</p>
+                </div>
+                <div class="text-wrap">
+                    <span class="label">Aadhar Card Number</span>
+                    <p>{{student.Aadhar_Card}}</p>
                 </div>
             </div>
             <div class="input-field">
                 <div class="text-wrap" *ngIf="bloodGroup != null">    
                     <span class="label">Blood Group</span>
                     <p>{{filterBloodGroup().Ref_Name}}</p>
-                </div>
-                <div class="text-wrap">
-                    <span class="label">Aadhar Card Number</span>
-                    <p>{{student.Aadhar_Card}}</p>
                 </div>
             </div>
             <div class="horizontal-line-break"></div>
@@ -87,9 +93,9 @@
                 </div>
             </div>
             <div class="input-field">
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="facultyAdvisors != null">
                     <span class="label">Faculty Advisor</span>
-                    <p>{{student.FA}}</p>
+                    <p>{{filterFA().First_Name}} {{filterFA().Last_Name}}</p>
                 </div>
                 <div class="text-wrap" *ngIf="programme != null">  
                     <span class="label">Programme</span>

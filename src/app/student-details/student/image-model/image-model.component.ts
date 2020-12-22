@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {Apollo} from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Component({
   selector: 'app-image-model',
@@ -8,9 +10,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./image-model.component.scss']
 })
 export class ImageModelComponent implements OnInit {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<ImageModelComponent>) { }
   imageForm: FormGroup;
+  fileToUpload:any;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private apollo: Apollo,public dialogRef: MatDialogRef<ImageModelComponent>) { }
+  
 
   ngOnInit(): void {
     this.imageForm = new FormGroup({
@@ -40,8 +43,27 @@ export class ImageModelComponent implements OnInit {
         });
    
       };
-   
-    }
+      /*this.fileToUpload=event.target.files[0];
+      const formData = new FormData();
+      formData.append('file', this.fileToUpload);
+      const req = gql `
+            mutation uploadPhoto($file: Upload!) {
+              uploadPhoto(file: $file)
+            }
+            `;
+      this.apollo
+      .mutate({
+        mutation: req,
+        variables: {
+          file: event.target.files[0]
+        },
+        context: {
+          useMultipart: true
+        }
+      }).subscribe(({ data }) => {
+        console.log(data);
+      });*/
+      }
   }
    
   submit(){

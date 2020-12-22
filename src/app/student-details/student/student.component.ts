@@ -238,6 +238,9 @@ export class StudentComponent implements OnInit {
   filterVolunteer(): PersonReferenceModel {
     return this.volunteer.filter(l => l.Ref_Code === this.student.NSS_NSO_YRC_Volunteer_Ref)[0];
   }
+  filterFA():PersonModel{
+    return this.facultyAdvisors.filter(l =>l.Person_ID === this.student.FA)[0];
+  }
   openImageUpload(){
     let dialogRef = this.dialog.open(ImageModelComponent);
   }
