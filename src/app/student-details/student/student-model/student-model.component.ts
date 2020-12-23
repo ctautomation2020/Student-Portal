@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {Apollo} from 'apollo-angular';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
