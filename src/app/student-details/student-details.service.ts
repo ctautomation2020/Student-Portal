@@ -7,10 +7,10 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class StudentDetailsService {
-  Register_No=2018503557;
   constructor(private apollo:Apollo) { }
   getRegisterNo(){
-    return this.Register_No;
+    const regno=parseInt(localStorage.getItem('regno'));
+    return regno;
   }
   getDropDown(str: string) {
     const req = gql`

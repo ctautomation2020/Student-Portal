@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
     const req = gql`
     query login($data: credentialQueryInput!) {
       login(data: $data) {
-        token
+        token,
+        Register_No
       }
     }
     `;
@@ -39,8 +40,8 @@ export class LoginComponent implements OnInit {
           }
         }
       }).valueChanges.subscribe((result: any) => {
-        console.log(result.data.login.token);
         localStorage.setItem('token', result.data.login.token );
+        localStorage.setItem('regno', result.data.login.Register_No );
         this.route.navigateByUrl('student-details');
     });
   }
