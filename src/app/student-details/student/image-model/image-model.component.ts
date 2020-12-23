@@ -43,9 +43,10 @@ export class ImageModelComponent implements OnInit {
         });
    
       };
-      /*this.fileToUpload=event.target.files[0];
+      this.fileToUpload=event.target.files[0];
       const formData = new FormData();
       formData.append('file', this.fileToUpload);
+      console.log(formData);
       const req = gql `
             mutation uploadPhoto($file: Upload!) {
               uploadPhoto(file: $file)
@@ -62,7 +63,7 @@ export class ImageModelComponent implements OnInit {
         }
       }).subscribe(({ data }) => {
         console.log(data);
-      });*/
+      });
       }
   }
    

@@ -4,13 +4,10 @@ import { StudentDetailsComponent} from './student-details.component';
 import { StudentComponent } from './../student-details/student/student.component';
 import { FamilyComponent } from './family/family.component';
 
-import {AuthGuard} from '../auth/auth.guard';
-
 const routes: Routes = [
   {
-    path: 'student-details',
+    path: '',
     component: StudentDetailsComponent,
-    canActivate: [AuthGuard],
     children: [
       {
         path: 'student',
@@ -25,8 +22,7 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: [AuthGuard]
+  exports: [RouterModule]
   })
 export class StudentDetailsRoutingModule {
 

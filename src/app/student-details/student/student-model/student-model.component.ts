@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {Apollo} from 'apollo-angular';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
@@ -47,15 +46,15 @@ export class StudentModelComponent implements OnInit {
       Register_No: new FormControl(this.data.student.Register_No),
       First_Name: new FormControl(this.data.student.First_Name, Validators.required),
       Middle_Name: new FormControl(this.data.student.Middle_Name),
-      Last_Name: new FormControl(this.data.student.Last_Name, Validators.required),
+      Last_Name: new FormControl(this.data.student.Last_Name),
       Gender_Ref: new FormControl(this.data.student.Gender_Ref,Validators.required),
       DOB: new FormControl(this.data.student.DOB, Validators.required),
       Community_Ref: new FormControl(this.data.student.Community_Ref,Validators.required),
       Caste: new FormControl(this.data.student.Caste, Validators.required),
-      MailID: new FormControl(this.data.student.MailID,Validators.email),
+      MailID: new FormControl(this.data.student.MailID,[Validators.email, Validators.required]),
       Aadhar_Card: new FormControl(this.data.student.Aadhar_Card, [Validators.required, Validators.pattern('^[0-9]{12}$')]),
       Primary_ContactNumber: new FormControl(this.data.student.Primary_ContactNumber, [Validators.required,Validators.pattern('^[0-9]{10}$')]),
-      Secondary_ContactNumber: new FormControl(this.data.student.Secondary_ContactNumber,[Validators.required,Validators.pattern('^[0-9]{10}$')]),
+      Secondary_ContactNumber: new FormControl(this.data.student.Secondary_ContactNumber,Validators.pattern('^[0-9]{10}$')),
       Address_Line1: new FormControl(this.data.student.Address_Line1, Validators.required),
       Address_Line2: new FormControl(this.data.student.Address_Line2, Validators.required),
       Address_Line3: new FormControl(this.data.student.Address_Line3, Validators.required),
@@ -71,9 +70,9 @@ export class StudentModelComponent implements OnInit {
       GATE_Cutoff_Mark: new FormControl(this.data.student.GATE_Cutoff_Mark,[Validators.required,Validators.max(1000)]),
       Admission_Date: new FormControl(this.data.student.Admission_Date,Validators.required),
       Admission_Category_Ref: new FormControl(this.data.student.Admission_Category_Ref,Validators.required),
-      Scholarship_Received_Ref: new FormControl(this.data.student.Scholarship_Received_Ref,Validators.required),
+      Scholarship_Received_Ref: new FormControl(this.data.student.Scholarship_Received_Ref),
       Scholarship_Details: new FormControl(this.data.student.Scholarship_Details),
-      NSS_NSO_YRC_Volunteer_Ref: new FormControl(this.data.student.NSS_NSO_YRC_Volunteer_Ref,Validators.required),
+      NSS_NSO_YRC_Volunteer_Ref: new FormControl(this.data.student.NSS_NSO_YRC_Volunteer_Ref),
       Hostel_Block_Room: new FormControl(this.data.student.Hostel_Block_Room)
     });
   }
