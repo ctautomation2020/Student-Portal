@@ -17,27 +17,29 @@ export class FamilyModelComponent implements OnInit {
 
   ngOnInit(): void {
     this.familyForm = new FormGroup({
-      Father_Name: new FormControl("Name1", Validators.required),
-      Mother_Name: new FormControl("Name2", Validators.required),
-      Father_ContactNumber: new FormControl("9999999999", [Validators.required,Validators.pattern('^[0-9]{10}$')]),
-      Mother_ContactNumber: new FormControl("8888888888", [Validators.required,Validators.pattern('^[0-9]{10}$')]),
-      Father_MailID: new FormControl("father@email.com",Validators.email),
-      Mother_MailID: new FormControl("mother@email.com",Validators.email),
-      Father_Occupation: new FormControl("O1", Validators.required),
-      Mother_Occupation: new FormControl("O2", Validators.required),
-      Father_Affilation: new FormControl("Affilation", Validators.required),
-      Mother_Affilation: new FormControl("Affilation", Validators.required),
-      Father_Company: new FormControl(),
-      Mother_Company: new FormControl(),
-      Parents_Annual_Income: new FormControl(),
-      Local_Guardian_Name: new FormControl("Name3", Validators.required),
-      Local_Guardian_Address: new FormControl(),
-      Local_Guardian_Contact_Number: new FormControl("7777777777", [Validators.required,Validators.pattern('^[0-9]{10}$')])
+      Family_ID: new FormControl(this.data.family.Family_ID),
+      Register_No: new FormControl(this.data.family.Register_No),
+      Father_Name: new FormControl(this.data.family.Father_Name, Validators.required),
+      Mother_Name: new FormControl(this.data.family.Mother_Name, Validators.required),
+      Father_ContactNumber: new FormControl(this.data.family.Father_ContactNumber, [Validators.required,Validators.pattern('^[0-9]{10}$')]),
+      Mother_ContactNumber: new FormControl(this.data.family.Mother_ContactNumber, [Validators.required,Validators.pattern('^[0-9]{10}$')]),
+      Father_MailID: new FormControl(this.data.family.Father_MailID,[Validators.required,Validators.email]),
+      Mother_MailID: new FormControl(this.data.family.Mother_MailID,[Validators.required,Validators.email]),
+      Father_Occupation: new FormControl(this.data.family.Father_Occupation, Validators.required),
+      Mother_Occupation: new FormControl(this.data.family.Mother_Occupation, Validators.required),
+      Father_Affilation: new FormControl(this.data.family.Father_Affilation, Validators.required),
+      Mother_Affilation: new FormControl(this.data.family.Mother_Affilation, Validators.required),
+      Father_Company: new FormControl(this.data.family.Father_Company),
+      Mother_Company: new FormControl(this.data.family.Mother_Company),
+      Parents_Annual_Income: new FormControl(this.data.family.Parents_Annual_Income,Validators.required),
+      Local_Guardian_Name: new FormControl(this.data.family.Local_Guardian_Name, Validators.required),
+      Local_Guardian_Address: new FormControl(this.data.family.Local_Guardian_Address),
+      Local_Guardian_Contact_Number: new FormControl(this.data.family.Local_Guardian_Contact_Number, [Validators.required,Validators.pattern('^[0-9]{10}$')])
     });
   }
   onSubmit() {
     console.log(this.familyForm.value);
-    //this.dialogRef.close(this.studentForm.value);
+    this.dialogRef.close(this.familyForm.value);
   }
 
 }

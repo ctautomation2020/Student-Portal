@@ -51,13 +51,13 @@
                 </div>
                 <div class="text-wrap" *ngIf="gender != null">
                     <span class="label">Gender</span>
-                  <p>{{filterGender().Ref_Name}}</p>
+                  <p *ngIf="student.Gender_Ref!=null">{{filterGender().Ref_Name}}</p>
               </div>
             </div>
             <div class="input-field">
                 <div class="text-wrap">
                     <span class="label">Date of Birth</span>
-                    <p>{{student.DOB | date:'longDate'}}</p>
+                    <p *ngIf="student.DOB!=null">{{student.DOB | date:'longDate'}}</p>
                 </div>
                 <div class="text-wrap" *ngIf="community != null">
                     <span class="label">Community</span>

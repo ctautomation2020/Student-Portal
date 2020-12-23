@@ -11,63 +11,77 @@ import { FamilyModel } from './family.model';
   styleUrls: ['./family.component.scss']
 })
 export class FamilyComponent implements OnInit {
-	community;
-	caste;
-	student;
-	gender;
+	family: FamilyModel;
 	queryRef: QueryRef<FamilyModel>; 
 
   constructor(public dialog: MatDialog,private apollo: Apollo) { }
-
   ngOnInit(): void {
+	  const req=gql`
+	  query studentFamilyDetails{
+  		studentFamilyDetails{
+		Family_ID
+		Register_No
+		Father_Name
+		Mother_Name
+		Father_ContactNumber
+		Mother_ContactNumber
+		Father_MailID
+		Mother_MailID
+		Father_Occupation
+		Mother_Occupation
+		Father_Affilation
+		Mother_Affilation
+		Father_Company
+		Mother_Company
+		Parents_Annual_Income
+		Local_Guardian_Name
+		Local_Guardian_Address
+		Local_Guardian_Contact_Number
+  		}
+	  }`;
+	this.queryRef = this.apollo.watchQuery<FamilyModel>({
+	  query: req
+	});
+  	this.queryRef.valueChanges.subscribe(((result: any) => {
+	  this.family = JSON.parse(JSON.stringify(result.data.studentFamilyDetails));
+	}));
   }
 	onOpenModel() {
-		let dialogRef = this.dialog.open(FamilyModelComponent/* , { 
+		let dialogRef = this.dialog.open(FamilyModelComponent,{ 
 			data: {
-				student: this.student,
-				gender: this.gender,
-				community: this.community
+				family:this.family
 			}
-		} */);
-		/* dialogRef.afterClosed().subscribe(result => {
+		});
+		dialogRef.afterClosed().subscribe(result => {
 			if (result) {
-				console.log(result.DOB);
-				const d = new Date(result.DOB);
-				const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
 				const req = gql `
-				mutation updatePerson($data: updatePersonInput!) {
-					updatePerson(data: $data) {
-						Person_ID
-						Marital_Status_Ref
+				mutation updateStudentFamilyDetails($data: updateStudentFamilyDetailsInput!) {		
+					updateStudentFamilyDetails(data: $data){
+						Family_ID
 					}
 				}`;
 				this.apollo.mutate({
 					mutation: req,
 					variables: {
 						data: {
-							Person_ID: result.Person_ID,
-							Prefix_Ref: result.Prefix_Ref,
-							PAN_Card: result.PAN_Card,
-							First_Name: result.First_Name,
-							Last_Name: result.Last_Name,
-							Caste: result.Caste,
-							Gender_Ref: result.Gender_Ref,
-							Marital_Status_Ref: result.Marital_Status_Ref,
-							Community_Ref: result.Community_Ref,
-							Primary_MailID: result.Primary_MailID,
-							Secondary_MailID: result.Secondary_MailID,
-							Aadhar_Card: result.Aadhar_Card,
-							Passport_Number: result.Passport_Number,
-							DOB: date,
-							Primary_ContactNumber: result.Primary_ContactNumber,
-							Secondary_ContactNumber: result.Secondary_ContactNumber,
-							Intercom_Number: result.Intercom_Number,
-							Alias_Name: result.Alias_Name,
-							Address_Line1: result.Address_Line1,
-							Address_Line2: result.Address_Line2,
-							Address_Line3: result.Address_Line3,
-							Address_Line4: result.Address_Line4,
-							Room_Num: result.Room_Num
+							Family_ID: result.Family_ID,
+							Register_No: result.Register_No,
+							Father_Name: result.Father_Name,
+							Mother_Name: result.Mother_Name,
+							Father_ContactNumber: result.Father_ContactNumber,
+							Mother_ContactNumber: result.Mother_ContactNumber,
+							Father_MailID: result.Father_MailID,
+							Mother_MailID: result.Mother_MailID,
+							Father_Occupation: result.Father_Occupation,
+							Mother_Occupation: result.Mother_Occupation,
+							Father_Affilation: result.Father_Affilation,
+							Mother_Affilation: result.Mother_Affilation,
+							Father_Company: result.Father_Company,
+							Mother_Company: result.Mother_Company,
+							Parents_Annual_Income: result.Parents_Annual_Income,
+							Local_Guardian_Name: result.Local_Guardian_Name,
+							Local_Guardian_Address: result.Local_Guardian_Address,
+							Local_Guardian_Contact_Number: result.Local_Guardian_Contact_Number
 						}
 					}
 				}).subscribe(({ data }) => {
@@ -75,7 +89,7 @@ export class FamilyComponent implements OnInit {
 					this.queryRef.refetch();
 				});
 			} 
-		});*/
+		});
 	}
 
 }
