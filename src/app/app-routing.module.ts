@@ -1,12 +1,18 @@
 import { NgModule, Component } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { StudentDetailsComponent } from './student-details/student-details.component';
-
+import { AdminGuard } from './auth/admin.guard';
+import { StudentGuard } from './auth/student.guard';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [StudentGuard]
+  },
+  {
+    path: 'student-details',
+    loadChildren: () => import('./student-details/student-details.module').then(m => m.StudentDetailsModule),
+    canActivate: [AdminGuard]
   }
 ];
 

@@ -20,7 +20,7 @@ export class NavComponent {
   constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
   onLogout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/']);
+    window.location.replace('');
 
   }
 }
