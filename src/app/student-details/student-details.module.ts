@@ -11,6 +11,9 @@ import { StudentModelComponent } from './student/student-model/student-model.com
 import { ImageModelComponent } from './student/image-model/image-model.component';
 import { FamilyComponent } from './family/family.component';
 import { FamilyModelComponent } from './family/family-model/family-model.component';
+import { MarkComponent } from './mark/mark.component';
+import { EventComponent } from './event/event.component';
+import { EventModelComponent } from './event/event-model/event-model.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { FamilyModelComponent } from './family/family-model/family-model.compone
     StudentModelComponent,
     ImageModelComponent,
     FamilyComponent,
-    FamilyModelComponent
+    FamilyModelComponent,
+    MarkComponent,
+    EventComponent,
+    EventModelComponent
   ],
   imports: [
     RouterModule,

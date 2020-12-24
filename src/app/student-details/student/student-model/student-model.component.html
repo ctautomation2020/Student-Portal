@@ -1,7 +1,10 @@
-<h2 mat-dialog-title>Personal Details</h2>
+<h2 mat-dialog-title style="text-align: center;">Edit Profile</h2>
 
 <mat-dialog-content>
   <form [formGroup]="studentForm" style="display: inline-block;">
+
+    <h2 mat-dialog-title>Personal Details</h2>
+
     <mat-form-field class="form-field three-field"> 
       <mat-label>First Name</mat-label>
       <input matInput formControlName="First_Name" required>
@@ -36,25 +39,37 @@
       </mat-datepicker-toggle>
       <mat-datepicker #picker_dob></mat-datepicker>
     </mat-form-field>
+
+    <mat-form-field class="form-field-dropdown three-field" appearance="fill">
+      <mat-label>Blood Group</mat-label>
+      <mat-select formControlName="Blood_Group_Ref" required>
+        <mat-option *ngFor="let bg of data.bloodGroup" [value]="bg.Ref_Code">{{bg.Ref_Name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="studentForm.get('Blood_Group_Ref').invalid">Please Enter Blood Group</mat-error>
+    </mat-form-field>
     
     <mat-form-field class="form-field three-field">
       <mat-label>Aadhar Card</mat-label>
-      <input matInput formControlName="Aadhar_Card" required>
+      <input matInput formControlName="Aadhar_Card" maxlength="14" required
+        onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" 
+        onkeyup="if(this.value.length==4||this.value.length==9) this.value = this.value + ' '">
       <mat-error *ngIf="studentForm.get('Aadhar_Card').invalid">Please Enter Valid Aadhar No</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="form-field-dropdown two-field" appearance="fill">
+    <mat-form-field class="form-field-dropdown three-field" appearance="fill">
       <mat-label>Community</mat-label>
       <mat-select formControlName="Community_Ref" required>
         <mat-option *ngFor="let c of data.community" [value]="c.Ref_Code">{{c.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="form-field two-field">
+    <mat-form-field class="form-field three-field">
       <mat-label>Caste</mat-label>
       <input matInput formControlName="Caste" required>
       <mat-error *ngIf="studentForm.get('Caste').invalid">Please Enter Caste</mat-error>
     </mat-form-field>
+
+    <h2 mat-dialog-title>Contact Details</h2>
 
     <mat-form-field class="form-field three-field">
       <mat-label>Email</mat-label>
@@ -117,18 +132,21 @@
     </div>
     <br>
 
+    <h2 mat-dialog-title>College Details</h2>
+
     <mat-form-field class="form-field-dropdown two-field" appearance="fill">
       <mat-label>Residential Type</mat-label>
-      <mat-select formControlName="Residential_Type_Ref" required>
+      <mat-select formControlName="Residential_Type_Ref" required [(ngModel)]="type"
+                  onchange="hostel_block_display()">
         <mat-option *ngFor="let res of data.residentialType" [value]="res.Ref_Code">{{res.Ref_Name}}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="form-field two-field"> 
+    <mat-form-field class="form-field two-field" *ngIf="type == 96">
       <mat-label>Hostel Block Room</mat-label>
       <input matInput formControlName="Hostel_Block_Room">
       <mat-error *ngIf="studentForm.get('Hostel_Block_Room').invalid">Please Enter Valid Details</mat-error>
-    </mat-form-field> 
+    </mat-form-field><br>
 
     <mat-form-field class="form-field-dropdown three-field" appearance="fill">
       <mat-label>Faculty Advisor</mat-label>
@@ -196,14 +214,6 @@
     </mat-form-field>
 
     <mat-form-field class="form-field-dropdown two-field" appearance="fill">
-      <mat-label>Blood Group</mat-label>
-      <mat-select formControlName="Blood_Group_Ref" required>
-        <mat-option *ngFor="let bg of data.bloodGroup" [value]="bg.Ref_Code">{{bg.Ref_Name}}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="studentForm.get('Blood_Group_Ref').invalid">Please Enter Blood Group</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-field-dropdown two-field" appearance="fill">
       <mat-label>NSS/NSO/YRC volunteer</mat-label>
       <mat-select formControlName="NSS_NSO_YRC_Volunteer_Ref">
         <mat-option *ngFor="let vol of data.volunteer" [value]="vol.Ref_Code">{{vol.Ref_Name}}</mat-option>
@@ -213,7 +223,7 @@
 
 </form>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-raised-button mat-dialog-close>Close</button>
-  <button mat-raised-button color="primary" [disabled]="studentForm.invalid" (click)="onSubmit()">Confirm</button>
+<mat-dialog-actions style="float: right;">
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="studentForm.invalid" (click)="onSubmit()">Save</button>
 </mat-dialog-actions>

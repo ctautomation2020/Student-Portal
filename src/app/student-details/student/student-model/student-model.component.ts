@@ -37,6 +37,7 @@ export const MY_FORMATS = {
 })
 export class StudentModelComponent implements OnInit {
   studentForm: FormGroup;
+  type;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<StudentModelComponent>) {
   }
@@ -98,4 +99,11 @@ export class StudentModelComponent implements OnInit {
     datepicker.select(normalizedMonth)
     datepicker.close();
   }
+
+  /* hostel_block_display(){
+    var type = this.studentForm.controls.Residential_Type_Ref.value;
+    if(type === 96) this.hostel = true;
+    else this.hostel = false
+  } */
+
 }
