@@ -4,43 +4,42 @@
             <h3 class="section-title">
                 <span>Events Participated</span>
             </h3>
-            <div class="event-card">
-                <h3 style="margin-bottom:2rem">Event Name</h3>
+            <div class="event-card" *ngFor="let e of events">
+                <h3 style="margin-bottom:2rem">{{e.Event_Name}}</h3>
                 <div class="input-field">
                     <div class="text-wrap">
                         <span class="label">Organisation</span>
-                        <p>host</p>
+                        <p>{{e.Event_Organizer}}</p>
                     </div>
                     <div class="text-wrap">
                         <span class="label">Date</span>
-                        <p>dddd</p>
+                        <p>{{e.Event_Date | date:'longDate'}}</p>
                     </div>
                     <div class="text-wrap">
-                        <span class="label">Place</span>
-                        <p>yyyy</p>
+                        <span class="label">Prize</span>
+                        <p>{{e.Prize_Won_Details}}</p>
                     </div>
                 </div>
                 <div class="input-field">
                     <div class="text-wrap">
-                        <span class="label">Prize</span>
-                        <p>9999999999</p>
+                        <span class="label">Type</span>
+                        <p>{{e.Event_Type_Ref}}</p>
                     </div>
                     <div class="text-wrap">
-                        <span class="label"></span>
+                        <span class="label">Participation</span>
+                        <p>{{e.Participation_Type_Ref}}</p>
                     </div>
                     <div class="text-wrap">
-                        <span class="label"></span>
+                        <span class="label">Team Size</span>
+                        <p>{{e.Team_Size}}</p>
                     </div>
-                    <div class="text-wrap">
-                        <span class="label"></span>
-                    </div>
-                    <div class="text-wrap">
-                        <span class="label"></span>
-                    </div>
-            </div>
-            <button class="edit--icon" (click)="onOpenModel()">Edit</button>
+                    
+                </div>
+            <button class="edit-icon" (click)="editModel()">Edit</button>
+            <button class="edit-icon" (click)="deleteModel()">Delete</button>
         </div>
         <br>
+        <button class="edit-icon" (click)="addModel()">Add Event</button>
     </div>
   </div>
   

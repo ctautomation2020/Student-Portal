@@ -1,36 +1,50 @@
 <h2 mat-dialog-title>Event Details</h2>
 
 <mat-dialog-content>
-  <form [formGroup]="EventForm">
+  <form [formGroup]="eventForm">
     <mat-form-field class="form-field"> 
       <mat-label>Organisation</mat-label>
-      <input matInput formControlName="Organisation">
-      <mat-error *ngIf="EventForm.get('Organisation').invalid">Please Enter Valid Name</mat-error>
+      <input matInput formControlName="Event_Organizer">
+      <mat-error *ngIf="eventForm.get('Event_Organizer').invalid">Please Enter Valid Name</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="form-field">
-      <mat-label>Date</mat-label>
-      <input matInput formControlName="Date" >
-      <mat-error *ngIf="EventForm.get('Date').invalid">Please Enter Valid Name</mat-error>
-    </mat-form-field><br>
-
-    <mat-form-field class="form-field">
-      <mat-label>Place</mat-label>
-      <input matInput  formControlName="Place">
-      <mat-error *ngIf="EventForm.get('Place').invalid">Please Enter Valid Mobile Number</mat-error>
+    <mat-form-field  class="form-field-dropdown three-field" appearance="fill">
+      <mat-label>Date[DD/MM/YYYY]</mat-label>
+      <input matInput [matDatepicker]="datepicker" formControlName="Date" required>
+      <mat-error *ngIf="eventForm.get('Date').invalid">Please Choose Valid Date</mat-error>
+      <mat-datepicker-toggle matSuffix [for]="datepicker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Prize</mat-label>
-      <input matInput  formControlName="Prize">
-      <mat-error *ngIf="EventForm.get('Prize').invalid">Please Enter Valid Mobile Number</mat-error>
-    </mat-form-field><br>
+      <input matInput  formControlName="Prize_Won_Details">
+      <mat-error *ngIf="eventForm.get('Prize_Won_Details').invalid">Enter Valid Details</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-dropdown three-field" appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="Event_Type_Ref" required>
+        <mat-option *ngFor="let et of data.eventType" [value]="et.Ref_Code">{{et.Ref_Name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="eventForm.get('Event_Type_Ref').invalid">Please Choose Type</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-dropdown three-field" appearance="fill">
+      <mat-label>Participation</mat-label>
+      <mat-select formControlName="Participation_Type_Ref" required>
+        <mat-option *ngFor="let pt of data.participationType" [value]="pt.Ref_Code">{{pt.Ref_Name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="eventForm.get('Participation_Type_Ref').invalid">Please Choose Participation</mat-error>
+    </mat-form-field>
 
 
 </form>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button mat-dialog-close>Close</button>
-  <button mat-raised-button color="primary" [disabled]="EventForm.invalid" (click)="onSubmit()">Confirm</button>
+  <button mat-raised-button color="primary" [disabled]="eventForm.invalid" (click)="onSubmit()">Confirm</button>
 </mat-dialog-actions>
 

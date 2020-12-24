@@ -72,7 +72,6 @@ export class FamilyComponent implements OnInit {
 					variables: {
 						data: {
 							Family_ID: result.Family_ID,
-							Register_No: result.Register_No,
 							Father_Name: result.Father_Name,
 							Mother_Name: result.Mother_Name,
 							Father_ContactNumber: result.Father_ContactNumber,

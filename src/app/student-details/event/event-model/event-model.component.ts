@@ -10,20 +10,24 @@ import {Apollo} from 'apollo-angular';
   styleUrls: ['./event-model.component.scss']
 })
 export class EventModelComponent implements OnInit {
-  EventForm: FormGroup;
+  eventForm: FormGroup;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<EventModelComponent>) {
   }
   ngOnInit(): void {
-    this.EventForm = new FormGroup({
-          Organisation: new FormControl("host", Validators.required),
+    this.eventForm = new FormGroup({
           Date: new FormControl("dddd", Validators.required),
-          Place: new FormControl("yyyy", Validators.required),
-          Prize: new FormControl("9999999999", [Validators.required,Validators.pattern('^[0-9]{10}$')]),
+          Event_Name: new FormControl("host", Validators.required),
+          Event_Type_Ref: new FormControl(111, Validators.required),
+          Participation_Type_Ref: new FormControl(1223, Validators.required),
+          Team_Size: new FormControl(1223, Validators.required),
+          Event_Organizer:  new FormControl("hhhh", Validators.required),
+          Event_Date:  new FormControl(new Date(2020,2,19), Validators.required),
+          Prize_Won_Details:  new FormControl("hhhh", Validators.required)
     });
   }
 onSubmit() {
-    console.log(this.EventForm.value);
+    console.log(this.eventForm.value);
   }
 
 }
