@@ -12,17 +12,18 @@ import gql from 'graphql-tag';
 export class ImageModelComponent implements OnInit {
   imageForm: FormGroup;
   fileToUpload:any;
+  baseURL: string="";
+
+  imageSrc: string="../../../../assets/back.jpg";
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private apollo: Apollo,public dialogRef: MatDialogRef<ImageModelComponent>) { }
   
-
   ngOnInit(): void {
     this.imageForm = new FormGroup({
       file: new FormControl('', [Validators.required]),
       fileSource: new FormControl('', [Validators.required])
     })
   }
-  
-  imageSrc: string="../../../../assets/back.jpg";
+
   get f(){
     return this.imageForm.controls;
   }
@@ -67,13 +68,15 @@ export class ImageModelComponent implements OnInit {
       }
   }
    
-  submit(){
+  onSubmit(){
     console.log(this.imageForm.value);
     /* this.http.post('http://localhost:8001/upload.php', this.myForm.value)
       .subscribe(res => {
         console.log(res);
         alert('Uploaded Successfully.');
       }) */
+      this.dialogRef.close();
+    
   }
 
 }

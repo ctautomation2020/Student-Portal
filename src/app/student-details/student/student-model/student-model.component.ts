@@ -79,9 +79,10 @@ export class StudentModelComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.studentForm.value);
+    console.log(this.studentForm.get('Scholarship_Received_Ref').value);
     //console.log(this.studentForm.value.DOB);
     //console.log(this.studentForm.value.Admission_Date);
-    this.dialogRef.close(this.studentForm.value);
+    //this.dialogRef.close(this.studentForm.value);
   }
   cbox(){
     var cval=!(this.studentForm.value.isSame);
@@ -99,11 +100,5 @@ export class StudentModelComponent implements OnInit {
     datepicker.select(normalizedMonth)
     datepicker.close();
   }
-
-  /* hostel_block_display(){
-    var type = this.studentForm.controls.Residential_Type_Ref.value;
-    if(type === 96) this.hostel = true;
-    else this.hostel = false
-  } */
 
 }
