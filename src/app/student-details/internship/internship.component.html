@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="main">
+         <div class="internship-section">
+            <h3 class="section-title">
+                <span>Internship</span>
+            </h3>
+            <table class="t-table">
+                  <tr class="t-tr">
+                         <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">
+                           <span>S.No</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
+                           <span>Company</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
+                           <span>Title</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
+                            <span>Start Date</span>
+                         </th>
+                         <th class="t-th" style="width:15%;color:white;background-color:DarkSlateGrey;">
+                            <span>End Date</span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
+                            <span>Stipend</span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:Blue;">
+                            <span>Edit</span>
+                         </th>
+                  </tr>
+                   <tr class="t-tr" *ngFor="let i of intern">
+                         <td class="t-td" style="width:5%;text-align:center" >
+                                 <span> {{i.no}}</span>
+                         </td>
+                         <td class="t-td" style="width:25%;text-align:center" >
+                                  <span>{{i.company}}</span>
+                         </td>
+                         <td class="t-td" style="width:25%; text-align:center">
+                                 <span> {{i.Title}}</span>
+                         </td>
+                         <td class="t-td" style="width:15%;text-align:center ">
+                                  <span>{{i.Start_date}}</span>
+                         </td>
+                         <td class="t-td" style="width:15%;text-align:center ">
+                                  <span>{{i.End_date}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                  <span>{{i.Stipend}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                 <span class="edit-icon" (click)="onEditModel()">Edit</span>
+                         </td>
+                   </tr>
+           </table><br>
+          <div style="margin-top:2rem;text-align:center;"><br>
+           <button class="button" (click)="onOpenModel()">Add Internship</button>
+          </div>
+         </div>
+    </div>
+</div>

@@ -5,7 +5,7 @@
                 <span>Events Participated</span>
             </h3>
             <div class="event-card" *ngFor="let e of events">
-                <h3 style="margin-bottom:2rem">{{e.Event_Name}}</h3>
+                <h3 class="event-name">{{e.Event_Name}}</h3>
                 <div class="input-field">
                     <div class="text-wrap">
                         <span class="label">Organisation</span>
@@ -33,15 +33,20 @@
                         <span class="label">Team Size</span>
                         <p>{{e.Team_Size}}</p>
                     </div>
-                    
                 </div>
-            <button class="edit-icon" (click)="editModel(e.Event_ID)">Edit</button>
-            <button class="edit-icon" (click)="deleteModel(e.Event_ID)">Delete</button>
+                <div class="btns">
+                    <button class="edit-icon" (click)="editModel(e.Event_ID)">Edit</button>
+                </div>
+                <div class="btns">
+                    <button class="del-icon" (click)="deleteModel(e.Event_ID)">Delete</button>
+                </div>
+            </div>
+            <br>
+            <div class="addbtn-container">
+                <button class="edit-icon" (click)="addModel()">Add Event</button>
+            </div>
         </div>
-        <br>
-        <button class="edit-icon" (click)="addModel()">Add Event</button>
     </div>
-  </div>
   
   
   

@@ -2,19 +2,11 @@
   display: block;
   padding: 7px;
 }
-
 .sidebar {
   background: #efefef;
   padding: 10px;
   width: 250px;
 }
-mat-list-item:hover {
-  color: #3f51b5;
-}
-mat-list-item {
-  cursor: pointer;
-}
-
 .settings {
   font-size: 15px;
 }
@@ -26,9 +18,6 @@ mat-list-item {
   height: 100vh;
   padding: 20px;
 }
-.mat-radio-button ~ .mat-radio-button {
-  margin-left: 16px;
-}
 .title {
   position: relative;
   width: 150px;
@@ -39,10 +28,17 @@ mat-list-item {
 .form-field-container {
   padding: 15px;
 }
-.form-field-dropdown,.form-field {
+.form-field {
   padding-left: 20px;
   padding-bottom: 10px;
+  width: 90%;
 }
+.form-field1{
+  padding-left: 20px;
+  padding-bottom: 10px;
+  width: 45%;
+}
+
 .staff-form-field {
   padding-left: 20px;
   width: 500px;
@@ -70,21 +66,4 @@ table {
     .input-field .text-wrap{
         width: 100%;
     }
-}
-.three-field{
-   width: 30%;
-}
-.four-field{
-   width: 20%;
-}
-.two-field{
-   width: 45%;
-}
-.group{
-   padding: 10px;
-   border: 3px ridge;
-   margin-bottom: 20px;
-}
-.dialog-title{
-   font-size: 25px;
 }

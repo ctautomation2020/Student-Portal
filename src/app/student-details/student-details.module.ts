@@ -14,6 +14,9 @@ import { FamilyModelComponent } from './family/family-model/family-model.compone
 import { MarkComponent } from './mark/mark.component';
 import { EventComponent } from './event/event.component';
 import { EventModelComponent } from './event/event-model/event-model.component';
+import { InternshipComponent } from './internship/internship.component';
+import { InternshipModelComponent } from './internship/internship-model/internship-model.component';
+import { InternshipeditModelComponent } from './internship/internshipedit-model/internshipedit-model.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { EventModelComponent } from './event/event-model/event-model.component';
     FamilyModelComponent,
     MarkComponent,
     EventComponent,
-    EventModelComponent
+    EventModelComponent,
+    InternshipComponent,
+    InternshipModelComponent,
+    InternshipeditModelComponent
   ],
   imports: [
     RouterModule,

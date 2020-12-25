@@ -31,8 +31,7 @@ export const MY_FORMATS = {
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
     },
-
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS}
   ]
 })
 export class StudentModelComponent implements OnInit {
@@ -53,7 +52,7 @@ export class StudentModelComponent implements OnInit {
       Community_Ref: new FormControl(this.data.student.Community_Ref,Validators.required),
       Caste: new FormControl(this.data.student.Caste, Validators.required),
       MailID: new FormControl(this.data.student.MailID,[Validators.email, Validators.required]),
-      Aadhar_Card: new FormControl(this.data.student.Aadhar_Card, [Validators.required, Validators.pattern('^[0-9]{12}$')]),
+      Aadhar_Card: new FormControl(this.data.student.Aadhar_Card, [Validators.required, Validators.pattern('^[0-9]{4} [0-9]{4} [0-9]{4}$')]),
       Primary_ContactNumber: new FormControl(this.data.student.Primary_ContactNumber, [Validators.required,Validators.pattern('^[0-9]{10}$')]),
       Secondary_ContactNumber: new FormControl(this.data.student.Secondary_ContactNumber,Validators.pattern('^[0-9]{10}$')),
       Address_Line1: new FormControl(this.data.student.Address_Line1, Validators.required),

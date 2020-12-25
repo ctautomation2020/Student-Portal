@@ -28,10 +28,9 @@
 .form-field-container {
   padding: 15px;
 }
-.form-field {
+.form-field,.form-field-dropdown{
   padding-left: 20px;
   padding-bottom: 10px;
-  width: 100%;
 }
 .staff-form-field {
   padding-left: 20px;
@@ -60,4 +59,10 @@ table {
     .input-field .text-wrap{
         width: 100%;
     }
+}
+.two-field{
+   width: 40%;
+}
+.three-field{
+   width: 30%;
 }

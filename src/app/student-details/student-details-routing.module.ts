@@ -5,6 +5,7 @@ import { StudentComponent } from './../student-details/student/student.component
 import { FamilyComponent } from './family/family.component';
 import { MarkComponent } from './mark/mark.component';
 import { EventComponent } from './event/event.component';
+import { InternshipComponent } from './internship/internship.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path:'event',
         component: EventComponent
+      },
+      {
+        path:'internship',
+        component: InternshipComponent
       }
     ]
   }

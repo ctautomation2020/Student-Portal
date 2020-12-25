@@ -34,7 +34,7 @@
   background-color:#EDF2EF;
   border-radius: .5rem;
   box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.5);
-
+  margin: 15px;
 }
 .section{
     margin-bottom: 1em;
@@ -68,75 +68,52 @@
     border-radius: 50%;
     object-fit: cover;
 }
-.edit-photo,
-.edit-icon::before{
-    background-image: url("../../../assets/edit.png");
+.edit-icon::before,.del-icon::before{
     display: block;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 50%;
     cursor: pointer;
-}
-.edit-photo{
-    align-items:left;
-    width: 2em;
-    height: 2em;
-    background-size: 1em;
-    background-color: white;
-    position: absolute;
-    right: 0.75em;
-    bottom: 0.5em;
-    border: 1px solid gainsboro;
-}
-.edit-icon{
-    font-size: 0.65em;
-    background-color: #1982e4;
-    text-transform: uppercase;
-    color: white;
-    display: flex;
-    width:40%;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5em 1em 0.5em 0.5em;
-    cursor: pointer;
-}
-.edit-icon::before{
     content: '';
     width: 1.5em;
     height: 1.5em;
     background-size: 1em;
     margin-right: 0.25em;
     filter: invert(1);
+}
+.edit-icon,.del-icon{
+    font-size: 0.80em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1em 0.5em 0.5em;
+    cursor: pointer;
+    border: none;
 }
 .edit-icon:hover{
     background-color: #0c3e66;
     box-shadow: 0 5px 8px 1px gainsboro;
 }
-.edit--icon{
-    font-size: 0.65em;
-    background-color: #1982e4;
-    text-transform: uppercase;
-    color: white; 
-    display: flex;
-//    width:40%;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5em 1em 0.5em 0.5em;
-    cursor: pointer;
-}
-.edit--icon::before{
-    content: '';
-    width: 1.5em;
-    height: 1.5em;
-    background-size: 1em;
-    margin-right: 0.25em;
-    filter: invert(1);
-}
-.edit--icon:hover{
-    background-color: #0c3e66;
+.del-icon:hover{
+    background-color: #6e0c14;
     box-shadow: 0 5px 8px 1px gainsboro;
 }
-
+.edit-icon::before{
+    background-image: url("../../../assets/edit.png");
+}
+.edit-icon{
+    background-color: #1982e4;
+}
+.del-icon::before{
+    background-image: url("../../../assets/remove.png");
+}
+.del-icon{
+    background-color: #ee1d2f;
+}
 .student-name{
     font-size: 1.5em;
 }
@@ -199,6 +176,7 @@
 }
 .input-field{
     display: flex;
+    justify-content: center;
 }
 .input-field .text-wrap{
     width: 50%;
@@ -312,4 +290,17 @@
     .input-field .text-wrap{
         width: 100%;
     }
+}
+.addbtn-container{
+    display: flex;
+    justify-content: center;
+}
+.btns{
+    display: inline-flex;
+    justify-content: center;
+    width: 50%;
+}
+.event-name{
+    text-align: center;
+    margin-bottom: 20px;
 }
