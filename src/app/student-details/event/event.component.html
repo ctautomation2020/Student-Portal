@@ -23,11 +23,11 @@
                 <div class="input-field">
                     <div class="text-wrap">
                         <span class="label">Type</span>
-                        <p>{{e.Event_Type_Ref}}</p>
+                        <p>{{filterEventType(e.Event_Type_Ref).Ref_Name}}</p>
                     </div>
                     <div class="text-wrap">
                         <span class="label">Participation</span>
-                        <p>{{e.Participation_Type_Ref}}</p>
+                        <p>{{filterParticipationType(e.Participation_Type_Ref).Ref_Name}}</p>
                     </div>
                     <div class="text-wrap">
                         <span class="label">Team Size</span>
@@ -35,8 +35,8 @@
                     </div>
                     
                 </div>
-            <button class="edit-icon" (click)="editModel()">Edit</button>
-            <button class="edit-icon" (click)="deleteModel()">Delete</button>
+            <button class="edit-icon" (click)="editModel(e.Event_ID)">Edit</button>
+            <button class="edit-icon" (click)="deleteModel(e.Event_ID)">Delete</button>
         </div>
         <br>
         <button class="edit-icon" (click)="addModel()">Add Event</button>

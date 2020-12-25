@@ -3,6 +3,12 @@
 <mat-dialog-content>
   <form [formGroup]="eventForm">
     <mat-form-field class="form-field"> 
+      <mat-label>Event Name</mat-label>
+      <input matInput formControlName="Event_Name" required>
+      <mat-error *ngIf="eventForm.get('Event_Name').invalid">Please Enter Valid Name</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="form-field"> 
       <mat-label>Organisation</mat-label>
       <input matInput formControlName="Event_Organizer">
       <mat-error *ngIf="eventForm.get('Event_Organizer').invalid">Please Enter Valid Name</mat-error>
@@ -10,8 +16,8 @@
 
     <mat-form-field  class="form-field-dropdown three-field" appearance="fill">
       <mat-label>Date[DD/MM/YYYY]</mat-label>
-      <input matInput [matDatepicker]="datepicker" formControlName="Date" required>
-      <mat-error *ngIf="eventForm.get('Date').invalid">Please Choose Valid Date</mat-error>
+      <input matInput [matDatepicker]="datepicker" formControlName="Event_Date" required>
+      <mat-error *ngIf="eventForm.get('Event_Date').invalid">Please Choose Valid Date</mat-error>
       <mat-datepicker-toggle matSuffix [for]="datepicker">
         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
       </mat-datepicker-toggle>
@@ -40,6 +46,11 @@
       <mat-error *ngIf="eventForm.get('Participation_Type_Ref').invalid">Please Choose Participation</mat-error>
     </mat-form-field>
 
+    <mat-form-field class="form-field">
+      <mat-label>No of Team Members</mat-label>
+      <input matInput  formControlName="Team_Size">
+      <mat-error *ngIf="eventForm.get('Team_Size').invalid">Enter Valid Details</mat-error>
+    </mat-form-field>
 
 </form>
 </mat-dialog-content>
