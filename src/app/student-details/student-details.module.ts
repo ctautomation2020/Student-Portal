@@ -16,6 +16,12 @@ import { EventComponent } from './event/event.component';
 import { EventModelComponent } from './event/event-model/event-model.component';
 import { InternshipComponent } from './internship/internship.component';
 import { InternshipModelComponent } from './internship/internship-model/internship-model.component';
+import { PlacementsComponent } from './placements/placements.component';
+import { PlacementsModelComponent } from './placements/placements-model/placements-model.component';
+import { HigherstudiesModelComponent } from './placements/higherstudies-model/higherstudies-model.component';
+import { AwardsComponent } from './awards/awards.component';
+import { AwardsModelComponent } from './awards/awards-model/awards-model.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,13 @@ import { InternshipModelComponent } from './internship/internship-model/internsh
     EventComponent,
     EventModelComponent,
     InternshipComponent,
-    InternshipModelComponent
+    InternshipModelComponent,
+    PlacementsComponent,
+    PlacementsModelComponent,
+    HigherstudiesModelComponent,
+    AwardsComponent,
+    AwardsModelComponent,
+    ReportComponent
   ],
   imports: [
     RouterModule,

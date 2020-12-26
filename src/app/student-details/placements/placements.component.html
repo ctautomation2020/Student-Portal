@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="main">
+        <div class="placements-section">
+            <h3 class="section-title" >
+                <button class="edit-icon1"  (click) ="onStartPlacementModel()" style="width:50%">Placements</button>
+                <button class="edit-icon1"  (click) ="onStartHigherStudiesModel()" style="width:50%">Higher Studies</button>
+            </h3>
+        <div [hidden]="placements">
+            <table class="t-table">
+                  <tr class="t-tr">
+                         <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">
+                           <span>S.No</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
+                           <span>Company</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
+                           <span>Designation </span>
+                         </th>
+                         <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
+                            <span>Joining Date</span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
+                            <span>Package</span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:Blue;">
+                            <span>Edit</span>
+                         </th>
+                  </tr>
+                   <tr class="t-tr" *ngFor="let p of placement_order">
+                         <td class="t-td" style="width:5%;text-align:center" >
+                                 <span> {{p.no}}</span>
+                         </td>
+                         <td class="t-td" style="width:25%;text-align:center" >
+                                  <span>{{p.company}}</span>
+                         </td>
+                         <td class="t-td" style="width:25%; text-align:center">
+                                 <span> {{p.Designation}}</span>
+                         </td>
+                         <td class="t-td" style="width:15%;text-align:center ">
+                                  <span>{{p.Joining_Date}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                  <span>{{p.Package}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                 <span class="edit-icon" (click)="onEditPlacements()">Edit</span>
+                         </td>
+                   </tr>
+           </table><br>
+          <div style="margin-top:2rem;text-align:center;"><br>
+           <button class="button" (click)="onAddPlacements()">ADD</button>
+          </div>
+        </div>
+        <div [hidden]="higherstudies">
+            <table class="t-table">
+                  <tr class="t-tr">
+                         <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">
+                           <span>S.No</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
+                           <span>University</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
+                           <span>Degree </span>
+                         </th>
+                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
+                           <span>Specialization</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
+                            <span>Score</span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
+                            <span>Country</span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:Blue;">
+                            <span>Edit</span>
+                         </th>
+                  </tr>
+                   <tr class="t-tr" *ngFor="let h of higherstudies_order">
+                         <td class="t-td" style="width:5%;text-align:center" >
+                                 <span> {{h.no}}</span>
+                         </td>
+                         <td class="t-td" style="width:25%;text-align:center" >
+                                  <span>{{h.university}}</span>
+                         </td>
+                         <td class="t-td" style="width:25%; text-align:center">
+                                 <span> {{h.Degree}}</span>
+                         </td>
+                         <td class="t-td" style="width:15%;text-align:center ">
+                                  <span>{{h.specialization}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                  <span>{{h.country}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                  <span>{{h.score}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                 <span class="edit-icon" (click)="onEditstudies()">Edit</span>
+                         </td>
+                   </tr>
+           </table><br>
+          <div style="margin-top:2rem;text-align:center;"><br>
+           <button class="button" (click)="onAddstudies()">ADD</button>
+          </div>
+        </div>
+        </div>
+    </div>
+</div>

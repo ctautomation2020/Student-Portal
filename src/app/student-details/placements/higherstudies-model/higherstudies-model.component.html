@@ -1,0 +1,42 @@
+<h2 mat-dialog-title style="text-align: center;">HigherStudies Details</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="higherstudiesAddForm">
+    <mat-form-field class="form-field"> 
+      <mat-label>University</mat-label>
+      <input matInput formControlName="University" required>
+      <mat-error *ngIf="higherstudiesAddForm.get('University').invalid">Please Enter Name</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Degree</mat-label>
+      <input matInput formControlName="Degree" required>
+      <mat-error *ngIf="higherstudiesAddForm.get('Degree').invalid">Please Enter Name</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Specialization</mat-label>
+      <input matInput formControlName="Specialization" required>
+      <mat-error *ngIf="higherstudiesAddForm.get('Specialization').invalid">Please Enter Number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Score</mat-label>
+      <input matInput formControlName="Score" required>
+      <mat-error *ngIf="higherstudiesAddForm.get('Score').invalid">Please Enter Number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Country</mat-label>
+      <input matInput formControlName="Country" required>
+      <mat-error *ngIf="higherstudiesAddForm.get('Country').invalid">Please Enter Number</mat-error>
+    </mat-form-field>
+
+
+</form>
+</mat-dialog-content>
+<mat-dialog-actions style="float:right">
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="higherstudiesAddForm.invalid" (click)="onSubmit()">Save</button>
+</mat-dialog-actions>
+

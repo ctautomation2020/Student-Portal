@@ -6,6 +6,9 @@ import { FamilyComponent } from './family/family.component';
 import { MarkComponent } from './mark/mark.component';
 import { EventComponent } from './event/event.component';
 import { InternshipComponent } from './internship/internship.component';
+import { PlacementsComponent } from './placements/placements.component';
+import { AwardsComponent } from './awards/awards.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   {
@@ -17,20 +20,32 @@ const routes: Routes = [
         component: StudentComponent
       },
       {
-        path:'family',
+        path: 'family',
         component: FamilyComponent
       },
       {
-        path:'mark',
+        path: 'mark',
         component: MarkComponent
       },
       {
-        path:'event',
+        path: 'event',
         component: EventComponent
       },
       {
-        path:'internship',
+        path: 'internship',
         component: InternshipComponent
+      },
+      {
+        path: 'placements',
+        component: PlacementsComponent
+      },
+      {
+        path: 'awards',
+        component: AwardsComponent
+      },
+      {
+        path: 'report',
+        component: ReportComponent
       }
     ]
   }

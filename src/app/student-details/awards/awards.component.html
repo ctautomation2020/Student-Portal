@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="main">
+         <div class="awards-section">
+            <h3 class="section-title">
+                <span>Awards</span>
+            </h3>
+            <table class="t-table">
+                  <tr class="t-tr">
+                         <th class="t-th" style="color:white;width:2%; background-color:DarkGreen;">
+                           <span>S.No</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:15%; background-color:DarkGreen;">
+                           <span>Award Name</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:15%; background-color:DarkGreen;">
+                           <span>Organizer Name</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:10%;background-color:DarkSlateGrey;">
+                            <span>Award Type </span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:DarkSlateGrey;">
+                            <span>Award Category </span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
+                            <span>Place</span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:FireBrick;">
+                            <span>Date</span>
+                         </th>
+                         <th class="t-th" style="width:10%;color:white;background-color:FireBrick;">
+                            <span>Edit</span>
+                         </th>
+                  </tr>
+                   <tr class="t-tr" *ngFor="let a of award">
+                         <td class="t-td" style="width:2%;text-align:center" >
+                                 <span> {{a.no}}</span>
+                         </td>
+                         <td class="t-td" style="width:15%;text-align:center" >
+                                  <span>{{a.Award_Name}}</span>
+                         </td>
+                         <td class="t-td" style="width:15%;text-align:center" >
+                                  <span>{{a.Organizer_Name}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%; text-align:center">
+                                 <span> {{a.Award_Type_Ref}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                  <span>{{a.Award_Category_Ref}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                  <span>{{a.Place_of_Event}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                  <span>{{a.Award_Date}}</span>
+                         </td>
+                         <td class="t-td" style="width:10%;text-align:center ">
+                                 <span class="edit-icon" (click)="onEditAward()">Edit</span>
+                         </td>
+                   </tr>
+           </table><br>
+          <div style="margin-top:2rem;text-align:center;"><br>
+           <button class="button" (click)="onAddaward()">Add Award</button>
+          </div>
+         </div>
+    </div>
+</div>

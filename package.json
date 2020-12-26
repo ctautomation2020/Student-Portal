@@ -30,6 +30,8 @@
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
     "graphql": "^15.0.0",
+    "html2pdf.js": "^0.9.2",
+    "jspdf": "^2.2.0",
     "moment": "^2.29.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
