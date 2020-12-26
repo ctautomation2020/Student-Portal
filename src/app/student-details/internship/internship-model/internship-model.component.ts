@@ -37,15 +37,27 @@ export class InternshipModelComponent implements OnInit {
       @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<InternshipModelComponent>) {
   }
   ngOnInit(): void {
-      this.internshipForm = new FormGroup({
-          Company: new FormControl("xxx", Validators.required),
-          Title: new FormControl("yyy", Validators.required),
-          Start_Date: new FormControl("yyyy", Validators.required),
-          End_Date: new FormControl("yyyy", Validators.required),
-          Stipend: new FormControl("9999999999", [Validators.required,Validators.pattern('^[0-9]{10}$')])
-      });
-    }
+    this.internshipForm = new FormGroup({
+      Company: new FormControl(this.data.internship!=null?this.data.internship.Company:"", Validators.required),
+      Title: new FormControl(this.data.internship!=null?this.data.internship.Title:"", Validators.required),
+      Address: new FormControl(this.data.internship!=null?this.data.internship.Address:"", Validators.required),
+      Start_Date: new FormControl(this.data.internship!=null?this.convertDate(this.data.internship.Start_Date):"", Validators.required),
+      End_Date: new FormControl(this.data.internship!=null?this.convertDate(this.data.internship.End_Date):"", Validators.required),
+      Stiphend_Option_Ref: new FormControl(this.data.internship!=null?this.data.internship.Stiphend_Option_Ref:"", Validators.required),
+      Stiphend_Amount: new FormControl(this.data.internship!=null?this.data.internship.Stiphend_Amount:"", Validators.required),
+      Selection_Mode_Ref: new FormControl(this.data.internship!=null?this.data.internship.Selection_Mode_Ref:"", Validators.required)
+    });
+    
+  }
   onSubmit() {
-      console.log(this.internshipForm.value);
+    console.log(this.internshipForm.value);
+    this.dialogRef.close(this.internshipForm.value); 
+  }
+
+  convertDate(edate){
+    const myDate = new Date(0);
+    const temp = parseFloat(edate) / 1000;
+    myDate.setUTCSeconds(temp);
+    return myDate;
   }
 }

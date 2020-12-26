@@ -78,8 +78,6 @@ export class StudentModelComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.studentForm.value);
-    //console.log(this.studentForm.value.DOB);
-    //console.log(this.studentForm.value.Admission_Date);
     this.dialogRef.close(this.studentForm.value);
   }
   cbox(){

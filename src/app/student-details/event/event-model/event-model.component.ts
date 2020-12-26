@@ -48,10 +48,9 @@ export class EventModelComponent implements OnInit {
     });
   }
   onSubmit() {
-      console.log(this.eventForm.value);
-      this.dialogRef.close(this.eventForm.value); 
+    console.log(this.eventForm.value);
+    this.dialogRef.close(this.eventForm.value); 
   }
-  
   convertDate(edate){
     const myDate = new Date(0);
     const temp = parseFloat(edate) / 1000;

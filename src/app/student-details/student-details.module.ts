@@ -16,7 +16,6 @@ import { EventComponent } from './event/event.component';
 import { EventModelComponent } from './event/event-model/event-model.component';
 import { InternshipComponent } from './internship/internship.component';
 import { InternshipModelComponent } from './internship/internship-model/internship-model.component';
-import { InternshipeditModelComponent } from './internship/internshipedit-model/internshipedit-model.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +30,7 @@ import { InternshipeditModelComponent } from './internship/internshipedit-model/
     EventComponent,
     EventModelComponent,
     InternshipComponent,
-    InternshipModelComponent,
-    InternshipeditModelComponent
+    InternshipModelComponent
   ],
   imports: [
     RouterModule,
