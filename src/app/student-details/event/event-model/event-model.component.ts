@@ -38,13 +38,13 @@ export class EventModelComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data.event);
     this.eventForm = new FormGroup({
-      Event_Name: new FormControl(this.data.event.Event_Name, Validators.required),
-      Event_Type_Ref: new FormControl(this.data.event.Event_Type_Ref, Validators.required),
-      Participation_Type_Ref: new FormControl(this.data.event.Participation_Type_Ref, Validators.required),
-      Team_Size: new FormControl(this.data.event.Team_Size, Validators.required),
-      Event_Organizer:  new FormControl(this.data.event.Event_Organizer, Validators.required),
-      Event_Date:  new FormControl(this.convertDate(this.data.event.Event_Date), Validators.required),
-      Prize_Won_Details:  new FormControl(this.data.event.Prize_Won_Details, Validators.required)
+      Event_Name: new FormControl(this.data.event!=null?this.data.event.Event_Name:"", Validators.required),
+      Event_Type_Ref: new FormControl(this.data.event!=null?this.data.event.Event_Type_Ref:"", Validators.required),
+      Participation_Type_Ref: new FormControl(this.data.event!=null?this.data.event.Participation_Type_Ref:"", Validators.required),
+      Team_Size: new FormControl(this.data.event!=null?this.data.event.Team_Size:"", Validators.required),
+      Event_Organizer:  new FormControl(this.data.event!=null?this.data.event.Event_Organizer:"", Validators.required),
+      Event_Date:  new FormControl(this.data.event!=null?this.convertDate(this.data.event.Event_Date):"", Validators.required),
+      Prize_Won_Details:  new FormControl(this.data.event!=null?this.data.event.Prize_Won_Details:"", Validators.required)
     });
   }
   onSubmit() {
