@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import gql from 'graphql-tag';
-import { StudentDetailsService } from './../student-details.service';import {Apollo, QueryRef} from 'apollo-angular';
+import { StudentDetailsService } from './../student-details.service';
+import {Apollo, QueryRef} from 'apollo-angular';
 import { PersonReferenceModel } from './../person-reference.model';
 import { EventModelComponent } from './event-model/event-model.component';
 import { EventModel } from './event.model';

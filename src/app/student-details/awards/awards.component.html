@@ -31,9 +31,9 @@
                             <span>Edit</span>
                          </th>
                   </tr>
-                   <tr class="t-tr" *ngFor="let a of award">
+                   <tr class="t-tr" *ngFor="let a of awards;let sno=index">
                          <td class="t-td" style="width:2%;text-align:center" >
-                                 <span> {{a.no}}</span>
+                                 <span> {{sno+1}}</span>
                          </td>
                          <td class="t-td" style="width:15%;text-align:center" >
                                   <span>{{a.Award_Name}}</span>
@@ -42,24 +42,24 @@
                                   <span>{{a.Organizer_Name}}</span>
                          </td>
                          <td class="t-td" style="width:10%; text-align:center">
-                                 <span> {{a.Award_Type_Ref}}</span>
+                                 <span> {{filterawardType(a.Award_Type_Ref).Ref_Name}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{a.Award_Category_Ref}}</span>
+                                  <span>{{filterAwardCategory(a.Award_Category_Ref).Ref_Name}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
                                   <span>{{a.Place_of_Event}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{a.Award_Date}}</span>
+                                  <span>{{a.Award_Date | date:'dd-MM-yyyy'}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                 <span class="edit-icon" (click)="onEditAward()">Edit</span>
+                                 <span class="edit-icon" (click)="editModel()">Edit</span>
                          </td>
                    </tr>
            </table><br>
           <div style="margin-top:2rem;text-align:center;"><br>
-           <button class="button" (click)="onAddaward()">Add Award</button>
+           <button class="button" (click)="addModel()">Add Award</button>
           </div>
          </div>
     </div>
