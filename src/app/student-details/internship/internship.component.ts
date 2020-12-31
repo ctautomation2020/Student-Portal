@@ -15,7 +15,6 @@ import { AlertboxComponent } from './../../shared/alertbox/alertbox.component';
   styleUrls: ['./internship.component.scss']
 })
 export class InternshipComponent implements OnInit {
-  sno=1;
   internships: InternshipModel[];
   stiphendType: PersonReferenceModel[];
   selectionType: PersonReferenceModel[];
@@ -176,7 +175,7 @@ export class InternshipComponent implements OnInit {
         });
       }
     });
-    
+
   }
   filterStiphendType(stype): PersonReferenceModel {
     return this.stiphendType.filter(l => l.Ref_Code === stype)[0];

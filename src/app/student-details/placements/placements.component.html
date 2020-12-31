@@ -2,10 +2,10 @@
     <div class="main">
         <div class="placements-section">
             <h3 class="section-title" >
-                <button class="edit-icon1"  (click) ="onStartPlacementModel()" style="width:50%">Placements</button>
-                <button class="edit-icon1"  (click) ="onStartHigherStudiesModel()" style="width:50%">Higher Studies</button>
+                <button class="edit-icon1"  (click) ="placementsModel()" style="width:50%">Placements</button>
+                <button class="edit-icon1"  (click) ="higherStudiesModel()" style="width:50%">Higher Studies</button>
             </h3>
-        <div [hidden]="placements">
+        <div [hidden]="!val">
             <table class="t-table">
                   <tr class="t-tr">
                          <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">
@@ -18,6 +18,9 @@
                            <span>Designation </span>
                          </th>
                          <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
+                          <span>Type</span>
+                         </th>
+                         <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
                             <span>Joining Date</span>
                          </th>
                          <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
@@ -26,33 +29,42 @@
                          <th class="t-th" style="width:10%;color:white;background-color:Blue;">
                             <span>Edit</span>
                          </th>
+                         <th class="t-th" style="width:5%;color:white;background-color:Red;">
+                          <span>Delete</span>
+                         </th> 
                   </tr>
-                   <tr class="t-tr" *ngFor="let p of placement_order">
+                   <tr class="t-tr" *ngFor="let p of placements;let sno=index">
                          <td class="t-td" style="width:5%;text-align:center" >
-                                 <span> {{p.no}}</span>
+                            <span> {{sno+1}}</span>
                          </td>
                          <td class="t-td" style="width:25%;text-align:center" >
-                                  <span>{{p.company}}</span>
+                            <span>{{p.Company}}</span>
                          </td>
                          <td class="t-td" style="width:25%; text-align:center">
-                                 <span> {{p.Designation}}</span>
+                            <span> {{p.Designation}}</span>
                          </td>
                          <td class="t-td" style="width:15%;text-align:center ">
-                                  <span>{{p.Joining_Date}}</span>
+                            <span>{{filterPlacementType(p.Placement_Type_Ref).Ref_Name}}</span>
+                         </td>
+                         <td class="t-td" style="width:15%;text-align:center ">
+                          <span>{{p.Joining_Date | date:'dd-MM-yyyy'}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{p.Package}}</span>
+                          <span>{{p.Package}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                 <span class="edit-icon" (click)="onEditPlacements()">Edit</span>
+                          <span class="edit-icon" (click)="editPlacement(p.Placement_ID)">Edit</span>
                          </td>
+                         <td class="t-td" style="width:5%;text-align:center">
+                          <button class="del-icon" (click)="deletePlacement(p.Placement_ID)">Delete</button>
+                        </td>
                    </tr>
            </table><br>
           <div style="margin-top:2rem;text-align:center;"><br>
-           <button class="button" (click)="onAddPlacements()">ADD</button>
+           <button class="button" (click)="createPlacement()">ADD</button>
           </div>
         </div>
-        <div [hidden]="higherstudies">
+        <div [hidden]="val">
             <table class="t-table">
                   <tr class="t-tr">
                          <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">
@@ -76,33 +88,40 @@
                          <th class="t-th" style="width:10%;color:white;background-color:Blue;">
                             <span>Edit</span>
                          </th>
+                         <th class="t-th" style="width:5%;color:white;background-color:Red;">
+                          <span>Delete</span>
+                        </th>
+
                   </tr>
-                   <tr class="t-tr" *ngFor="let h of higherstudies_order">
+                   <tr class="t-tr" *ngFor="let h of higherStudies;let sno=index">
                          <td class="t-td" style="width:5%;text-align:center" >
-                                 <span> {{h.no}}</span>
+                                 <span> {{sno+1}}</span>
                          </td>
                          <td class="t-td" style="width:25%;text-align:center" >
-                                  <span>{{h.university}}</span>
+                                  <span>{{h.University}}</span>
                          </td>
                          <td class="t-td" style="width:25%; text-align:center">
                                  <span> {{h.Degree}}</span>
                          </td>
                          <td class="t-td" style="width:15%;text-align:center ">
-                                  <span>{{h.specialization}}</span>
+                                  <span>{{h.Specialization}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{h.country}}</span>
+                                  <span>{{h.Country}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{h.score}}</span>
+                                  <span>{{h.Score}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                 <span class="edit-icon" (click)="onEditstudies()">Edit</span>
+                                 <span class="edit-icon" (click)="editHigherStudies()">Edit</span>
                          </td>
+                         <td class="t-td" style="width:5%;text-align:center">
+                            <button class="del-icon" (click)="deleteHigherStudies()">Delete</button>
+                        </td>
                    </tr>
            </table><br>
           <div style="margin-top:2rem;text-align:center;"><br>
-           <button class="button" (click)="onAddstudies()">ADD</button>
+           <button class="button" (click)="createHigherStudies()">ADD</button>
           </div>
         </div>
         </div>
