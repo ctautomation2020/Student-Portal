@@ -25,11 +25,6 @@ export class PlacementsComponent implements OnInit {
   admissionMode: PersonReferenceModel[];
   queryRef2: QueryRef<HigherStudiesModel[], any>;
   val: boolean = true;
-
-	higherstudies_order=[
-		{no:"1",university:"xxx1",Degree:"zzz1",specialization:"yyy1",score:"123",country:"xyz"},
-		{no:"2",university:"xxx2",Degree:"zzz2",specialization:"yyy2",score:"123",country:"xyz"},
-	];
   
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
 
@@ -159,8 +154,7 @@ export class PlacementsComponent implements OnInit {
 		});
   }
 	editPlacement(id:number){
-    const placement=this.placements.filter((q) => q.Placement_ID === id)
-    console.log(placement[0]);
+    let placement=this.placements.filter((q) => q.Placement_ID === id)
     const dialogRef = this.dialog.open(PlacementsModelComponent,{
       data:{
         placement: placement[0],
@@ -201,7 +195,7 @@ export class PlacementsComponent implements OnInit {
 		});
   }
   deletePlacement(id:number){
-    let dialogRef = this.dialog.open(AlertboxComponent);
+    const dialogRef = this.dialog.open(AlertboxComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
@@ -225,13 +219,103 @@ export class PlacementsComponent implements OnInit {
   }
 
 	createHigherStudies(){
-		let dialogRef = this.dialog.open(HigherstudiesModelComponent);
+    const dialogRef = this.dialog.open(HigherstudiesModelComponent,{
+      data:{
+        higherstudy: null,
+        admissionMode: this.admissionMode
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+        const req = gql `
+				mutation createStudentHigherStudy($data: createStudentHigherStudyInput!){
+          createStudentHigherStudy(data:$data){
+            HigherStudies_ID
+          }
+        }`;
+				this.apollo.mutate({
+					mutation: req,
+					variables: {
+						data: {
+              University: result.University,
+              Degree: result.Degree,
+              Specialization: result.Specialization,
+              Admission_Mode_Ref: result.Admission_Mode_Ref,
+              Score: parseFloat(result.Score),
+              Country: result.Country,
+              Location: result.Location,
+              LOR_Details: result.LOR_Details,
+              Score_Card_Copy: ""         
+						}
+					}
+				}).subscribe(({ data }) => {
+					console.log(data);
+					this.queryRef2.refetch();
+				});
+			} 
+		});
 	}
-	editHigherStudies(){
-		let dialogRef = this.dialog.open(HigherstudiesModelComponent);
+	editHigherStudies(id:number){
+    let higherstudy=this.higherStudies.filter((q) => q.HigherStudies_ID === id)
+    const dialogRef = this.dialog.open(HigherstudiesModelComponent,{
+      data:{
+        higherstudy: higherstudy[0],
+        admissionMode: this.admissionMode
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+        const req = gql `
+				mutation updateStudentHigherStudy($data: updateStudentHigherStudyInput!){
+          updateStudentHigherStudy(data:$data){
+            HigherStudies_ID
+          }
+        }`;
+				this.apollo.mutate({
+					mutation: req,
+					variables: {
+						data: {
+              HigherStudies_ID: id,
+              University: result.University,
+              Degree: result.Degree,
+              Specialization: result.Specialization,
+              Admission_Mode_Ref: result.Admission_Mode_Ref,
+              Score: parseFloat(result.Score),
+              Country: result.Country,
+              Location: result.Location,
+              LOR_Details: result.LOR_Details,
+              Score_Card_Copy: ""              
+						}
+					}
+				}).subscribe(({ data }) => {
+					console.log(data);
+					this.queryRef2.refetch();
+				});
+			} 
+		});
   }
-  deleteHigherStudies(){
-    let dialogRef = this.dialog.open(AlertboxComponent);
+  deleteHigherStudies(id:number){
+    const dialogRef = this.dialog.open(AlertboxComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+        const req = gql `
+        mutation deleteStudentHigherStudy($data: deleteStudentHigherStudyInput!){
+          deleteStudentHigherStudy(data:$data){
+            HigherStudies_ID
+          }
+        }`;
+        this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data: {
+            HigherStudies_ID: id
+          }
+        }}).subscribe(({ data }) => {
+          this.queryRef2.refetch();
+        });
+      }
+    });
   }
 
   filterAdmissionMode(stype): PersonReferenceModel {

@@ -1,35 +1,55 @@
 <h2 mat-dialog-title style="text-align: center;">HigherStudies Details</h2>
 
 <mat-dialog-content>
-  <form [formGroup]="higherstudiesAddForm">
+  <form [formGroup]="higherStudiesForm">
     <mat-form-field class="form-field"> 
       <mat-label>University</mat-label>
       <input matInput formControlName="University" required>
-      <mat-error *ngIf="higherstudiesAddForm.get('University').invalid">Please Enter Name</mat-error>
+      <mat-error *ngIf="higherStudiesForm.get('University').invalid">Please Enter Name</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Degree</mat-label>
       <input matInput formControlName="Degree" required>
-      <mat-error *ngIf="higherstudiesAddForm.get('Degree').invalid">Please Enter Name</mat-error>
+      <mat-error *ngIf="higherStudiesForm.get('Degree').invalid">Please Enter Name</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Specialization</mat-label>
       <input matInput formControlName="Specialization" required>
-      <mat-error *ngIf="higherstudiesAddForm.get('Specialization').invalid">Please Enter Number</mat-error>
+      <mat-error *ngIf="higherStudiesForm.get('Specialization').invalid">Please Enter Number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-dropdown three-field" appearance="fill">
+      <mat-label>Mode</mat-label>
+      <mat-select formControlName="Admission_Mode_Ref" required>
+        <mat-option *ngFor="let hs of data.admissionMode" [value]="hs.Ref_Code">{{hs.Ref_Name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="higherStudiesForm.get('Admission_Mode_Ref').invalid">Please Choose an Option</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Score</mat-label>
       <input matInput formControlName="Score" required>
-      <mat-error *ngIf="higherstudiesAddForm.get('Score').invalid">Please Enter Number</mat-error>
+      <mat-error *ngIf="higherStudiesForm.get('Score').invalid">Please Enter Number</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Country</mat-label>
       <input matInput formControlName="Country" required>
-      <mat-error *ngIf="higherstudiesAddForm.get('Country').invalid">Please Enter Number</mat-error>
+      <mat-error *ngIf="higherStudiesForm.get('Country').invalid">Please Enter Number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Location</mat-label>
+      <input matInput formControlName="Location" required>
+      <mat-error *ngIf="higherStudiesForm.get('Location').invalid">Please Enter Number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>LOR Details</mat-label>
+      <input matInput formControlName="LOR_Details" required>
+      <mat-error *ngIf="higherStudiesForm.get('LOR_Details').invalid">Please Enter Number</mat-error>
     </mat-form-field>
 
 
@@ -37,6 +57,6 @@
 </mat-dialog-content>
 <mat-dialog-actions style="float:right">
   <button mat-raised-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" [disabled]="higherstudiesAddForm.invalid" (click)="onSubmit()">Save</button>
+  <button mat-raised-button color="primary" [disabled]="higherStudiesForm.invalid" (click)="onSubmit()">Save</button>
 </mat-dialog-actions>
 

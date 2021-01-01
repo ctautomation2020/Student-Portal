@@ -10,24 +10,29 @@ import {Apollo} from 'apollo-angular';
 })
 export class HigherstudiesModelComponent implements OnInit {
 
-  higherstudiesAddForm: FormGroup;
+  higherStudiesForm: FormGroup;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<HigherstudiesModelComponent>) {
   }
 
   ngOnInit(): void {
-    this.higherstudiesAddForm = new FormGroup({
-      University: new FormControl("xxx", Validators.required),
-      Degree: new FormControl("yyy", Validators.required),
-      Specialization: new FormControl("yyy", Validators.required),
-      Score: new FormControl("123", [Validators.required,Validators.pattern('^[0-9]{3}$')]),
-      Country: new FormControl("xyz", Validators.required)
+    this.higherStudiesForm = new FormGroup({
+      University: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.University:"", Validators.required),
+      Degree: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Degree:"", Validators.required),
+      Specialization: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Specialization:"", Validators.required),
+      Admission_Mode_Ref: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Admission_Mode_Ref:"", Validators.required),
+      Score: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Score:"", Validators.required),
+      Country: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Country:"", Validators.required),
+      Location: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Location:"", Validators.required),
+      LOR_Details: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.LOR_Details:"", Validators.required),
+      Score_Card_Copy: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Score_Card_Copy:"") 
     });
   }
 
   onSubmit() {
-      console.log(this.higherstudiesAddForm.value);
+      console.log(this.higherStudiesForm.value);
+      this.dialogRef.close(this.higherStudiesForm.value);
   }
 
 }
