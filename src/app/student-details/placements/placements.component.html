@@ -2,8 +2,8 @@
     <div class="main">
         <div class="placements-section">
             <h3 class="section-title" >
-                <button class="edit-icon1"  (click) ="placementsModel()" style="width:50%">Placements</button>
-                <button class="edit-icon1"  (click) ="higherStudiesModel()" style="width:50%">Higher Studies</button>
+                <button class="edit-icon1" [style.background-color]="pColor" (click) ="placementsModel()">Placements</button>
+                <button class="edit-icon1" [style.background-color]="hColor" (click) ="higherStudiesModel()">Higher Studies</button>
             </h3>
         <div [hidden]="!val">
             <table class="t-table">
@@ -53,7 +53,7 @@
                           <span>{{p.Package}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                          <span class="edit-icon" (click)="editPlacement(p.Placement_ID)">Edit</span>
+                          <button class="edit-icon" (click)="editPlacement(p.Placement_ID)">Edit</button>
                          </td>
                          <td class="t-td" style="width:5%;text-align:center">
                           <button class="del-icon" (click)="deletePlacement(p.Placement_ID)">Delete</button>
@@ -61,7 +61,7 @@
                    </tr>
            </table><br>
           <div style="margin-top:2rem;text-align:center;"><br>
-           <button class="button" (click)="createPlacement()">ADD</button>
+           <button class="button" (click)="createPlacement()">ADD Placement</button>
           </div>
         </div>
         <div [hidden]="val">
@@ -116,10 +116,10 @@
                            <span>{{h.Score}}</span>
                         </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{h.Country}}</span>
+                              <span>{{h.Country}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                 <span class="edit-icon" (click)="editHigherStudies(h.HigherStudies_ID)">Edit</span>
+                              <button class="edit-icon" (click)="editHigherStudies(h.HigherStudies_ID)">Edit</button>
                          </td>
                          <td class="t-td" style="width:5%;text-align:center">
                             <button class="del-icon" (click)="deleteHigherStudies(h.HigherStudies_ID)">Delete</button>
@@ -127,7 +127,7 @@
                    </tr>
            </table><br>
           <div style="margin-top:2rem;text-align:center;"><br>
-           <button class="button" (click)="createHigherStudies()">ADD</button>
+           <button class="button" (click)="createHigherStudies()">Add Higher Study</button>
           </div>
         </div>
         </div>

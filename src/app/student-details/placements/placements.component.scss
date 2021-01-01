@@ -73,8 +73,6 @@
   border-collapse: collapse;
   padding: 5px;
 }
-
-
 .t-th  {
   border: 1px solid grey;
   border-collapse: collapse;
@@ -95,23 +93,18 @@
     padding: 0.5em 1.1em;
     cursor: pointer;
     font-size: 0.9em;
+    border: none;
 }
 .button:hover{
     background-color: #0d5086;
     box-shadow: 0 5px 8px 1px gainsboro;
 }
-.edit-icon{
-    font-size: 0.65em;
-    background-color: #1982e4;
-    text-transform: uppercase;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5em 1em 0.5em 0.5em;
+.edit-icon::before,.del-icon::before{
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
     cursor: pointer;
-}
-.edit-icon::before{
     content: '';
     width: 1.5em;
     height: 1.5em;
@@ -119,17 +112,38 @@
     margin-right: 0.25em;
     filter: invert(1);
 }
+.edit-icon,.del-icon{
+    font-size: 0.80em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1em 0.5em 0.5em;
+    cursor: pointer;
+    border: none;
+}
 .edit-icon:hover{
     background-color: #0c3e66;
     box-shadow: 0 5px 8px 1px gainsboro;
 }
+.del-icon:hover{
+    background-color: #6e0c14;
+    box-shadow: 0 5px 8px 1px gainsboro;
+}
 .edit-icon::before{
     background-image: url("../../../assets/edit.png");
-    display: block;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50%;
-    cursor: pointer;
+}
+.edit-icon{
+    background-color: #1982e4;
+}
+.del-icon::before{
+    background-image: url("../../../assets/remove.png");
+}
+.del-icon{
+    background-color: #ee1d2f;
 }
 .edit-icon1{
     font-size: 0.65em;
@@ -141,6 +155,7 @@
     align-items: center;
     padding: 0.5em 1em 0.5em 0.5em;
     cursor: pointer;
+    width: 50%;
 }
 .edit-icon1::before{
     content: '';

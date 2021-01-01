@@ -52,6 +52,11 @@
       <mat-error *ngIf="eventForm.get('Team_Size').invalid">Enter Valid Details</mat-error>
     </mat-form-field>
 
+    <div class="form-field">
+      <label class="file-label" for="file">Certificate</label>
+      <input class="file-input" type="file" formControlName="file">
+    </div>
+
 </form>
 </mat-dialog-content>
 <mat-dialog-actions style="float: right;">

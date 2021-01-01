@@ -31,14 +31,7 @@
 .form-field {
   padding-left: 20px;
   padding-bottom: 10px;
-  width: 90%;
 }
-.form-field1{
-  padding-left: 20px;
-  padding-bottom: 10px;
-  width: 45%;
-}
-
 .staff-form-field {
   padding-left: 20px;
   width: 500px;
@@ -66,4 +59,14 @@ table {
     .input-field .text-wrap{
         width: 100%;
     }
+}
+.two-field{
+   width: 45%;
+}
+.three-field{
+   width: 30%;
+}
+.file-label{
+	padding-right: 10px;
+	font-size: 18px;
 }
