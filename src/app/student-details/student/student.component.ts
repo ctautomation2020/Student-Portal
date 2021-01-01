@@ -153,12 +153,14 @@ export class StudentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
-        const date1=this.convertDate(result.DOB);
-        const date2=this.convertDate(result.Admission_Date);
-        console.log(date1);
-        console.log(date2);
         const aadata=result.Aadhar_Card.toString();
-        console.log(aadata);
+        if(result.Residential_Type_Ref!=96){  
+          result.Hostel_Block_Room='';
+        }
+        if(result.Scholarship_Received_Ref==87){  
+          result.Scholarship_Details='';
+        }
+        console.log(result.Residential_Type_Ref,result.Scholarship_Received_Ref);
         const req = gql `
         mutation updateStudent($data: updateStudentInput!) {
           updateStudent(data: $data) {
@@ -174,7 +176,7 @@ export class StudentComponent implements OnInit {
               Middle_Name: result.Middle_Name,
               Last_Name: result.Last_Name,
               Gender_Ref: result.Gender_Ref,
-              DOB: date1,
+              DOB: this.convertDate(result.DOB),
               Community_Ref: result.Community_Ref,
               Caste: result.Caste,
               MailID: result.MailID,
@@ -193,7 +195,7 @@ export class StudentComponent implements OnInit {
               Registration_Mode_Ref: result.Registration_Mode_Ref,
               Blood_Group_Ref: result.Blood_Group_Ref,
               GATE_Cutoff_Mark: result.GATE_Cutoff_Mark,
-              Admission_Date: date2,
+              Admission_Date: this.convertDate(result.Admission_Date),
               Admission_Category_Ref: result.Admission_Category_Ref,
               Scholarship_Received_Ref: result.Scholarship_Received_Ref,
               Scholarship_Details: result.Scholarship_Details,

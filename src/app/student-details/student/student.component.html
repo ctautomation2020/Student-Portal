@@ -87,7 +87,7 @@
                     <span class="label">Residential Type</span>
                     <p>{{filterResidentialType().Ref_Name}}</p>
                 </div>
-                <div class="text-wrap">
+                <div class="text-wrap" *ngIf="student.Hostel_Block_Room != ''">
                     <span class="label">Hostel Block & Room No.</span>
                     <p>{{student.Hostel_Block_Room}}</p>
                 </div>
@@ -136,6 +136,10 @@
                 <div class="text-wrap" *ngIf="scholarshipReceived != null">  
                     <span class="label">Scholarship Received</span>
                     <p>{{filterScholarshipReceived().Ref_Name}}</p>
+                </div>
+                <div class="text-wrap" *ngIf="student.Scholarship_Details != ''">  
+                    <span class="label">Scholarship Details</span>
+                    <p>{{student.Scholarship_Details}}</p>
                 </div>
             </div>
             <div class="horizontal-line-break"></div>
