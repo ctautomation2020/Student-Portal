@@ -2,11 +2,33 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Apollo} from 'apollo-angular';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-awards-model',
   templateUrl: './awards-model.component.html',
-  styleUrls: ['./awards-model.component.scss']
+  styleUrls: ['./awards-model.component.scss'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
+  ]
 })
 export class AwardsModelComponent implements OnInit {
 
@@ -17,17 +39,26 @@ export class AwardsModelComponent implements OnInit {
   }
   ngOnInit(): void {
     this.awardsForm = new FormGroup({
-          Award_Name: new FormControl("xxx", Validators.required),
-          Organizer_Name: new FormControl("yyy", Validators.required),
-          Award_Type_Ref: new FormControl("yyyy", Validators.required),
-          Award_Category_Ref: new FormControl("yyyy", Validators.required),
-          Award_Date: new FormControl("yyyy", Validators.required),
-          Place_of_Event: new FormControl("xyz", Validators.required)
-      });
+      Award_Name: new FormControl(this.data.award!=null?this.data.award.Award_Name:"", Validators.required),
+      Organizer_Name: new FormControl(this.data.award!=null?this.data.award.Organizer_Name:"", Validators.required),
+      Award_Type_Ref: new FormControl(this.data.award!=null?this.data.award.Award_Type_Ref:"", Validators.required),
+      Award_Category_Ref: new FormControl(this.data.award!=null?this.data.award.Award_Category_Ref:"", Validators.required),
+      Place_of_Event: new FormControl(this.data.award!=null?this.data.award.Place_of_Event:"", Validators.required),
+      Award_Date: new FormControl(this.data.award!=null?this.convertDate(this.data.award.Award_Date):"", Validators.required),
+      Certificate_Copy: new FormControl(this.data.award!=null?this.data.award.Certificate_Copy:"")
+    });
   }
 
-onSubmit() {
-      console.log(this.awardsForm.value);
+  onSubmit() {
+    console.log(this.awardsForm.value);
+    this.dialogRef.close(this.awardsForm.value);
+  }
+
+  convertDate(edate){
+    const myDate = new Date(0);
+    const temp = parseFloat(edate) / 1000;
+    myDate.setUTCSeconds(temp);
+    return myDate;
   }
 
 

@@ -27,9 +27,12 @@
                          <th class="t-th" style="width:10%;color:white;background-color:FireBrick;">
                             <span>Date</span>
                          </th>
-                         <th class="t-th" style="width:10%;color:white;background-color:FireBrick;">
+                         <th class="t-th" style="width:10%;color:white;background-color:Blue;">
                             <span>Edit</span>
                          </th>
+                         <th class="t-th" style="width:5%;color:white;background-color:Red;">
+                           <span>Delete</span>
+                        </th>
                   </tr>
                    <tr class="t-tr" *ngFor="let a of awards;let sno=index">
                          <td class="t-td" style="width:2%;text-align:center" >
@@ -54,8 +57,11 @@
                                   <span>{{a.Award_Date | date:'dd-MM-yyyy'}}</span>
                          </td>
                          <td class="t-td" style="width:10%;text-align:center ">
-                                 <span class="edit-icon" (click)="editModel()">Edit</span>
+                           <span class="edit-icon" (click)="editModel(a.Award_ID)">Edit</span>
                          </td>
+                         <td class="t-td" style="width:5%;text-align:center">
+                           <button class="del-icon" (click)="deleteModel(a.Award_ID)">Delete</button>
+                        </td>
                    </tr>
            </table><br>
           <div style="margin-top:2rem;text-align:center;"><br>
