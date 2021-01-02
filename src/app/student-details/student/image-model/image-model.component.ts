@@ -30,7 +30,6 @@ export class ImageModelComponent implements OnInit {
    
   onFileChange(event) {
     const reader = new FileReader();
-    
     if(event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       reader.readAsDataURL(file);
@@ -45,19 +44,21 @@ export class ImageModelComponent implements OnInit {
    
       };
       this.fileToUpload=event.target.files[0];
-      const formData = new FormData();
-      formData.append('file', this.fileToUpload);
-      console.log(formData);
-      const req = gql `
-            mutation uploadPhoto($file: Upload!) {
-              uploadPhoto(file: $file)
-            }
-            `;
-      this.apollo
-      .mutate({
+      // const formData = new FormData();
+      // formData.append('file', this.fileToUpload);
+      // console.log(formData);
+      }
+  }
+   
+  onSubmit(){
+    const req = gql `
+        mutation uploadPhoto($file: Upload!) {
+          uploadPhoto(file: $file)
+        }`;
+      this.apollo.mutate({
         mutation: req,
         variables: {
-          file: event.target.files[0]
+          file: this.fileToUpload
         },
         context: {
           useMultipart: true
@@ -65,17 +66,7 @@ export class ImageModelComponent implements OnInit {
       }).subscribe(({ data }) => {
         console.log(data);
       });
-      }
-  }
-   
-  onSubmit(){
-    console.log(this.imageForm.value);
-    /* this.http.post('http://localhost:8001/upload.php', this.myForm.value)
-      .subscribe(res => {
-        console.log(res);
-        alert('Uploaded Successfully.');
-      }) */
-      this.dialogRef.close();
+    this.dialogRef.close();
     
   }
 

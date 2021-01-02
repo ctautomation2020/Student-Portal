@@ -3,9 +3,7 @@
 <form [formGroup]="imageForm">
     <div class="form-group">
         <mat-label for="file">File</mat-label>&nbsp;
-        <input 
-            formControlName="file" type="file" 
-            class="form-control" (change)="onFileChange($event)">
+        <input formControlName="file" type="file" class="form-control" (change)="onFileChange($event)">
         <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
             <mat-error *ngIf="f.file.errors.required" style="font-size: small;">*File is required.</mat-error>
         </div><br><br>
