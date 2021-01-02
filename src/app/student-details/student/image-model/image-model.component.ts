@@ -12,6 +12,8 @@ import gql from 'graphql-tag';
 export class ImageModelComponent implements OnInit {
   imageForm: FormGroup;
   fileToUpload:any;
+  sizeValid: boolean=true;
+  typeValid: boolean=true;
   baseURL: string="";
 
   imageSrc: string="../../../../assets/back.jpg";
@@ -22,6 +24,7 @@ export class ImageModelComponent implements OnInit {
       file: new FormControl('', [Validators.required]),
       fileSource: new FormControl('', [Validators.required])
     })
+    console.log(this.imageForm);
   }
 
   get f(){
@@ -33,20 +36,18 @@ export class ImageModelComponent implements OnInit {
     if(event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       reader.readAsDataURL(file);
-    
       reader.onload = () => {
-   
         this.imageSrc = reader.result as string;
-     
         this.imageForm.patchValue({
           fileSource: reader.result
         });
-   
       };
       this.fileToUpload=event.target.files[0];
-      // const formData = new FormData();
-      // formData.append('file', this.fileToUpload);
-      // console.log(formData);
+      const ftype=this.fileToUpload.type.slice(0,5);
+      const fsize=Math.floor(this.fileToUpload.size/1024);
+      this.typeValid=ftype=="image"?true:false;
+      this.sizeValid=fsize<=100?true:false;
+      console.log(this.imageForm,fsize,ftype);
       }
   }
    

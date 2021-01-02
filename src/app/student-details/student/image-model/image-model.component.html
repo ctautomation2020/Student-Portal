@@ -2,16 +2,17 @@
 <mat-dialog-content>
 <form [formGroup]="imageForm">
     <div class="form-group">
-        <mat-label for="file">File</mat-label>&nbsp;
-        <input formControlName="file" type="file" class="form-control" (change)="onFileChange($event)">
-        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-            <mat-error *ngIf="f.file.errors.required" style="font-size: small;">*File is required.</mat-error>
-        </div><br><br>
+        <input formControlName="file" type="file" class="form-control" (change)="onFileChange($event)" required>
+        <br>
+        <mat-error *ngIf="!sizeValid" style="font-size: small;">Filesize > 100 KB<br></mat-error>
+        <mat-error *ngIf="!typeValid" style="font-size: small;">Not an image file</mat-error>
+        <br><br>
+        
         <img [src]="imageSrc" style="height: 10em; width:10em">
     </div>
 </form>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-raised-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+    <button mat-raised-button color="primary" [disabled]="sizeValid && typeValid" (click)="onSubmit()">Save</button>
 </mat-dialog-actions>

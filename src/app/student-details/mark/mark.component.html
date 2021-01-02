@@ -1,53 +1,56 @@
 <div class="container">
-    <div class="main">
-         <div class="mark-section">
-            <h3 class="section-title">
-                <span>Marks</span>
-            </h3>
-            <form>
-                  <span>
-                  Register Number<input type="text" class="left" style="width:75%"><br><br>
-                  </span>
-                  <span>
-                  Semester<input type="text" class="right" style="width:75%; "><br>
-                  </span>
-            </form>
-            <table class="t-table">
-                  <tr class="t-tr">
-                         <th class="t-th" style="color:white;width:5%; background-color:DodgerBlue;">
-                                  S.No
-                         </th>
-                         <th class="t-th" style="color:white;width:20%; background-color:DodgerBlue;">
-                                  Course Code
-                         </th>
-                         <th class="t-th" style="color:white;width:50%; background-color:DodgerBlue;">
-                                  Course Name
-                         </th>
-                         <th class="t-th" style="color:white;width:20%;background-color:DarkSlateGrey;">
-                                  Marks
-                         </th>
-                         <th class="t-th" style="width:20%;color:white;background-color:Tomato;">
-                                  Grade
-                         </th>
-                  </tr>
-                   <tr class="t-tr" *ngFor="let c of course">
-                         <td class="t-td" style="width:10%;text-align:center" >
-                                 <span> {{c.no}}</span>
-                         </td>
-                         <td class="t-td" style="width:20%;text-align:center" >
-                                  <span>{{c.courseno}}</span>
-                         </td>
-                         <td class="t-td" style="width:50%; text-align:center">
-                                 <span> {{c.coursename}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{c.Mark}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{c.Grade}}</span>
-                         </td>
-                   </tr>
-            </table>
-          </div>
-     </div>
+  <div class="main">
+      <div class="mark-section">
+          <h3 class="section-title">
+              <span>Marks</span>
+          </h3>
+          <form>
+              <span>
+              Semester<input type="text" class="right" style="width:75%; "><br>
+              </span>
+          </form>
+          <table class="t-table">
+              <tr class="t-tr">
+                  <th class="t-th" style="color:white;width:5%; background-color:DodgerBlue;">
+                      S.No
+                  </th>
+                  <th class="t-th" style="color:white;width:20%; background-color:DodgerBlue;">
+                      Course Code
+                  </th>
+                  <th class="t-th" style="color:white;width:50%; background-color:DodgerBlue;">
+                      Course Name
+                  </th>
+                  <th class="t-th" style="color:white;width:20%;background-color:DarkSlateGrey;">
+                      Marks
+                  </th>
+                  <th class="t-th" style="width:20%;color:white;background-color:Tomato;">
+                      Grade
+                  </th>
+                  <th class="t-th" style="width:10%;color:white;background-color:Blue;">
+                    <span>Edit</span>
+                 </th>
+              </tr>
+              <tr class="t-tr" *ngFor="let c of course">
+                  <td class="t-td" style="width:10%;text-align:center" >
+                      <span> {{c.no}}</span>
+                  </td>
+                  <td class="t-td" style="width:20%;text-align:center" >
+                      <span>{{c.courseno}}</span>
+                  </td>
+                  <td class="t-td" style="width:50%; text-align:center">
+                      <span> {{c.coursename}}</span>
+                  </td>
+                  <td class="t-td" style="width:10%;text-align:center ">
+                      <span>{{c.Mark}}</span>
+                  </td>
+                  <td class="t-td" style="width:10%;text-align:center ">
+                      <span>{{c.Grade}}</span>
+                  </td>
+                  <td class="t-td" style="width:10%;text-align:center ">
+                    <span class="edit-icon" (click)="editModel()">Edit</span>
+                  </td>
+              </tr>
+          </table>
+      </div>
+  </div>
 </div>
