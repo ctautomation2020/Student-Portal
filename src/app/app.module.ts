@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import {HttpClientModule} from '@angular/common/http';
 import { FilterPipe } from './student-details/filter.pipe';
-import {SharedModule} from './shared/shared.module'
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [

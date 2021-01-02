@@ -22,6 +22,8 @@ import { HigherstudiesModelComponent } from './placements/higherstudies-model/hi
 import { AwardsComponent } from './awards/awards.component';
 import { AwardsModelComponent } from './awards/awards-model/awards-model.component';
 import { ReportComponent } from './report/report.component';
+import { MarkModelComponent } from './mark/mark-model/mark-model.component'
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { ReportComponent } from './report/report.component';
     HigherstudiesModelComponent,
     AwardsComponent,
     AwardsModelComponent,
-    ReportComponent
+    ReportComponent,
+    MarkModelComponent
   ],
   imports: [
     RouterModule,

@@ -1,0 +1,20 @@
+<h2 mat-dialog-title style="text-align: center;">Semester {{data.currentSem}}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="markForm">
+        <mat-form-field class="form-field three-field">
+            <mat-label>Gpa</mat-label>
+            <input matInput formControlName="Gpa" required>
+            <mat-error *ngIf="markForm.get('Gpa').invalid">Please Enter Gpa</mat-error>
+        </mat-form-field>
+        <br>
+        <div class="form-field">
+        <input class="file-input" type="file" formControlName="file" (change)="onFileChange($event)">
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions style="float:right">
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button [disabled]="markForm.invalid" color="primary" (click)="onSubmit()">Save</button>
+</mat-dialog-actions>

@@ -53,20 +53,22 @@ export class ImageModelComponent implements OnInit {
    
   onSubmit(){
     const req = gql `
-        mutation uploadPhoto($file: Upload!) {
-          uploadPhoto(file: $file)
-        }`;
-      this.apollo.mutate({
-        mutation: req,
-        variables: {
-          file: this.fileToUpload
-        },
-        context: {
-          useMultipart: true
-        }
-      }).subscribe(({ data }) => {
-        console.log(data);
-      });
+      mutation uploadPhoto($file: Upload!) {
+        uploadPhoto(file: $file)
+      }`;
+    this.apollo.mutate({
+      mutation: req,
+      variables: {
+        file: this.fileToUpload
+      },
+      context: {
+        useMultipart: true
+      }
+    }).subscribe(({ data }) => {
+      console.log(data);
+    });
+    console.log("Uploaded");
+
     this.dialogRef.close();
     
   }
