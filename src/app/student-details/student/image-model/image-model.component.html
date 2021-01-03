@@ -2,8 +2,8 @@
 <mat-dialog-content>
 <form [formGroup]="imageForm">
     <div class="form-group">
-        <input formControlName="file" type="file" class="form-control" (change)="onFileChange($event)" required>
-        <br>
+        <input formControlName="file" type="file" class="form-control file-input" (change)="onFileChange($event)" required>                    
+        <button class="del-icon"></button>
         <div *ngIf="fileToUpload!=null">
             <mat-error *ngIf="!sizeValid" style="font-size: small;">Filesize > 100 KB<br></mat-error>
             <mat-error *ngIf="!typeValid" style="font-size: small;">Not an image file</mat-error>

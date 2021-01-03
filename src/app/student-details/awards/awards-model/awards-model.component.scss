@@ -44,7 +44,6 @@
 table {
   width: 100%;
 }
-
 .input-field{
     display: flex;
 }
@@ -67,6 +66,37 @@ table {
    width: 30%;
 }
 .file-label{
-	padding-right: 10px;
+	margin-right: 30px;
 	font-size: 18px;
+}
+.file-div {
+  margin: 10px 20px;
+}
+.file-input {
+  width: 70%;
+}
+.input-view {
+  display: inline-block;
+  width: 23%;
+  border: 1px solid #3aacee;
+  padding: 5px 0px 5px 5px;
+  transition: .5s;
+}
+.input-view:hover {
+  box-shadow: 0 0 3px 2px #3aacee;
+}
+.file-input:focus {
+  outline: none;
+}
+.pdf-link {
+  margin: 2px 0px 2px 2px;
+  text-decoration: none;
+  background-color: #1982e4;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+  transition: .5s;
+}
+.pdf-link:hover {
+  background-color: #053e74;
 }

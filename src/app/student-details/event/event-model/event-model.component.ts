@@ -34,6 +34,7 @@ export const MY_FORMATS = {
 export class EventModelComponent implements OnInit {
   eventForm: FormGroup;
   fileToUpload;
+  fileSrc: String = "../../../../assets/sample.pdf";
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<EventModelComponent>) {
   }

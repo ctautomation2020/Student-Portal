@@ -75,6 +75,7 @@
     cursor: pointer;
     font-size: 0.9em;
     border: none;
+    transition-duration: .5s;
 }
 .button:hover{
     background-color: #0d5086;
@@ -105,6 +106,7 @@
     padding: 0.5em 1em 0.5em 0.5em;
     cursor: pointer;
     border: none;
+    transition-duration: .5s;
 }
 .edit-icon:hover{
     background-color: #0c3e66;

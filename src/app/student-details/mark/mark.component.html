@@ -10,41 +10,44 @@
               <mat-option *ngFor="let i of sems" [value]="i" (click)="semFilter(i)">{{i}}</mat-option>
             </mat-select>
           </mat-form-field>
-          <span *ngIf="semMarks!=null" class="edit-icon" (click)="editModel()">Edit</span>  
-          <br>
-          <div *ngIf="semMarks!=null">GPA : {{filterGpa().GPA}}</div>
+          <div *ngIf="semMarks!=null">
+            <div class="gpa">GPA : {{filterGpa().GPA}}</div>
+            <div class="edit-div">
+              <span class="edit-icon" (click)="editModel()">Edit</span>
+            </div>
+          </div>
           <table class="t-table" *ngIf="semMarks!=null && semMarks.length!=0">
             <tr class="t-tr">
-                  <th class="t-th" style="color:white;width:5%; background-color:DodgerBlue;">
+                  <th class="t-th" style="color:white;width:10%; background-color:DodgerBlue;">
                       S.No
                   </th>
-                  <th class="t-th" style="color:white;width:20%; background-color:DodgerBlue;">
+                  <th class="t-th" style="color:white;width:15%; background-color:DodgerBlue;">
                       Course Code
                   </th>
                   <th class="t-th" style="color:white;width:50%; background-color:DodgerBlue;">
                       Course Name
                   </th>
-                  <th class="t-th" style="color:white;width:20%;background-color:DarkSlateGrey;">
-                      Semester
+                  <th class="t-th" style="color:white;width:10%;background-color:DarkSlateGrey;">
+                      Grade
                   </th>
                   <th class="t-th" style="width:20%;color:white;background-color:Tomato;">
-                      Grade
+                      Session
                   </th>
               </tr>
               <tr class="t-tr" *ngFor="let c of semMarks;let sno=index">
                   <td class="t-td" style="width:10%;text-align:center" >
                       <span> {{sno+1}}</span>
                   </td>
-                  <td class="t-td" style="width:20%;text-align:center" >
+                  <td class="t-td" style="width:15%;text-align:center" >
                       <span>{{c.course_code}}</span>
                   </td>
                   <td class="t-td" style="width:50%; text-align:center">
                       <span> {{c.course_list.title}}</span>
                   </td>
                   <td class="t-td" style="width:10%;text-align:center ">
-                      <span>{{c.semester}}</span>
+                      <span>{{c.stream}}</span>
                   </td>
-                  <td class="t-td" style="width:10%;text-align:center ">
+                  <td class="t-td" style="width:20%;text-align:center ">
                       <span>{{c.stream}}</span>
                   </td>
               </tr>

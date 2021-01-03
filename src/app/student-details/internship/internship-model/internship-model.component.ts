@@ -34,6 +34,7 @@ export const MY_FORMATS = {
 export class InternshipModelComponent implements OnInit {
   internshipForm: FormGroup;
   fileToUpload;
+  fileSrc: String = "../../../../assets/sample.pdf";
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<InternshipModelComponent>) {
   }

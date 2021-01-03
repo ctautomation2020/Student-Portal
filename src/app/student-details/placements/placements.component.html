@@ -2,10 +2,10 @@
     <div class="main">
         <div class="placements-section">
             <h3 class="section-title" >
-                <button class="edit-icon1" [style.background-color]="pColor" (click) ="placementsModel()">Placements</button>
-                <button class="edit-icon1" [style.background-color]="hColor" (click) ="higherStudiesModel()">Higher Studies</button>
+                <button class="tab-title" [style.background-color]="pColor" (click) ="placementsModel()">Placements</button>
+                <button class="tab-title" [style.background-color]="hColor" (click) ="higherStudiesModel()">Higher Studies</button>
             </h3>
-        <div [hidden]="!val">
+        <div [hidden]="!placementOpen">
             <table class="t-table">
                   <tr class="t-tr">
                          <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">
@@ -64,7 +64,7 @@
            <button class="button" (click)="createPlacement()">ADD Placement</button>
           </div>
         </div>
-        <div [hidden]="val">
+        <div [hidden]="placementOpen">
             <table class="t-table">
                   <tr class="t-tr">
                          <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">

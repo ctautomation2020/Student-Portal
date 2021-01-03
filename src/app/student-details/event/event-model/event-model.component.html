@@ -52,9 +52,12 @@
       <mat-error *ngIf="eventForm.get('Team_Size').invalid">Enter Valid Details</mat-error>
     </mat-form-field>
 
-    <div class="form-field">
+    <div class="file-div">
       <label class="file-label" for="file">Certificate</label>
-      <input class="file-input" type="file" formControlName="file" (change)="onFileChange($event)">
+      <div class="input-view">
+        <input class="file-input" type="file" formControlName="file" (change)="onFileChange($event)">
+        <a class="pdf-link" [href]="fileSrc" target="_blank">view file</a>
+      </div>
     </div>
 
 </form>

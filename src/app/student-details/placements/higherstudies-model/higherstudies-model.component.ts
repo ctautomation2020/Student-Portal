@@ -11,6 +11,7 @@ import {Apollo} from 'apollo-angular';
 export class HigherstudiesModelComponent implements OnInit {
 
   higherStudiesForm: FormGroup;
+  fileSrc: String = "../../../../assets/sample.pdf";
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<HigherstudiesModelComponent>) {

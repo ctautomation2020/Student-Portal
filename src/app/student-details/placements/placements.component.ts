@@ -24,7 +24,7 @@ export class PlacementsComponent implements OnInit {
   higherStudies: HigherStudiesModel[];
   admissionMode: PersonReferenceModel[];
   queryRef2: QueryRef<HigherStudiesModel[], any>;
-  val: boolean = true;
+  placementOpen: boolean = true;
   pColor: string = "#0f5b99";
   hColor: String = "#1982e4";
   
@@ -109,13 +109,13 @@ export class PlacementsComponent implements OnInit {
   }
 
 	placementsModel(){
-    this.val = true;
+    this.placementOpen = true;
     this.pColor = "#0f5b99";
     this.hColor = "#1982e4";
 	}
 
 	higherStudiesModel(){
-		this.val = false;
+		this.placementOpen = false;
     this.hColor = "#0f5b99";
     this.pColor = "#1982e4";
 	}

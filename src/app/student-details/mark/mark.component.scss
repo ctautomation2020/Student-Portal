@@ -102,6 +102,7 @@
     box-shadow: 0 5px 8px 1px gainsboro;
 }
 .edit-icon::before{
+    background-image: url("../../../assets/edit.png");
     display: block;
     background-repeat: no-repeat;
     background-position: center;
@@ -119,21 +120,28 @@
     font-weight: bold;
     text-transform: uppercase;
     color: white;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     padding: 0.5em 1em 0.5em 0.5em;
     cursor: pointer;
     border: none;
+    width: 15%;
+    margin-left: auto;
+    transition-duration: .5s;
 }
 .edit-icon:hover{
     background-color: #0c3e66;
     box-shadow: 0 5px 8px 1px gainsboro;
 }
-
-.edit-icon::before{
-    background-image: url("../../../assets/edit.png");
-}
 .edit-icon{
     background-color: #1982e4;
+}
+.gpa, .edit-div {
+    display: inline-flex;
+    width: 50%;
+}
+.gpa {
+    font-size: 17px;
+    font-weight: bold;
 }

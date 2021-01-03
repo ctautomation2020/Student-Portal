@@ -2,15 +2,40 @@
 
 <mat-dialog-content>
     <form [formGroup]="markForm">
-        <mat-form-field class="form-field three-field">
-            <mat-label>Gpa</mat-label>
-            <input matInput formControlName="Gpa" required>
-            <mat-error *ngIf="markForm.get('Gpa').invalid">Please Enter Gpa</mat-error>
+        <div *ngFor="let m of edit_marks">
+          <mat-form-field class="form-field four-field">
+              <mat-label>Course Code</mat-label>
+              <input matInput formControlName="title" [value]="m.course_code" [readonly]="true">
+          </mat-form-field>
+        <mat-form-field class="form-field four-field">
+            <mat-label>Course Name</mat-label>
+            <input matInput formControlName="title" [value]="m.course_name" [readonly]="true">
         </mat-form-field>
-        <br>
-        <div class="form-field">
-        <input class="file-input" type="file" formControlName="file" (change)="onFileChange($event)">
-        </div>
+        <mat-form-field class="form-field four-field">
+            <mat-label>Grade</mat-label>
+            <input matInput formControlName="Grade" [value]="m.grade" required>
+            <mat-error *ngIf="markForm.get('Grade').invalid">Please Enter Grade</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field four-field" appearance="fill">
+          <mat-label>Session</mat-label>
+          <mat-select formControlName="Session_Ref" required>
+            <mat-option>Nov-Mar</mat-option>
+            <mat-option>Jun-Nov</mat-option>
+          </mat-select>
+        </mat-form-field>
+       </div>
+       <mat-form-field class="form-field two-field">
+           <mat-label>Gpa</mat-label>
+           <input matInput formControlName="Gpa" required>
+           <mat-error *ngIf="markForm.get('Gpa').invalid">Please Enter Gpa</mat-error>
+       </mat-form-field>
+       <div class="file-div two-field">
+         <label class="file-label" for="file">Certificate</label>
+         <div class="input-view">
+           <input class="file-input" type="file" formControlName="file" (change)="onFileChange($event)">
+           <a class="pdf-link" [href]="fileSrc" target="_blank">view file</a>
+         </div>
+       </div>
     </form>
 </mat-dialog-content>
 

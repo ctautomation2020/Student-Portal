@@ -6,7 +6,6 @@ import { StudentDetailsService } from './../student-details.service';
 import { PersonReferenceModel } from './../person-reference.model';
 import { MarkModelComponent } from './mark-model/mark-model.component';
 
-
 @Component({
   selector: 'app-mark',
   templateUrl: './mark.component.html',

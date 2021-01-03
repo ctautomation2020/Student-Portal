@@ -94,6 +94,7 @@
     cursor: pointer;
     font-size: 0.9em;
     border: none;
+    transition-duration: .5s;
 }
 .button:hover{
     background-color: #0d5086;
@@ -123,6 +124,7 @@
     padding: 0.5em 1em 0.5em 0.5em;
     cursor: pointer;
     border: none;
+    transition-duration: .5s;
 }
 .edit-icon:hover{
     background-color: #0c3e66;
@@ -144,10 +146,11 @@
 .del-icon{
     background-color: #ee1d2f;
 }
-.edit-icon1{
+.tab-title{
     font-size: 0.65em;
     background-color: #1982e4;
     text-transform: uppercase;
+    font-weight: bold;
     color: white;
     display: flex;
     justify-content: center;
@@ -155,26 +158,23 @@
     padding: 0.5em 1em 0.5em 0.5em;
     cursor: pointer;
     width: 50%;
+    border: none;
+    transition-duration: .5s;
 }
-.edit-icon1::before{
+.tab-title::before{
     content: '';
     width: 1.5em;
     height: 1.5em;
     background-size: 1em;
     margin-right: 0.25em;
-    filter: invert(1);
-}
-.edit-icon1:hover{
-    background-color: #0c3e66;
-    box-shadow: 0 5px 8px 1px gainsboro;
-}
-.edit-icon1::before{
-   // background-image: url("../../../assets/edit.png");
     display: block;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 50%;
     cursor: pointer;
+    filter: invert(1);
 }
-
-
+.tab-title:hover{
+    background-color: #0c3e66;
+    box-shadow: 0 3px 6px 1px rgb(56, 128, 235);
+}

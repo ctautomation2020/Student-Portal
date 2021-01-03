@@ -11,7 +11,14 @@ import gql from 'graphql-tag';
 })
 export class MarkModelComponent implements OnInit {
   markForm: FormGroup;
+ 
+  edit_marks=[
+          {course_code:"1", course_name:"Data Structures", grade:"O"},
+          {course_code:"2", course_name:"Operating System", grade:"A+"},
+          {course_code:"3", course_name:"Operating System", grade:"A+"}  
+  ];
   fileToUpload;
+  fileSrc: String = "../../../../assets/sample.pdf";
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<MarkModelComponent>) {
   }
@@ -20,6 +27,9 @@ export class MarkModelComponent implements OnInit {
     console.log(this.data.gpa);
     this.markForm = new FormGroup({
       Gpa: new FormControl(this.data.gpa.GPA,Validators.required),
+      Grade: new FormControl("O",Validators.required),
+      Session_Ref: new FormControl("dddd",Validators.required),
+      title: new FormControl("yyyy",Validators.required),
       file: new FormControl(""),
       Gpa_ID: new FormControl(this.data.gpa.Gpa_ID)
     });
