@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Apollo} from 'apollo-angular';
+import gql from 'graphql-tag';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -32,6 +33,7 @@ export const MY_FORMATS = {
 })
 export class EventModelComponent implements OnInit {
   eventForm: FormGroup;
+  fileToUpload;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<EventModelComponent>) {
   }
@@ -44,11 +46,39 @@ export class EventModelComponent implements OnInit {
       Team_Size: new FormControl(this.data.event!=null?this.data.event.Team_Size:"", Validators.required),
       Event_Organizer:  new FormControl(this.data.event!=null?this.data.event.Event_Organizer:"", Validators.required),
       Event_Date:  new FormControl(this.data.event!=null?this.convertDate(this.data.event.Event_Date):"", Validators.required),
-      Prize_Won_Details:  new FormControl(this.data.event!=null?this.data.event.Prize_Won_Details:"", Validators.required)
+      Prize_Won_Details:  new FormControl(this.data.event!=null?this.data.event.Prize_Won_Details:"", Validators.required),
+      file: new FormControl("")
     });
   }
+  onFileChange(event) {
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length) {
+      this.fileToUpload=event.target.files[0];
+    }
+  }
+
   onSubmit() {
     console.log(this.eventForm.value);
+    console.log(this.fileToUpload);
+    const req = gql `
+      mutation uploadEventParticipated($data: uploadEventParticipatedInput!) {
+        uploadEventParticipated(data: $data)
+      }`;
+    this.apollo.mutate({
+      mutation: req,
+      variables: {
+        data:{
+          Event_ID: this.data.event.Event_ID,
+          file: this.fileToUpload
+        }
+      },
+      context: {
+        useMultipart: true
+      }
+    }).subscribe(({ data }) => {
+      console.log(data);
+    });
+    console.log("Uploaded Certificate");
     this.dialogRef.close(this.eventForm.value); 
   }
   convertDate(edate){

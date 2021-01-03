@@ -54,7 +54,7 @@
 
     <div class="form-field">
       <label class="file-label" for="file">Certificate</label>
-      <input class="file-input" type="file" formControlName="file">
+      <input class="file-input" type="file" formControlName="file" (change)="onFileChange($event)">
     </div>
 
 </form>

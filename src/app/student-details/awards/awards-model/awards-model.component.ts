@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Apollo} from 'apollo-angular';
+import gql from 'graphql-tag';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -33,7 +34,7 @@ export const MY_FORMATS = {
 export class AwardsModelComponent implements OnInit {
 
   awardsForm: FormGroup;
-
+  fileToUpload;
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<AwardsModelComponent>) {
   }
@@ -45,12 +46,39 @@ export class AwardsModelComponent implements OnInit {
       Award_Category_Ref: new FormControl(this.data.award!=null?this.data.award.Award_Category_Ref:"", Validators.required),
       Place_of_Event: new FormControl(this.data.award!=null?this.data.award.Place_of_Event:"", Validators.required),
       Award_Date: new FormControl(this.data.award!=null?this.convertDate(this.data.award.Award_Date):"", Validators.required),
-      Certificate_Copy: new FormControl(this.data.award!=null?this.data.award.Certificate_Copy:"")
+      Certificate_Copy: new FormControl(this.data.award!=null?this.data.award.Certificate_Copy:""),
+      file: new FormControl("")
     });
+  }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length) {
+      this.fileToUpload=event.target.files[0];
+    }
   }
 
   onSubmit() {
     console.log(this.awardsForm.value);
+    console.log(this.fileToUpload);
+    const req = gql `
+      mutation uploadStudentAward($data: uploadStudentAwardInput!) {
+        uploadStudentAward(data: $data)
+      }`;
+    this.apollo.mutate({
+      mutation: req,
+      variables: {
+        data:{
+          Award_ID: this.data.award.Award_ID,
+          file: this.fileToUpload
+        }
+      },
+      context: {
+        useMultipart: true
+      }
+    }).subscribe(({ data }) => {
+      console.log(data);
+    });
     this.dialogRef.close(this.awardsForm.value);
   }
 

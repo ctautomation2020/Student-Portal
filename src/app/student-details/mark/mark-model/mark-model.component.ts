@@ -24,6 +24,7 @@ export class MarkModelComponent implements OnInit {
       Gpa_ID: new FormControl(this.data.gpa.Gpa_ID)
     });
   }
+  
   onFileChange(event) {
     const reader = new FileReader();
     if(event.target.files && event.target.files.length) {

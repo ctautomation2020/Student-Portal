@@ -66,8 +66,9 @@ export class ImageModelComponent implements OnInit {
       }
     }).subscribe(({ data }) => {
       console.log(data);
+      console.log("Uploaded");
     });
-    console.log("Uploaded");
+    
 
     this.dialogRef.close();
     
