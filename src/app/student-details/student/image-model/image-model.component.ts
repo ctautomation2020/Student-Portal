@@ -12,8 +12,8 @@ import gql from 'graphql-tag';
 export class ImageModelComponent implements OnInit {
   imageForm: FormGroup;
   fileToUpload:any;
-  sizeValid: boolean=true;
-  typeValid: boolean=true;
+  sizeValid: boolean=false;
+  typeValid: boolean=false;
   baseURL: string="";
 
   imageSrc: string="../../../../assets/back.jpg";
