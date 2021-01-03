@@ -35,6 +35,8 @@ export class AwardsModelComponent implements OnInit {
 
   awardsForm: FormGroup;
   fileToUpload;
+  sizeValid: boolean=false;
+  typeValid: boolean=false;
   fileSrc: String = "../../../../assets/sample.pdf";
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<AwardsModelComponent>) {
@@ -56,6 +58,10 @@ export class AwardsModelComponent implements OnInit {
     const reader = new FileReader();
     if(event.target.files && event.target.files.length) {
       this.fileToUpload=event.target.files[0];
+      const ftype=this.fileToUpload.type.slice(-3);
+      const fsize=Math.floor(this.fileToUpload.size/1024);
+      this.typeValid=ftype=="pdf"?true:false;
+      this.sizeValid=fsize<=1024?true:false;
     }
   }
 

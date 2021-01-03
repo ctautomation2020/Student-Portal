@@ -5,6 +5,7 @@ import {Apollo, QueryRef} from 'apollo-angular';
 import { StudentDetailsService } from './../student-details.service';
 import { PersonReferenceModel } from './../person-reference.model';
 import { MarkModelComponent } from './mark-model/mark-model.component';
+import { MarkModel } from './mark.model';
 
 @Component({
   selector: 'app-mark',
@@ -18,6 +19,7 @@ export class MarkComponent implements OnInit {
   sessions: PersonReferenceModel[];
   queryRef1: QueryRef<any>;
   queryRef2: QueryRef<any>;
+  queryRef3: QueryRef<any>;
   marks;
   semMarks;
   gpas;

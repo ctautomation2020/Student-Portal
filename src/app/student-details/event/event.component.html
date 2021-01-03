@@ -30,8 +30,8 @@
                         <p>{{filterParticipationType(e.Participation_Type_Ref).Ref_Name}}</p>
                     </div>
                     <div class="text-wrap">
-                        <span class="label">Team Size</span>
-                        <p>{{e.Team_Size}}</p>
+                        <span class="label" *ngIf="e.Participation_Type_Ref!=119">Team Size</span>
+                        <p *ngIf="e.Participation_Type_Ref!=119">{{e.Team_Size}}</p>
                     </div>
                 </div>
                 <div class="btns">

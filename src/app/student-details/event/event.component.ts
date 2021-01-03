@@ -80,6 +80,9 @@ export class EventComponent implements OnInit {
 			if (result) {
         const date=this.convertDate(result.Event_Date);
         console.log(result);
+        if(result.Participation_Type_Ref==119){  
+          result.Team_Size=1;
+        }
         const req = gql `
 				mutation updateEventParticipated($data:updateEventParticipatedInput!){
           updateEventParticipated(data: $data){
@@ -143,6 +146,9 @@ export class EventComponent implements OnInit {
 			if (result) {
         const date=this.convertDate(result.Event_Date);
         console.log(result);
+        if(result.Participation_Type_Ref==119){  
+          result.Team_Size=1;
+        }
         const req = gql `
 				mutation createEventParticipated($data:createEventParticipatedInput!){
           createEventParticipated(data: $data){

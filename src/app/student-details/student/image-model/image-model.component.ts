@@ -22,9 +22,8 @@ export class ImageModelComponent implements OnInit {
   ngOnInit(): void {
     this.imageForm = new FormGroup({
       file: new FormControl('', [Validators.required]),
-      fileSource: new FormControl('', [Validators.required])
+      fileSource: new FormControl('')
     })
-    console.log(this.imageForm);
   }
 
   get f(){
@@ -47,7 +46,7 @@ export class ImageModelComponent implements OnInit {
       const fsize=Math.floor(this.fileToUpload.size/1024);
       this.typeValid=ftype=="image"?true:false;
       this.sizeValid=fsize<=100?true:false;
-      console.log(this.imageForm,fsize,ftype);
+      console.log(this.fileToUpload.type,ftype);
       }
   }
    

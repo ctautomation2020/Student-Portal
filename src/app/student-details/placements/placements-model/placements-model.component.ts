@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Apollo} from 'apollo-angular';
+import gql from 'graphql-tag';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -33,6 +34,9 @@ export const MY_FORMATS = {
 export class PlacementsModelComponent implements OnInit {
 
   placementsForm: FormGroup;
+  fileToUpload;
+  sizeValid: boolean=false;
+  typeValid: boolean=false;
   fileSrc: String = "../../../../assets/sample.pdf";
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<PlacementsModelComponent>) {}
@@ -47,12 +51,43 @@ export class PlacementsModelComponent implements OnInit {
       Appointment_Letter_IssueDate: new FormControl(this.data.placement!=null?this.convertDate(this.data.placement.Appointment_Letter_IssueDate):"", Validators.required),
       Appointment_Order_Copy: new FormControl(this.data.placement!=null?this.data.placement.Appointment_Order_Copy:""),
       Joining_Date: new FormControl(this.data.placement!=null?this.convertDate(this.data.placement.Joining_Date):"", Validators.required),
-      Placement_Type_Ref: new FormControl(this.data.placement!=null?this.data.placement.Placement_Type_Ref:"", Validators.required)
+      Placement_Type_Ref: new FormControl(this.data.placement!=null?this.data.placement.Placement_Type_Ref:"", Validators.required),
+      file: new FormControl("")
     });
+  }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length) {
+      this.fileToUpload=event.target.files[0];
+      const ftype=this.fileToUpload.type.slice(-3);
+      const fsize=Math.floor(this.fileToUpload.size/1024);
+      this.typeValid=ftype=="pdf"?true:false;
+      this.sizeValid=fsize<=1024?true:false;
+    }
   }
 
   onSubmit() {
     console.log(this.placementsForm.value);
+    console.log(this.fileToUpload);
+    const req = gql `
+      mutation uploadStudentPlacement($data: uploadStudentPlacementInput!){
+        uploadStudentPlacement(data: $data)
+      }`;
+    this.apollo.mutate({
+      mutation: req,
+      variables: {
+        data:{
+          Placement_ID: this.data.placement.Placement_ID,
+          file: this.fileToUpload
+        }
+      },
+      context: {
+        useMultipart: true
+      }
+    }).subscribe(({ data }) => {
+      console.log(data);
+    });
     this.dialogRef.close(this.placementsForm.value);
   }
   convertDate(edate){

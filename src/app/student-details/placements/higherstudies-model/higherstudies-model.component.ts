@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Apollo} from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Component({
   selector: 'app-higherstudies-model',
@@ -11,6 +12,9 @@ import {Apollo} from 'apollo-angular';
 export class HigherstudiesModelComponent implements OnInit {
 
   higherStudiesForm: FormGroup;
+  fileToUpload;
+  sizeValid: boolean=false;
+  typeValid: boolean=false;
   fileSrc: String = "../../../../assets/sample.pdf";
 
   constructor(
@@ -27,13 +31,44 @@ export class HigherstudiesModelComponent implements OnInit {
       Country: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Country:"", Validators.required),
       Location: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Location:"", Validators.required),
       LOR_Details: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.LOR_Details:"", Validators.required),
-      Score_Card_Copy: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Score_Card_Copy:"") 
+      Score_Card_Copy: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Score_Card_Copy:""),
+      file: new FormControl("")
     });
   }
 
+  onFileChange(event) {
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length) {
+      this.fileToUpload=event.target.files[0];
+      const ftype=this.fileToUpload.type.slice(-3);
+      const fsize=Math.floor(this.fileToUpload.size/1024);
+      this.typeValid=ftype=="pdf"?true:false;
+      this.sizeValid=fsize<=1024?true:false;
+    }
+  }
+
   onSubmit() {
-      console.log(this.higherStudiesForm.value);
-      this.dialogRef.close(this.higherStudiesForm.value);
+    console.log(this.higherStudiesForm.value);
+    console.log(this.fileToUpload);
+    const req = gql `
+      mutation uploadStudentHigherStudy($data: uploadStudentHigherStudyInput!){
+        uploadStudentHigherStudy(data: $data)
+      }`;
+    this.apollo.mutate({
+      mutation: req,
+      variables: {
+        data:{
+          HigherStudies_ID: this.data.higherstudy.HigherStudies_ID,
+          file: this.fileToUpload
+        }
+      },
+      context: {
+        useMultipart: true
+      }
+    }).subscribe(({ data }) => {
+      console.log(data);
+    });
+    this.dialogRef.close(this.higherStudiesForm.value);
   }
 
 }

@@ -55,8 +55,12 @@
     <div class="form-field">
       <label class="file-label" for="file">File</label>
       <div class="input-view">
-        <input class="file-input" type="file" formControlName="file">
+        <input class="file-input" type="file" formControlName="file" (change)="onFileChange($event)">
         <a class="pdf-link" [href]="fileSrc" target="_blank">view file</a>
+        <div *ngIf="fileToUpload!=null">
+          <mat-error *ngIf="!sizeValid" style="font-size: small;">Filesize > 1 MB<br></mat-error>
+          <mat-error *ngIf="!typeValid" style="font-size: small;">Not PDF file</mat-error>
+        </div>
       </div>
     </div>
 
@@ -64,6 +68,6 @@
 </mat-dialog-content>
 <mat-dialog-actions style="float:right">
   <button mat-raised-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" [disabled]="higherStudiesForm.invalid" (click)="onSubmit()">Save</button>
+  <button mat-raised-button color="primary" [disabled]="higherStudiesForm.invalid || !(sizeValid && typeValid)" (click)="onSubmit()">Save</button>
 </mat-dialog-actions>
 

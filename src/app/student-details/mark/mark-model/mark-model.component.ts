@@ -18,6 +18,8 @@ export class MarkModelComponent implements OnInit {
           {course_code:"3", course_name:"Operating System", grade:"A+"}  
   ];
   fileToUpload;
+  sizeValid: boolean=false;
+  typeValid: boolean=false;
   fileSrc: String = "../../../../assets/sample.pdf";
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<MarkModelComponent>) {
@@ -29,7 +31,6 @@ export class MarkModelComponent implements OnInit {
       Gpa: new FormControl(this.data.gpa.GPA,Validators.required),
       Grade: new FormControl("O",Validators.required),
       Session_Ref: new FormControl("dddd",Validators.required),
-      title: new FormControl("yyyy",Validators.required),
       file: new FormControl(""),
       Gpa_ID: new FormControl(this.data.gpa.Gpa_ID)
     });
@@ -39,6 +40,10 @@ export class MarkModelComponent implements OnInit {
     const reader = new FileReader();
     if(event.target.files && event.target.files.length) {
       this.fileToUpload=event.target.files[0];
+      const ftype=this.fileToUpload.type.slice(-3);
+      const fsize=Math.floor(this.fileToUpload.size/1024);
+      this.typeValid=ftype=="pdf"?true:false;
+      this.sizeValid=fsize<=1024?true:false;
     }
   }
 
