@@ -48,7 +48,7 @@
       <label class="file-label" for="file">Certificate</label>
       <div class="input-view">
         <input class="file-input" type="file" formControlName="file" (change)="onFileChange($event)">&nbsp;&nbsp;&nbsp;
-        <a *ngIf="data.award.Certificate_Copy!=''" class="pdf-link" [href]="fileSrc" target="_blank">view file</a>
+        <a *ngIf="data.award!=null && data.award.Certificate_Copy!=''" class="pdf-link" [href]="fileSrc" target="_blank">view file</a>
         <div *ngIf="fileToUpload!=null">
           <mat-error *ngIf="!sizeValid" style="font-size: small;">Filesize > 1 MB<br></mat-error>
           <mat-error *ngIf="!typeValid" style="font-size: small;">Not PDF file</mat-error>

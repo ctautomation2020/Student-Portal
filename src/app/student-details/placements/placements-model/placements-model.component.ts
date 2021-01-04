@@ -44,7 +44,8 @@ export class PlacementsModelComponent implements OnInit {
 
   ngOnInit(): void {
     const baseURL=this.studentDetailsService.getURL();
-    this.fileSrc=baseURL+this.data.placement.Appointment_Order_Copy;
+    if(this.data.placement!=null)
+      this.fileSrc=baseURL+this.data.placement.Appointment_Order_Copy;
     this.placementsForm = new FormGroup({
       Company: new FormControl(this.data.placement!=null?this.data.placement.Company:"", Validators.required),
       Package: new FormControl(this.data.placement!=null?this.data.placement.Package:"", Validators.required),

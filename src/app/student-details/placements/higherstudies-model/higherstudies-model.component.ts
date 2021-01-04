@@ -24,7 +24,8 @@ export class HigherstudiesModelComponent implements OnInit {
 
   ngOnInit(): void {
     const baseURL=this.studentDetailsService.getURL();
-    this.fileSrc=baseURL+this.data.higherstudy.Score_Card_Copy;
+    if(this.data.higherstudy!=null)
+      this.fileSrc=baseURL+this.data.higherstudy.Score_Card_Copy;
     this.higherStudiesForm = new FormGroup({
       University: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.University:"", Validators.required),
       Degree: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Degree:"", Validators.required),

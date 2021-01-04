@@ -43,7 +43,8 @@ export class InternshipModelComponent implements OnInit {
   }
   ngOnInit(): void {
     const baseURL=this.studentDetailsService.getURL();
-    this.fileSrc=baseURL+this.data.internship.Order_Copy;
+    if(this.data.internship!=null)
+      this.fileSrc=baseURL+this.data.internship.Order_Copy;
     console.log(this.fileSrc);
     this.internshipForm = new FormGroup({
       Company: new FormControl(this.data.internship!=null?this.data.internship.Company:"", Validators.required),

@@ -44,7 +44,8 @@ export class AwardsModelComponent implements OnInit {
   }
   ngOnInit(): void {
     const baseURL=this.studentDetailsService.getURL();
-    this.fileSrc=baseURL+this.data.award.Certificate_Copy;
+    if(this.data.award!=null)
+      this.fileSrc=baseURL+this.data.award.Certificate_Copy;
     this.awardsForm = new FormGroup({
       Award_Name: new FormControl(this.data.award!=null?this.data.award.Award_Name:"", Validators.required),
       Organizer_Name: new FormControl(this.data.award!=null?this.data.award.Organizer_Name:"", Validators.required),
