@@ -29,10 +29,11 @@ export class StudentComponent implements OnInit {
   student: StudentModel;
   facultyAdvisors: PersonModel[];
   queryRef: QueryRef<StudentModel, any>;
-
+  photoURL="../../../assets/back.jpg";
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
   ngOnInit(): void {
     const id: number = this.studentDetailsService.getRegisterNo();
+    const baseURL=this.studentDetailsService.getURL();
     console.log(id);
     const req=gql`
       query student{
@@ -54,6 +55,7 @@ export class StudentComponent implements OnInit {
           Address_Line3
           Address_Line4
           Correspondence_Address
+          Photo
           Residential_Type_Ref
           FA
           Programme_Ref
@@ -87,6 +89,9 @@ export class StudentComponent implements OnInit {
       myDate2.setUTCSeconds(temp2);
       //console.log(myDate2);
       this.student.Admission_Date = myDate2 ;
+      
+      this.photoURL=result.data.student.Photo!=""?baseURL+result.data.student.Photo:"../../../assets/back.jpg";
+      console.log(this.photoURL);
 
     }));
     this.studentDetailsService.getDropDown('Gender').subscribe(result => {
@@ -244,6 +249,14 @@ export class StudentComponent implements OnInit {
     return this.facultyAdvisors.filter(l =>l.Person_ID === this.student.FA)[0];
   }
   openImageUpload(){
-    let dialogRef = this.dialog.open(ImageModelComponent);
+    let dialogRef = this.dialog.open(ImageModelComponent,{ 
+      data: {
+        photoURL:this.photoURL
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("upload");
+      this.queryRef.refetch();
+    });
   }
 }

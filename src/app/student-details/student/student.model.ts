@@ -18,6 +18,7 @@ export interface StudentModel {
     Address_Line3: string;
     Address_Line4: string;
     Correspondence_Address: string;
+    Photo:string;
     Residential_Type_Ref: number;
     FA: number;
     Programme_Ref: number;

@@ -3,7 +3,7 @@
         <div class="profile-section" >
             <div class="profile-left">
                 <div class="image-wrap">
-                    <img src="../../../assets/back.jpg" class="profile-photo">
+                    <img [src]="photoURL" class="profile-photo">
                     <span class="edit-photo" (click)="openImageUpload()"></span>
                 </div>
                 <h2 class="student-name">{{student.First_Name}}</h2>

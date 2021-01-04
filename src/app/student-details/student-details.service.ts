@@ -8,6 +8,10 @@ import { map } from 'rxjs/operators';
 })
 export class StudentDetailsService {
   constructor(private apollo:Apollo) { }
+  getURL(){
+    const url="http://localhost:8080/";
+    return url;
+  }
   getRegisterNo(){
     const regno=parseInt(localStorage.getItem('regno'));
     return regno;

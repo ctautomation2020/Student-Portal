@@ -14,12 +14,12 @@ export class ImageModelComponent implements OnInit {
   fileToUpload:any;
   sizeValid: boolean=false;
   typeValid: boolean=false;
-  baseURL: string="";
 
   imageSrc: string="../../../../assets/back.jpg";
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private apollo: Apollo,public dialogRef: MatDialogRef<ImageModelComponent>) { }
   
   ngOnInit(): void {
+    this.imageSrc=this.data.photoURL;
     this.imageForm = new FormGroup({
       file: new FormControl('', [Validators.required]),
       fileSource: new FormControl('')
@@ -50,6 +50,20 @@ export class ImageModelComponent implements OnInit {
       }
   }
    
+  deletephoto(){
+    this.imageSrc="../../../../assets/back.jpg";
+    const req = gql `
+    mutation deletePhoto{
+      deletePhoto
+    }`;
+    this.apollo.mutate({
+      mutation: req
+    }).subscribe(({ data }) => {
+      console.log(data);
+      console.log("Photo Deleted");
+    });
+  }
+
   onSubmit(){
     const req = gql `
       mutation uploadPhoto($file: Upload!) {
@@ -67,10 +81,7 @@ export class ImageModelComponent implements OnInit {
       console.log(data);
       console.log("Uploaded");
     });
-    
-
-    this.dialogRef.close();
-    
+    this.dialogRef.close("file");
   }
 
 }
