@@ -3,6 +3,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
+import { StudentDetailsService } from './../../student-details.service';
 
 @Component({
   selector: 'app-higherstudies-model',
@@ -18,10 +19,12 @@ export class HigherstudiesModelComponent implements OnInit {
   fileSrc: String = "../../../../assets/sample.pdf";
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<HigherstudiesModelComponent>) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<HigherstudiesModelComponent>,public studentDetailsService: StudentDetailsService) {
   }
 
   ngOnInit(): void {
+    const baseURL=this.studentDetailsService.getURL();
+    this.fileSrc=baseURL+this.data.higherstudy.Score_Card_Copy;
     this.higherStudiesForm = new FormGroup({
       University: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.University:"", Validators.required),
       Degree: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Degree:"", Validators.required),

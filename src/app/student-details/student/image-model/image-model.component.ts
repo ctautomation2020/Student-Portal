@@ -62,6 +62,7 @@ export class ImageModelComponent implements OnInit {
       console.log(data);
       console.log("Photo Deleted");
     });
+    this.dialogRef.close("file");
   }
 
   onSubmit(){

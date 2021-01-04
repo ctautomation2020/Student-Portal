@@ -137,7 +137,6 @@ export class InternshipComponent implements OnInit {
               Internship_ID:id,
               Company: result.Company,
               Title: result.Title,
-              Order_Copy: result.Order_Copy,
               Address: result.Address,
               Start_Date: date1,
               End_Date: date2,

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
+import { StudentDetailsService } from './../../student-details.service';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -39,9 +40,11 @@ export class PlacementsModelComponent implements OnInit {
   typeValid: boolean=false;
   fileSrc: String = "../../../../assets/sample.pdf";
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<PlacementsModelComponent>) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<PlacementsModelComponent>,public studentDetailsService: StudentDetailsService) {}
 
   ngOnInit(): void {
+    const baseURL=this.studentDetailsService.getURL();
+    this.fileSrc=baseURL+this.data.placement.Appointment_Order_Copy;
     this.placementsForm = new FormGroup({
       Company: new FormControl(this.data.placement!=null?this.data.placement.Company:"", Validators.required),
       Package: new FormControl(this.data.placement!=null?this.data.placement.Package:"", Validators.required),

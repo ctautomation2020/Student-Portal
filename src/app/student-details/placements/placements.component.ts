@@ -184,7 +184,6 @@ export class PlacementsComponent implements OnInit {
               Placement_ID: id,
               Company: result.Company,
               Package: parseFloat(result.Package),
-              Appointment_Order_Copy: "",
               Location: result.Location,
               Designation: result.Designation,
               Appointment_OrderNum: result.Appointment_OrderNum,
@@ -289,8 +288,7 @@ export class PlacementsComponent implements OnInit {
               Score: parseFloat(result.Score),
               Country: result.Country,
               Location: result.Location,
-              LOR_Details: result.LOR_Details,
-              Score_Card_Copy: ""              
+              LOR_Details: result.LOR_Details           
 						}
 					}
 				}).subscribe(({ data }) => {

@@ -32,6 +32,7 @@ export class AwardsComponent implements OnInit {
 
   ngOnInit(): void {
     const regNo: number = this.studentDetailsService.getRegisterNo();
+    
 	  const req=gql`
 	  query studentAwards($data:studentAwardsQueryInput!){
       studentAwards(data:$data) {
@@ -93,7 +94,6 @@ export class AwardsComponent implements OnInit {
               Award_Type_Ref: result.Award_Type_Ref,
               Award_Category_Ref: result.Award_Category_Ref,
               Place_of_Event: result.Place_of_Event,
-              Certificate_Copy: "",
               Award_Date: this.convertDate(result.Award_Date)
 						}
 					}

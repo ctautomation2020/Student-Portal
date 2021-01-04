@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Apollo} from 'apollo-angular';
+import { StudentDetailsService } from './../../student-details.service';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import gql from 'graphql-tag';
@@ -38,9 +39,12 @@ export class InternshipModelComponent implements OnInit {
   typeValid: boolean=false;
   fileSrc: String = "../../../../assets/sample.pdf";
   constructor(
-      @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<InternshipModelComponent>) {
+      @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<InternshipModelComponent>,public studentDetailsService: StudentDetailsService) {
   }
   ngOnInit(): void {
+    const baseURL=this.studentDetailsService.getURL();
+    this.fileSrc=baseURL+this.data.internship.Order_Copy;
+    console.log(this.fileSrc);
     this.internshipForm = new FormGroup({
       Company: new FormControl(this.data.internship!=null?this.data.internship.Company:"", Validators.required),
       Title: new FormControl(this.data.internship!=null?this.data.internship.Title:"", Validators.required),
@@ -54,7 +58,6 @@ export class InternshipModelComponent implements OnInit {
     });
   }
   onFileChange(event) {
-    const reader = new FileReader();
     if(event.target.files && event.target.files.length) {
       this.fileToUpload=event.target.files[0];
       const ftype=this.fileToUpload.type.slice(-3);

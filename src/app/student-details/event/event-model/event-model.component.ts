@@ -3,6 +3,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
+import { StudentDetailsService } from './../../student-details.service';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -38,10 +39,12 @@ export class EventModelComponent implements OnInit {
   typeValid: boolean=false;
   fileSrc: String = "../../../../assets/sample.pdf";
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<EventModelComponent>) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<EventModelComponent>,public studentDetailsService: StudentDetailsService) {
   }
   ngOnInit(): void {
     console.log(this.data.event);
+    const baseURL=this.studentDetailsService.getURL();
+    this.fileSrc=baseURL+this.data.event.Certificate_Copy;
     this.eventForm = new FormGroup({
       Event_Name: new FormControl(this.data.event!=null?this.data.event.Event_Name:"", Validators.required),
       Event_Type_Ref: new FormControl(this.data.event!=null?this.data.event.Event_Type_Ref:"", Validators.required),
@@ -54,7 +57,6 @@ export class EventModelComponent implements OnInit {
     });
   }
   onFileChange(event) {
-    const reader = new FileReader();
     if(event.target.files && event.target.files.length) {
       this.fileToUpload=event.target.files[0];
       const ftype=this.fileToUpload.type.slice(-3);
