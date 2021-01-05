@@ -2,77 +2,54 @@
     <div class="main">
          <div class="internship-section">
             <h3 class="section-title">
-                <span>Internship</span>
+                <span>Internships</span>
             </h3>
-            <table class="t-table">
-               <tr class="t-tr">
-                  <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">
-                  <span>S.No</span>
-                  </th>
-                  <th class="t-th" style="color:white;width:15%; background-color:DarkGreen;">
-                  <span>Company</span>
-                  </th>
-                  <th class="t-th" style="color:white;width:15%; background-color:DarkGreen;">
-                  <span>Title</span>
-                  </th>
-                  <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
-                     <span>Mode</span>
-                  </th>
-                  <th class="t-th" style="color:white;width:10%;background-color:DarkSlateGrey;">
-                     <span>Start Date</span>
-                  </th>
-                  <th class="t-th" style="width:10%;color:white;background-color:DarkSlateGrey;">
-                     <span>End Date</span>
-                  </th>
-                  <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
-                     <span>Stipend</span>
-                  </th>
-                  <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
-                     <span>Amount</span>
-                  </th>
-                  <th class="t-th" style="width:5%;color:white;background-color:Blue;">
-                     <span>Edit</span>
-                  </th>
-                  <th class="t-th" style="width:5%;color:white;background-color:Red;">
-                  <span>Delete</span>
-                  </th>
-               </tr>
-               <tr class="t-tr" *ngFor="let i of internships;let sno=index">
-                  <td class="t-td" style="width:5%;text-align:center" >
-                     <span> {{sno+1}}</span>
-                  </td>
-                  <td class="t-td" style="width:15%;text-align:center" >
-                     <span>{{i.Company}}</span>
-                  </td>
-                  <td class="t-td" style="width:15%; text-align:center">
-                     <span> {{i.Title}}</span>
-                  </td>
-                  <td class="t-td" style="width:15%;text-align:center ">
-                     <span>{{filterSelectionType(i.Selection_Mode_Ref).Ref_Name}}</span>
-                  </td>
-                  <td class="t-td" style="width:10%;text-align:center ">
-                     <span>{{i.Start_Date | date:'dd-MM-yyyy'}}</span>
-                  </td>
-                  <td class="t-td" style="width:10%;text-align:center ">
-                     <span>{{i.End_Date | date:'dd-MM-yyyy'}}</span>
-                  </td>
-                  <td class="t-td" style="width:10%;text-align:center ">
-                     <span>{{filterStiphendType(i.Stiphend_Option_Ref).Ref_Name}}</span>
-                  </td>
-                  <td class="t-td" style="width:10%;text-align:center ">
-                     <span>{{i.Stiphend_Amount}}</span>
-                  </td>
-                  <td class="t-td" style="width:5%;text-align:center">
-                     <button class="edit-icon" (click)="editModel(i.Internship_ID)">Edit</button>
-                  </td>
-                  <td class="t-td" style="width:5%;text-align:center">
-                     <button class="del-icon" (click)="deleteModel(i.Internship_ID)">Delete</button>
-                  </td>
-               </tr>
-           </table><br>
-          <div style="margin-top:2rem;text-align:center;"><br>
-           <button class="button" (click)="createModel()">Add Internship</button>
-          </div>
+
+            <div class="internship-card" *ngFor="let i of internships">
+               <h3 class="internship-name">{{i.Company}}</h3>
+               <div class="card-content">
+                   <div class="internship-details">
+                        <div class="input-field">
+                            <div class="text-wrap">
+                                <span class="label">Title</span>
+                                <p>{{i.Title}}</p>
+                            </div>
+                            <div class="text-wrap">
+                                <span class="label">Mode</span>
+                                <p>{{filterSelectionType(i.Selection_Mode_Ref).Ref_Name}}</p>
+                            </div>
+                            <div class="text-wrap">
+                            <span class="label">Stipend</span>
+                            <p>{{i.Stiphend_Amount}}</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <div class="text-wrap">
+                                <span class="label">Start Date</span>
+                                <p>{{i.Start_Date | date:'dd-MM-yyyy'}}</p>
+                            </div>
+                            <div class="text-wrap">
+                                <span class="label">End Date</span>
+                                <p>{{i.End_Date | date:'dd-MM-yyyy'}}</p>
+                            </div>
+                            <div class="text-wrap">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pdf-preview"></div>
+               </div>
+               <div class="btns">
+                   <button class="edit-icon" (click)="editModel(i.Internship_ID)">Edit</button>
+               </div>
+               <div class="btns">
+                   <button class="del-icon" (click)="deleteModel(i.Internship_ID)">Delete</button>
+               </div>
+           </div>
+           <br>
+           <div class="addbtn-container">
+               <button class="add-btn" (click)="createModel()">Add Internship</button>
+           </div>
+
          </div>
     </div>
 </div>

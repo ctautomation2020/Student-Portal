@@ -1,4 +1,4 @@
-<h2 mat-dialog-title style="text-align: center;">Internship Details</h2>
+<h2 mat-dialog-title class="dislog-title">Internship Details</h2>
 
 <mat-dialog-content>
   <form [formGroup]="internshipForm">
@@ -21,6 +21,14 @@
     </mat-form-field>
 
     <mat-form-field class="form-field three-field" appearance="fill">
+      <mat-label>Mode</mat-label>
+      <mat-select formControlName="Selection_Mode_Ref" required>
+        <mat-option *ngFor="let st of data.selectionType" [value]="st.Ref_Code">{{st.Ref_Name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="internshipForm.get('Selection_Mode_Ref').invalid">Please Choose an Option</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field three-field" appearance="fill">
       <mat-label>Stipend</mat-label>
       <mat-select formControlName="Stiphend_Option_Ref" required>
         <mat-option *ngFor="let st of data.stiphendType" [value]="st.Ref_Code">{{st.Ref_Name}}</mat-option>
@@ -32,14 +40,6 @@
       <mat-label>Amount</mat-label>
       <input matInput formControlName="Stiphend_Amount" required type="number">
       <mat-error *ngIf="internshipForm.get('Stiphend_Amount').invalid">Please Enter Number</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-field three-field" appearance="fill">
-      <mat-label>Mode</mat-label>
-      <mat-select formControlName="Selection_Mode_Ref" required>
-        <mat-option *ngFor="let st of data.selectionType" [value]="st.Ref_Code">{{st.Ref_Name}}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="internshipForm.get('Selection_Mode_Ref').invalid">Please Choose an Option</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-field two-field">
@@ -72,7 +72,7 @@
 
 </form>
 </mat-dialog-content>
-<mat-dialog-actions style="float:right">
+<mat-dialog-actions class="dialog-btns">
   <button mat-raised-button mat-dialog-close>Cancel</button>
   <button mat-raised-button color="primary" [disabled]="internshipForm.invalid || !(sizeValid && typeValid)" (click)="onSubmit()">Save</button>
 </mat-dialog-actions>

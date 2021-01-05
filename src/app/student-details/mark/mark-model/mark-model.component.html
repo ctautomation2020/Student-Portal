@@ -1,4 +1,4 @@
-<h2 mat-dialog-title style="text-align: center;">Semester {{data.currentSem}}</h2>
+<h2 mat-dialog-title class="dialog-title">Semester {{data.currentSem}}</h2>
 
 <mat-dialog-content>
     <form [formGroup]="markForm">
@@ -41,7 +41,7 @@
     </form>
 </mat-dialog-content>
 
-<mat-dialog-actions style="float:right">
+<mat-dialog-actions class="dialog-btns">
   <button mat-raised-button mat-dialog-close>Cancel</button>
   <button mat-raised-button [disabled]="markForm.invalid || !(sizeValid && typeValid)" color="primary" (click)="onSubmit()">Save</button>
 </mat-dialog-actions>

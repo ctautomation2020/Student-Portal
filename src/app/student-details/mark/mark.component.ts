@@ -93,6 +93,7 @@ export class MarkComponent implements OnInit {
   }
   editModel(){
     const dialogRef = this.dialog.open(MarkModelComponent,{
+      width: "100%",
       data:{
         currentSem: this.currentSem,
         gpa: this.filterGpa()

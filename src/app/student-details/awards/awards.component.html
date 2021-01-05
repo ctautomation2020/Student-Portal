@@ -4,69 +4,50 @@
             <h3 class="section-title">
                 <span>Awards</span>
             </h3>
-            <table class="t-table">
-                  <tr class="t-tr">
-                         <th class="t-th" style="color:white;width:2%; background-color:DarkGreen;">
-                           <span>S.No</span>
-                         </th>
-                         <th class="t-th" style="color:white;width:15%; background-color:DarkGreen;">
-                           <span>Award Name</span>
-                         </th>
-                         <th class="t-th" style="color:white;width:15%; background-color:DarkGreen;">
-                           <span>Organizer Name</span>
-                         </th>
-                         <th class="t-th" style="color:white;width:10%;background-color:DarkSlateGrey;">
-                            <span>Award Type </span>
-                         </th>
-                         <th class="t-th" style="width:10%;color:white;background-color:DarkSlateGrey;">
-                            <span>Award Category </span>
-                         </th>
-                         <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
-                            <span>Place</span>
-                         </th>
-                         <th class="t-th" style="width:10%;color:white;background-color:FireBrick;">
-                            <span>Date</span>
-                         </th>
-                         <th class="t-th" style="width:10%;color:white;background-color:Blue;">
-                            <span>Edit</span>
-                         </th>
-                         <th class="t-th" style="width:5%;color:white;background-color:Red;">
-                           <span>Delete</span>
-                        </th>
-                  </tr>
-                   <tr class="t-tr" *ngFor="let a of awards;let sno=index">
-                         <td class="t-td" style="width:2%;text-align:center" >
-                                 <span> {{sno+1}}</span>
-                         </td>
-                         <td class="t-td" style="width:15%;text-align:center" >
-                                  <span>{{a.Award_Name}}</span>
-                         </td>
-                         <td class="t-td" style="width:15%;text-align:center" >
-                                  <span>{{a.Organizer_Name}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%; text-align:center">
-                                 <span> {{filterawardType(a.Award_Type_Ref).Ref_Name}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{filterAwardCategory(a.Award_Category_Ref).Ref_Name}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{a.Place_of_Event}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                                  <span>{{a.Award_Date | date:'dd-MM-yyyy'}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                           <span class="edit-icon" (click)="editModel(a.Award_ID)">Edit</span>
-                         </td>
-                         <td class="t-td" style="width:5%;text-align:center">
-                           <button class="del-icon" (click)="deleteModel(a.Award_ID)">Delete</button>
-                        </td>
-                   </tr>
-           </table><br>
-          <div style="margin-top:2rem;text-align:center;"><br>
-           <button class="button" (click)="addModel()">Add Award</button>
-          </div>
+            <div class="award-card" *ngFor="let a of awards">
+               <h3 class="award-name">{{a.Award_Name}}</h3>
+               <div class="card-content">
+                   <div class="award-details">
+                        <div class="input-field">
+                            <div class="text-wrap">
+                                <span class="label">Organizer Name</span>
+                                <p>{{a.Organizer_Name}}</p>
+                            </div>
+                            <div class="text-wrap">
+                                <span class="label">Type</span>
+                                <p>{{filterawardType(a.Award_Type_Ref).Ref_Name}}</p>
+                            </div>
+                            <div class="text-wrap">
+                                <span class="label">Category</span>
+                                <p>{{filterAwardCategory(a.Award_Category_Ref).Ref_Name}}</p>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <div class="text-wrap">
+                                <span class="label">Place</span>
+                                <p>{{a.Place_of_Event}}</p>
+                            </div>
+                            <div class="text-wrap">
+                                <span class="label">Date</span>
+                                <p>{{a.Award_Date | date:'dd-MM-yyyy'}}</p>
+                            </div>
+                            <div class="text-wrap">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pdf-preview"></div>
+               </div>
+               <div class="btns">
+                   <button class="edit-icon" (click)="editModel(a.Award_ID)">Edit</button>
+               </div>
+               <div class="btns">
+                   <button class="del-icon" (click)="deleteModel(a.Award_ID)">Delete</button>
+               </div>
+           </div>
+           <br>
+           <div class="addbtn-container">
+               <button class="add-btn" (click)="addModel()">Add Award</button>
+           </div>
          </div>
     </div>
 </div>

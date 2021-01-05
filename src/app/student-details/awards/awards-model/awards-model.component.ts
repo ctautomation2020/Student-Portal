@@ -39,6 +39,7 @@ export class AwardsModelComponent implements OnInit {
   sizeValid: boolean=false;
   typeValid: boolean=false;
   fileSrc: String = "../../../../assets/sample.pdf";
+  today = new Date();
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<AwardsModelComponent>,public studentDetailsService: StudentDetailsService) {
   }

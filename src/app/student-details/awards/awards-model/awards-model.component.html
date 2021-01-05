@@ -1,4 +1,4 @@
-<h2 mat-dialog-title style="text-align: center;">Award Details</h2>
+<h2 mat-dialog-title class="dialog-title">Award Details</h2>
 
 <mat-dialog-content>
   <form [formGroup]="awardsForm">
@@ -38,7 +38,7 @@
 
     <mat-form-field class="form-field two-field">
       <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="Award_Date" formControlName="Award_Date" required>
+      <input matInput [matDatepicker]="Award_Date" [max]="today" formControlName="Award_Date" required>
       <mat-error *ngIf="awardsForm.get('Award_Date').invalid">Please Enter Date</mat-error>
       <mat-datepicker-toggle matSuffix [for]="Award_Date"></mat-datepicker-toggle>
       <mat-datepicker #Award_Date></mat-datepicker>
@@ -58,7 +58,7 @@
 
 </form>
 </mat-dialog-content>
-<mat-dialog-actions style="float:right">
+<mat-dialog-actions class="dialog-btns">
   <button mat-raised-button mat-dialog-close>Cancel</button>
   <button mat-raised-button color="primary" [disabled]="awardsForm.invalid || !(sizeValid && typeValid)" (click)="onSubmit()">Save</button>
 </mat-dialog-actions>

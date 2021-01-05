@@ -1,7 +1,7 @@
 <h2 mat-dialog-title class="dialog-title">Student Profile</h2>
 
 <mat-dialog-content>
-  <form [formGroup]="studentForm" style="display: inline-block;">
+  <form [formGroup]="studentForm">
 
     <h2 mat-dialog-title>Personal Details</h2>
 
@@ -34,7 +34,7 @@
 
       <mat-form-field  class="form-field-dropdown three-field" appearance="fill">
         <mat-label>Date of Birth [DD/MM/YYYY]</mat-label>
-        <input matInput [matDatepicker]="picker_dob" formControlName="DOB" required>
+        <input matInput [matDatepicker]="picker_dob" [max]="today" formControlName="DOB" required>
         <mat-error *ngIf="studentForm.get('DOB').invalid">Please Choose Valid Date</mat-error>
         <mat-datepicker-toggle matSuffix [for]="picker_dob">
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -190,7 +190,7 @@
     
       <mat-form-field  class="form-field-dropdown three-field" appearance="fill">
         <mat-label>Admission Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="Admission_Date" required>
+        <input matInput [matDatepicker]="picker" [max]="today" formControlName="Admission_Date" required>
         <mat-error *ngIf="studentForm.get('Admission_Date').invalid">Please Enter Valid Date</mat-error>
         <mat-datepicker-toggle matSuffix [for]="picker">
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>

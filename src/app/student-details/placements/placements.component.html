@@ -1,135 +1,107 @@
 <div class="container">
-    <div class="main">
-        <div class="placements-section">
-            <h3 class="section-title" >
-                <button class="tab-title" [style.background-color]="pColor" (click) ="placementsModel()">Placements</button>
-                <button class="tab-title" [style.background-color]="hColor" (click) ="higherStudiesModel()">Higher Studies</button>
-            </h3>
-        <div [hidden]="!placementOpen">
-            <table class="t-table">
-                  <tr class="t-tr">
-                         <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">
-                           <span>S.No</span>
-                         </th>
-                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
-                           <span>Company</span>
-                         </th>
-                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
-                           <span>Designation </span>
-                         </th>
-                         <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
-                          <span>Type</span>
-                         </th>
-                         <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
-                            <span>Joining Date</span>
-                         </th>
-                         <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
-                            <span>Package</span>
-                         </th>
-                         <th class="t-th" style="width:10%;color:white;background-color:Blue;">
-                            <span>Edit</span>
-                         </th>
-                         <th class="t-th" style="width:5%;color:white;background-color:Red;">
-                          <span>Delete</span>
-                         </th> 
-                  </tr>
-                   <tr class="t-tr" *ngFor="let p of placements;let sno=index">
-                         <td class="t-td" style="width:5%;text-align:center" >
-                            <span> {{sno+1}}</span>
-                         </td>
-                         <td class="t-td" style="width:25%;text-align:center" >
-                            <span>{{p.Company}}</span>
-                         </td>
-                         <td class="t-td" style="width:25%; text-align:center">
-                            <span> {{p.Designation}}</span>
-                         </td>
-                         <td class="t-td" style="width:15%;text-align:center ">
-                            <span>{{filterPlacementType(p.Placement_Type_Ref).Ref_Name}}</span>
-                         </td>
-                         <td class="t-td" style="width:15%;text-align:center ">
-                          <span>{{p.Joining_Date | date:'dd-MM-yyyy'}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                          <span>{{p.Package}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                          <button class="edit-icon" (click)="editPlacement(p.Placement_ID)">Edit</button>
-                         </td>
-                         <td class="t-td" style="width:5%;text-align:center">
-                          <button class="del-icon" (click)="deletePlacement(p.Placement_ID)">Delete</button>
-                        </td>
-                   </tr>
-           </table><br>
-          <div style="margin-top:2rem;text-align:center;"><br>
-           <button class="button" (click)="createPlacement()">ADD Placement</button>
-          </div>
-        </div>
-        <div [hidden]="placementOpen">
-            <table class="t-table">
-                  <tr class="t-tr">
-                         <th class="t-th" style="color:white;width:5%; background-color:DarkGreen;">
-                           <span>S.No</span>
-                         </th>
-                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
-                           <span>University</span>
-                         </th>
-                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
-                           <span>Degree </span>
-                         </th>
-                         <th class="t-th" style="color:white;width:25%; background-color:DarkGreen;">
-                           <span>Specialization</span>
-                         </th>
-                         <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
-                           <span>Mode</span>
-                        </th>
-                         <th class="t-th" style="color:white;width:15%;background-color:DarkSlateGrey;">
-                            <span>Score</span>
-                         </th>
-                         <th class="t-th" style="width:10%;color:white;background-color:Tomato;">
-                            <span>Country</span>
-                         </th>
-                         <th class="t-th" style="width:10%;color:white;background-color:Blue;">
-                            <span>Edit</span>
-                         </th>
-                         <th class="t-th" style="width:5%;color:white;background-color:Red;">
-                          <span>Delete</span>
-                        </th>
+   <div class="main">
+       <div class="placements-section">
+           <h3 class="section-title" >
+               <button class="tab-title" [style.background-color]="pColor" (click) ="placementsModel()">Placements</button>
+               <button class="tab-title" [style.background-color]="hColor" (click) ="higherStudiesModel()">Higher Studies</button>
+           </h3>
+       <div [hidden]="!placementOpen">
 
-                  </tr>
-                   <tr class="t-tr" *ngFor="let h of higherStudies;let sno=index">
-                         <td class="t-td" style="width:5%;text-align:center" >
-                                 <span> {{sno+1}}</span>
-                         </td>
-                         <td class="t-td" style="width:25%;text-align:center" >
-                                  <span>{{h.University}}</span>
-                         </td>
-                         <td class="t-td" style="width:25%; text-align:center">
-                                 <span> {{h.Degree}}</span>
-                         </td>
-                         <td class="t-td" style="width:15%;text-align:center ">
-                                  <span>{{h.Specialization}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                           <span>{{filterAdmissionMode(h.Admission_Mode_Ref).Ref_Name}}</span>
-                        </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                           <span>{{h.Score}}</span>
-                        </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                              <span>{{h.Country}}</span>
-                         </td>
-                         <td class="t-td" style="width:10%;text-align:center ">
-                              <button class="edit-icon" (click)="editHigherStudies(h.HigherStudies_ID)">Edit</button>
-                         </td>
-                         <td class="t-td" style="width:5%;text-align:center">
-                            <button class="del-icon" (click)="deleteHigherStudies(h.HigherStudies_ID)">Delete</button>
-                        </td>
-                   </tr>
-           </table><br>
-          <div style="margin-top:2rem;text-align:center;"><br>
-           <button class="button" (click)="createHigherStudies()">Add Higher Study</button>
-          </div>
-        </div>
-        </div>
-    </div>
+           <div class="placement-card" *ngFor="let p of placements">
+               <h3 class="placement-name">{{p.Company}}</h3>
+               <div class="card-content">
+                  <div class="place-details">
+                     <div class="input-field">
+                         <div class="text-wrap">
+                             <span class="label">Designation</span>
+                             <p>{{p.Designation}}</p>
+                         </div>
+                         <div class="text-wrap">
+                             <span class="label">Type</span>
+                             <p>{{filterPlacementType(p.Placement_Type_Ref).Ref_Name}}</p>
+                         </div>
+                         <div class="text-wrap">
+                             <span class="label">Date</span>
+                             <p>{{p.Joining_Date | date:'dd-MM-yyyy'}}</p>
+                         </div>
+                     </div>
+                     <div class="input-field">
+                         <div class="text-wrap">
+                             <span class="label">Package</span>
+                             <p>{{p.Package}}</p>
+                         </div>
+                         <div class="text-wrap">
+                             <span class="label"></span>
+                             <p></p>
+                         </div>
+                         <div class="text-wrap">
+                             <span class="label"></span>
+                             <p></p>
+                         </div>
+                     </div>
+                  </div>
+                  <div class="pdf-preview"></div>
+               </div>
+               <div class="btns">
+                   <button class="edit-icon" (click)="editPlacement(p.Placement_ID)">Edit</button>
+               </div>
+               <div class="btns">
+                   <button class="del-icon" (click)="deletePlacement(p.Placement_ID)">Delete</button>
+               </div>
+           </div>
+
+         <div style="margin-top:2rem;text-align:center;"><br>
+          <button class="button" (click)="createPlacement()">ADD Placement</button>
+         </div>
+       </div>
+       <div [hidden]="placementOpen">
+           <div class="placement-card" *ngFor="let h of higherStudies">
+               <h3 class="placement-name">{{h.University}}</h3>
+               <div class="card-content">
+                  <div class="high-details">
+                     <div class="input-field">
+                         <div class="text-wrap">
+                             <span class="label">Degree</span>
+                             <p>{{h.Degree}}</p>
+                         </div>
+                         <div class="text-wrap">
+                             <span class="label">Specialization</span>
+                             <p>{{h.Specialization}}</p>
+                         </div>
+                         <div class="text-wrap">
+                             <span class="label">Mode</span>
+                             <p>{{filterAdmissionMode(h.Admission_Mode_Ref).Ref_Name}}</p>
+                         </div>
+                     </div>
+                     <div class="input-field">
+                         <div class="text-wrap">
+                             <span class="label">Score</span>
+                             <p>{{h.Score}}</p>
+                         </div>
+                         <div class="text-wrap">
+                             <span class="label">Country</span>
+                             <p>{{h.Country}}</p>
+                         </div>
+                         <div class="text-wrap">
+                             <span class="label"></span>
+                             <p></p>
+                         </div>
+                     </div>
+                  </div>
+                  <div class="pdf-preview"></div>
+               </div>
+               <div class="btns">
+                   <button class="edit-icon" (click)="editHigherStudies(h.HigherStudies_ID)">Edit</button>
+               </div>
+               <div class="btns">
+                   <button class="del-icon" (click)="deleteHigherStudies(h.HigherStudies_ID)">Delete</button>
+               </div>
+           </div>
+
+         <div style="margin-top:2rem;text-align:center;"><br>
+          <button class="button" (click)="createHigherStudies()">Add Higher Study</button>
+         </div>
+       </div>
+       </div>
+   </div>
 </div>

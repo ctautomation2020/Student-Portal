@@ -37,6 +37,7 @@ export const MY_FORMATS = {
 export class StudentModelComponent implements OnInit {
   studentForm: FormGroup;
   type;
+  today = new Date();
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<StudentModelComponent>) {
   }

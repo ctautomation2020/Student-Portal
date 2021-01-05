@@ -14,6 +14,20 @@
     width: 100%;
     min-height: 100vh;
 }
+
+.placement-card {
+  padding: 2.5%;
+  background-color:#EDF2EF;
+  border-radius: .5rem;
+  box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.5);
+  margin: 15px;
+  margin-bottom:2rem;
+}
+.placement-name{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .main{
     display: flex;
     flex-direction: column;
@@ -33,7 +47,7 @@
     margin-bottom: 1em;
     font-size: 1.3em;
     display: flex;
-//    justify-content: space-between;
+    justify-content: space-between;
     align-items: center;
 }
 .text-wrap{
@@ -59,30 +73,6 @@
 }
 .right{
    margin-left:5rem;
-}
-.t-table  {
-  margin-top:3rem;
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
-
-.t-table1  {
-  margin-top:.01rem;
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
-.t-th  {
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
-
-.t-td  {
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
 }
 .button{
     background-color: #1982e4;
@@ -146,6 +136,38 @@
 .del-icon{
     background-color: #ee1d2f;
 }
+.label{
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1369b9;
+    font-size: 0.8em;
+    margin-bottom: 0.35em;
+}
+.text-wrap a{
+    color: black;
+}
+.text-wrap a:hover{
+    text-decoration: underline;
+}
+.input-field{
+    display: flex;
+    justify-content: center;
+}
+.input-field .text-wrap{
+    width: 30%;
+    margin-left: 2em;
+}
+.text-wrap {
+    p, .label {
+        width: 60%;
+    }
+}
+.horizontal-line-break{
+    width: 100%;
+    height: 1px;
+    background-color: gainsboro;
+    margin: 1em 0.15em;
+}
 .tab-title{
     font-size: 0.65em;
     background-color: #1982e4;
@@ -177,4 +199,30 @@
 .tab-title:hover{
     background-color: #0c3e66;
     box-shadow: 0 3px 6px 1px rgb(56, 128, 235);
+}
+.btns{
+    display: inline-flex;
+    justify-content: center;
+    width: 50%;
+}
+.text-wrap{
+    margin: 1.5em 0;
+    display: flex;
+    flex-direction: column;
+}
+.card-content {
+    position: relative;
+}
+.place-details, .high-details {
+    display: inline-block;
+    margin-right: 0;
+    width: 80%;
+}
+.pdf-preview {
+    position: absolute;
+    bottom: 20px; 
+    display: inline-block;
+    background-color: #0d5086;
+    width: 15%;
+    height: 150px;
 }

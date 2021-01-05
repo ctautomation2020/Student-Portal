@@ -38,6 +38,7 @@ export class EventModelComponent implements OnInit {
   sizeValid: boolean=false;
   typeValid: boolean=false;
   fileSrc: String;
+  today = new Date();
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<EventModelComponent>,public studentDetailsService: StudentDetailsService) {
   }

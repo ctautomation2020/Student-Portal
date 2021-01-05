@@ -43,28 +43,6 @@
     font-size: 1em;
     margin-bottom: 0.35em;
 }
-.t-table  {
-  margin-top:3rem;
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
-.t-tr{
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
-
-.t-th  {
- // border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
-.t-td  {
- // border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
 .button{
     background-color: #1982e4;
     color: white;
@@ -94,7 +72,7 @@
     margin-right: 0.25em;
     filter: invert(1);
 }
-.edit-icon,.del-icon{
+.edit-icon,.del-icon, .add-btn{
     font-size: 0.80em;
     font-weight: bold;
     text-transform: uppercase;
@@ -107,7 +85,7 @@
     border: none;
     transition-duration: .5s;
 }
-.edit-icon:hover{
+.edit-icon:hover, .add-btn:hover{
     background-color: #0c3e66;
     box-shadow: 0 5px 8px 1px gainsboro;
 }
@@ -118,7 +96,7 @@
 .edit-icon::before{
     background-image: url("../../../assets/edit.png");
 }
-.edit-icon{
+.edit-icon, .add-btn{
     background-color: #1982e4;
 }
 .del-icon::before{
@@ -126,4 +104,76 @@
 }
 .del-icon{
     background-color: #ee1d2f;
+}
+.add-btn {
+    padding: 10px;
+}
+.btns{
+    display: inline-flex;
+    justify-content: center;
+    width: 50%;
+}
+.addbtn-container{
+    display: flex;
+    justify-content: center;
+}
+.text-wrap{
+    margin: 1.5em 0;
+    display: flex;
+    flex-direction: column;
+}
+.award-card {
+  padding: 2.5%;
+  background-color: #EDF2EF;
+  border-radius: .5rem;
+  box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.5);
+  margin: 15px;
+}
+.award-name{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.input-field{
+    display: flex;
+    justify-content: center;
+}
+.input-field .text-wrap{
+    width: 30%;
+    margin-left: 2em;
+}
+.text-wrap {
+    p, .label {
+        width: 60%;
+    }
+}
+@media only screen and (max-width:700px){
+    .input-field{
+        flex-direction: column;
+    }
+    .input-field .text-wrap{
+        width: 100%;
+    }
+}
+.label{
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1369b9;
+    font-size: 0.8em;
+    margin-bottom: 0.35em;
+}
+.card-content {
+    position: relative;
+}
+.award-details {
+    display: inline-block;
+    margin-right: 0;
+    width: 80%;
+}
+.pdf-preview {
+    position: absolute;
+    bottom: 20px; 
+    display: inline-block;
+    background-color: #0d5086;
+    width: 15%;
+    height: 150px;
 }

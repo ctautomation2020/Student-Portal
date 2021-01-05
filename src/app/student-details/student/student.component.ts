@@ -139,7 +139,7 @@ export class StudentComponent implements OnInit {
   }
 
   onOpenModel() {
-    let dialogRef = this.dialog.open(StudentModelComponent, { 
+    let dialogRef = this.dialog.open(StudentModelComponent, {
       data: {
         student: this.student,
         gender: this.gender,
