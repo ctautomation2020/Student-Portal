@@ -19,6 +19,8 @@ export class InternshipComponent implements OnInit {
   stiphendType: PersonReferenceModel[];
   selectionType: PersonReferenceModel[];
   queryRef: QueryRef<InternshipModel[], any>;
+  fileSrc: String = "../../../assets/sample.pdf";
+
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
   
   convertDate(inputDate:any){

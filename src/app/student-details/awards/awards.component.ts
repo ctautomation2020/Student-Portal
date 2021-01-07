@@ -19,6 +19,8 @@ export class AwardsComponent implements OnInit {
   awardType: PersonReferenceModel[];
   awardCategory: PersonReferenceModel[];
   queryRef: QueryRef<AwardsModel[], any>;
+  fileSrc: String = "../../../assets/sample.pdf";
+  
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
 
   convertDate(inputDate:any){

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SharedModule } from '../shared/shared.module';
 import { NavComponent } from './nav/nav.component';
 import { StudentDetailsRoutingModule } from './student-details-routing.module';
@@ -53,7 +54,8 @@ import { MarkModelComponent } from './mark/mark-model/mark-model.component'
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    StudentDetailsRoutingModule
+    StudentDetailsRoutingModule,
+    PdfViewerModule
   ]
 })
 export class StudentDetailsModule{

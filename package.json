@@ -31,6 +31,7 @@
     "apollo-link-http": "^1.5.17",
     "graphql": "^15.0.0",
     "moment": "^2.29.0",
+    "ng2-pdf-viewer": "^6.3.2",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

@@ -41,7 +41,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pdf-preview"></div>
+                        <div class="pdf-preview">
+                            <pdf-viewer [src]="fileSrc" [original-size]="false" [show-all]="false" [zoom-scale]="page-height"></pdf-viewer>
+                        </div>
                     </div>
                     <div class="btns">
                         <button class="edit-icon" (click)="editPlacement(p.Placement_ID)">Edit</button>
@@ -90,7 +92,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pdf-preview"></div>
+                        <div class="pdf-preview">
+                            <pdf-viewer [src]="fileSrc" [original-size]="false" [show-all]="false" [zoom-scale]="page-height"></pdf-viewer>
+                        </div>
                     </div>
                     <div class="btns">
                         <button class="edit-icon" (click)="editHigherStudies(h.HigherStudies_ID)">Edit</button>

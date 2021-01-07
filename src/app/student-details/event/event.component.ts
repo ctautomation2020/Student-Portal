@@ -18,6 +18,8 @@ export class EventComponent implements OnInit {
   eventType: PersonReferenceModel[];
   participationType: PersonReferenceModel[];
   queryRef: QueryRef<EventModel[], any>;
+  fileSrc: String = "../../../assets/sample.pdf";
+
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
 
   ngOnInit(): void {

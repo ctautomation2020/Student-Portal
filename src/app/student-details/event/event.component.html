@@ -37,7 +37,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pdf-preview"></div>
+                    <div class="pdf-preview">
+                        <pdf-viewer [src]="fileSrc" [original-size]="false" [show-all]="false" [zoom-scale]="page-height"></pdf-viewer>
+                    </div>
                 </div>
                 <div class="btns">
                     <button class="edit-icon" (click)="editModel(e.Event_ID)">Edit</button>
