@@ -56,7 +56,7 @@ export class StudentModelComponent implements OnInit {
       Aadhar_Card: new FormControl(this.data.student.Aadhar_Card, [Validators.required, Validators.pattern('^[0-9]{4} [0-9]{4} [0-9]{4}$')]),
       Primary_ContactNumber: new FormControl(this.data.student.Primary_ContactNumber, [Validators.required,Validators.pattern('^[0-9]{10}$')]),
       Secondary_ContactNumber: new FormControl(this.data.student.Secondary_ContactNumber,Validators.pattern('^[0-9]{10}$')),
-      Address_Line1: new FormControl(this.data.student.Address_Line1, Validators.required),
+      Address_Line1: new FormControl(this.data.student.Address_Line1),
       Address_Line2: new FormControl(this.data.student.Address_Line2, Validators.required),
       Address_Line3: new FormControl(this.data.student.Address_Line3, Validators.required),
       Address_Line4: new FormControl(this.data.student.Address_Line4, [Validators.required, Validators.pattern('^[0-9]{6}$')]),
@@ -96,14 +96,6 @@ export class StudentModelComponent implements OnInit {
   chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
     datepicker.select(normalizedMonth)
     datepicker.close();
-  }
-
-  addSpace(number: String){
-    return number.substring(0,4) + ' ' + number.substring(4,8) + ' ' + number.substring(8,12);
-  }
-
-  removeSpace(number: String){
-    return number.substring(0,4) + number.substring(5,9) + number.substring(10,14);
   }
 
 }

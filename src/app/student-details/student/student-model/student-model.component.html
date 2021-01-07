@@ -88,13 +88,13 @@
 
       <mat-form-field class="form-field three-field">
         <mat-label>Primary Contact</mat-label>
-        <input matInput formControlName="Primary_ContactNumber" required>
+        <input matInput formControlName="Primary_ContactNumber" maxlength="10" required>
         <mat-error *ngIf="studentForm.get('Primary_ContactNumber').invalid">Please Enter Valid Mobile Number</mat-error>
       </mat-form-field>
 
       <mat-form-field class="form-field three-field">
         <mat-label>Secondary Contact</mat-label>
-        <input matInput formControlName="Secondary_ContactNumber">
+        <input matInput formControlName="Secondary_ContactNumber" maxlength="10">
         <mat-error *ngIf="studentForm.get('Secondary_ContactNumber').invalid">Please Enter Valid Mobile Number</mat-error>
       </mat-form-field>
 
@@ -122,8 +122,8 @@
 
       <mat-form-field class="form-field four-field">
         <mat-label>Pincode</mat-label>
-        <input matInput formControlName="Address_Line4" required>
-        <mat-error *ngIf="studentForm.get('Address_Line4').invalid">Please Enter Valid ZipCode</mat-error>
+        <input matInput formControlName="Address_Line4" maxlength="6" required>
+        <mat-error *ngIf="studentForm.get('Address_Line4').invalid">Please Enter Valid Pincode</mat-error>
       </mat-form-field>
 
       <mat-form-field class="form-field two-field">

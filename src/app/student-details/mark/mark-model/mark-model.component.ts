@@ -69,7 +69,7 @@ export class MarkModelComponent implements OnInit {
       mutation: req,
       variables: {
         data:{
-          Gpa_ID: this.data.gpa.Gpa_ID,
+          Gpa_ID: this.markForm.value.Gpa_ID,
           file: this.fileToUpload
         }
       },

@@ -8,4 +8,5 @@ export interface EventModel {
     Event_Organizer: string;
     Event_Date: Date;
     Prize_Won_Details: string;
+    Certificate_Copy: string;
 }

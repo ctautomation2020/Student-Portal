@@ -168,14 +168,12 @@ export class StudentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
-        const aadata=result.Aadhar_Card.toString();
         if(result.Residential_Type_Ref!=96){  
           result.Hostel_Block_Room='';
         }
         if(result.Scholarship_Received_Ref==87){  
           result.Scholarship_Details='';
         }
-        result.Aadhar_Card=this.removeSpace(result.Aadhar_Card)
         console.log(result.Residential_Type_Ref,result.Scholarship_Received_Ref);
         const req = gql `
         mutation updateStudent($data: updateStudentInput!) {
@@ -196,7 +194,7 @@ export class StudentComponent implements OnInit {
               Community_Ref: result.Community_Ref,
               Caste: result.Caste,
               MailID: result.MailID,
-              Aadhar_Card: aadata,
+              Aadhar_Card: this.removeSpace(result.Aadhar_Card),
               Primary_ContactNumber: result.Primary_ContactNumber,
               Secondary_ContactNumber: result.Secondary_ContactNumber,
               Address_Line1: result.Address_Line1,
@@ -267,6 +265,7 @@ export class StudentComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log("upload");
+      this.photoURL=this.photoURL;
       this.queryRef.refetch();
     });
   }

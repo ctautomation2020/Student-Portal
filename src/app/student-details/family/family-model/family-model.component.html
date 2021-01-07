@@ -10,7 +10,7 @@
 
     <mat-form-field class="form-field three-field">
       <mat-label>Father Contact Number</mat-label>
-      <input matInput  formControlName="Father_ContactNumber" required>
+      <input matInput  formControlName="Father_ContactNumber" required maxlength="10">
       <mat-error *ngIf="familyForm.get('Father_ContactNumber').invalid">Please Enter Valid Mobile Number</mat-error>
     </mat-form-field>
 
@@ -46,7 +46,7 @@
 
     <mat-form-field class="form-field three-field">
       <mat-label>Mother Contact Number</mat-label>
-      <input matInput  formControlName="Mother_ContactNumber" required>
+      <input matInput  formControlName="Mother_ContactNumber" required maxlength="10">
       <mat-error *ngIf="familyForm.get('Mother_ContactNumber').invalid">Please Enter Valid Mobile Number</mat-error>
     </mat-form-field>
 
@@ -94,7 +94,7 @@
 
     <mat-form-field class="form-field three-field">
       <mat-label>Local Guardian Contact Number</mat-label>
-      <input matInput formControlName="Local_Guardian_Contact_Number" required>
+      <input matInput formControlName="Local_Guardian_Contact_Number" required maxlength="10">
       <mat-error *ngIf="familyForm.get('Local_Guardian_Contact_Number').invalid">Please Enter Valid Mobile Number</mat-error>
     </mat-form-field>
 

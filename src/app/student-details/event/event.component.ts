@@ -18,12 +18,15 @@ export class EventComponent implements OnInit {
   eventType: PersonReferenceModel[];
   participationType: PersonReferenceModel[];
   queryRef: QueryRef<EventModel[], any>;
-  fileSrc: String = "../../../assets/sample.pdf";
-
+  fileSrc: String = "";
+  filesSrc= new Array();
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
 
   ngOnInit(): void {
     const regNo: number = this.studentDetailsService.getRegisterNo();
+    const baseURL=this.studentDetailsService.getURL();
+    console.log(baseURL);
+    
 	  const req=gql`
 	  query studentEventsParticipated($data:studentEventsParticipatedQueryInput!){
       studentEventsParticipated(data:$data) {
@@ -49,9 +52,14 @@ export class EventComponent implements OnInit {
     });
   	this.queryRef.valueChanges.subscribe(((result: any) => {
       this.events = JSON.parse(JSON.stringify(result.data.studentEventsParticipated));
-      console.log(this.events);
+      console.log(this.events); 
+      for(let event of this.events){
+        this.filesSrc.push(baseURL+event.Certificate_Copy)
+      }
+      console.log(this.filesSrc);
+      
     }));
-    this.studentDetailsService.getDropDown('Event_Type').subscribe(result => {
+    this.studentDetailsService.getDropDown('SEvent_Type').subscribe(result => {
       this.eventType = result;
       console.log(this.eventType);
     });

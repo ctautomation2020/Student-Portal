@@ -45,9 +45,9 @@ export class EventModelComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data.event);
     const baseURL=this.studentDetailsService.getURL();
-    // if(this.data.event!=null){
-    //   this.fileSrc=baseURL+this.data.event.Certificate_Copy;
-    // }
+    if(this.data.event!=null){
+      this.fileSrc=baseURL+this.data.event.Certificate_Copy;
+    }
     this.eventForm = new FormGroup({
       Event_Name: new FormControl(this.data.event!=null?this.data.event.Event_Name:"", Validators.required),
       Event_Type_Ref: new FormControl(this.data.event!=null?this.data.event.Event_Type_Ref:"", Validators.required),

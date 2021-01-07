@@ -12,7 +12,7 @@
       <a mat-list-item routerLink="./placements"><span class="icon"><mat-icon mat-list-icon>bookmark</mat-icon></span><span class="item" >Placements / <br>Higher Studies</span></a>
       <a mat-list-item routerLink="./awards"><span class="icon"><mat-icon mat-list-icon>card_membership</mat-icon></span><span class="item" >Awards</span></a>
       <a mat-list-item routerLink="./mark"><span class="icon"><mat-icon mat-list-icon>card_membership</mat-icon></span><span class="item" >Mark</span></a>
-      <a mat-list-item routerLink="./report"><span class="icon"><mat-icon mat-list-icon>save_alt</mat-icon></span><span class="item">Report</span></a>
+      <!--<a mat-list-item routerLink="./report"><span class="icon"><mat-icon mat-list-icon>save_alt</mat-icon></span><span class="item">Report</span></a>-->
       <a mat-list-item (click)="onLogout()"><span class="icon"><mat-icon mat-list-icon>exit_to_app</mat-icon></span><span class="item">Logout</span></a>
     </mat-nav-list>
   </mat-sidenav>
@@ -26,7 +26,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Computer Technology</span>
+      <span>Department of Computer Technology</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

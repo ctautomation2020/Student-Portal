@@ -4,7 +4,7 @@
             <h3 class="section-title">
                 <span>Events Participated</span>
             </h3>
-            <div class="event-card" *ngFor="let e of events">
+            <div class="event-card" *ngFor="let e of events;let i=index">
                 <h3 class="event-name">{{e.Event_Name}}</h3>
                 <div class="card-content">
                     <div class="event-details">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="pdf-preview">
-                        <pdf-viewer [src]="fileSrc" [original-size]="false" [show-all]="false" [zoom-scale]="page-height"></pdf-viewer>
+                        <pdf-viewer [src]="filesSrc[i]" [original-size]="false" [show-all]="false" [zoom-scale]="page-height"></pdf-viewer>
                     </div>
                 </div>
                 <div class="btns">
