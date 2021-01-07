@@ -98,4 +98,12 @@ export class StudentModelComponent implements OnInit {
     datepicker.close();
   }
 
+  addSpace(number: String){
+    return number.substring(0,4) + ' ' + number.substring(4,8) + ' ' + number.substring(8,12);
+  }
+
+  removeSpace(number: String){
+    return number.substring(0,4) + number.substring(5,9) + number.substring(10,14);
+  }
+
 }

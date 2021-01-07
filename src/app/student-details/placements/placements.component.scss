@@ -226,3 +226,25 @@
     width: 15%;
     height: 150px;
 }
+.tab-title:nth-child(2) {
+    border-right: .5px solid black;
+    border-left: .5px solid black;
+}
+.others-card {
+    padding: 2.5%;
+    background-color:#fcf8fc;
+    border-radius: .5rem;
+    box-shadow: 0 .2rem .3rem rgba(0, 0, 0, 0.5);
+    margin: 15px;
+    margin-bottom:2rem;
+}
+.others-card form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-field {
+    width: 90%;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}

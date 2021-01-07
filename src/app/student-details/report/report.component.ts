@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { jsPDF } from 'jspdf';
 
 @Component({
 	selector: 'app-report',
@@ -28,26 +27,5 @@ export class ReportComponent implements OnInit {
 	@ViewChild("report", { static: false }) report: ElementRef;
 
 	downloadAsPDF() {
-		const doc = new jsPDF();
-	
-		const specialElementHandlers = {
-		  "#editor": function(element, renderer) {
-			return true;
-		  }
-		};
-	
-		const content = this.report.nativeElement;
-	
-		/* doc.fromHTML(content.innerHTML, 15, 15, {
-		  width: 190,
-		  elementHandlers: specialElementHandlers
-		}); 
-		doc.html(content.innerHTML, {
-			//width: 190,
-			//elementHandlers: specialElementHandlers
-		  })*/
-		doc.text("Text", 15, 15);  
-	
-		doc.save("report.pdf");
 	  }
 }

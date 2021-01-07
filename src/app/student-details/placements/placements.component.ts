@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import gql from 'graphql-tag';
 import {Apollo, QueryRef} from 'apollo-angular';
 import { StudentDetailsService } from './../student-details.service';
@@ -24,9 +25,12 @@ export class PlacementsComponent implements OnInit {
   higherStudies: HigherStudiesModel[];
   admissionMode: PersonReferenceModel[];
   queryRef2: QueryRef<HigherStudiesModel[], any>;
-  placementOpen: boolean = true;
-  pColor: string = "#0f5b99";
+  openTab: String = "placement";
+  pColor: String = "#0f5b99";
   hColor: String = "#1982e4";
+  oColor: String = "#1982e4";
+  othersForm: FormGroup;
+  types = ['Govt. Job', 'Banking', 'Civil Service', 'Self Employed', 'Entrepreneurship'];
   
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
 
@@ -105,19 +109,33 @@ export class PlacementsComponent implements OnInit {
       this.admissionMode = result;
       console.log(this.admissionMode);
     });
+
+    this.othersForm = new FormGroup({
+        type: new FormControl(),
+        description: new FormControl()
+    })
     
   }
 
-	placementsModel(){
-    this.placementOpen = true;
+	placementsTab(){
+    this.openTab = "placement";
     this.pColor = "#0f5b99";
     this.hColor = "#1982e4";
+    this.oColor = "#1982e4";
 	}
 
-	higherStudiesModel(){
-		this.placementOpen = false;
+	higherStudiesTab(){
+		this.openTab = "higher";
     this.hColor = "#0f5b99";
     this.pColor = "#1982e4";
+    this.oColor = "#1982e4";
+	}
+
+	othersTab(){
+		this.openTab = "other";
+    this.hColor = "#1982e4";
+    this.pColor = "#1982e4";
+    this.oColor = "#0f5b99";
 	}
 
 	createPlacement(){
