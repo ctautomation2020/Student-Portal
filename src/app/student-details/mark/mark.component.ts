@@ -19,7 +19,6 @@ export class MarkComponent implements OnInit {
   sessions: PersonReferenceModel[];
   queryRef1: QueryRef<any>;
   queryRef2: QueryRef<any>;
-  queryRef3: QueryRef<any>;
   marks;
   semMarks;
   gpas;
@@ -28,22 +27,21 @@ export class MarkComponent implements OnInit {
   ngOnInit(): void {
     const regNo: number = this.studentDetailsService.getRegisterNo();
 	  const req1=gql`
-	  query studentRegisteredCourses($data: studentRegisteredCoursesQueryInput){
-      studentRegisteredCourses(data:$data){
-        cregst_id
-        course_code
-        reg_no
-        semester
-        group_ref
-        session_ref
+	  query studentEndsemsMarks($data: studentEndsemsMarksQueryInput!){
+      studentEndsemsMarks(data:$data){
+        Mark_ID
+        Register_No
+        Semester
+        Course_Code
+        Session_Ref
+        Grade
+        Credits
+        Entry_Date
         course_list{
           course_code
-          stream
-          regulation
-          semester
           title
           credit
-          objectives      
+          objectives
         }
       }
     }`;
@@ -56,13 +54,15 @@ export class MarkComponent implements OnInit {
     }
     });
   	this.queryRef1.valueChanges.subscribe(((result: any) => {
-      this.marks = JSON.parse(JSON.stringify(result.data.studentRegisteredCourses));
+      this.marks = JSON.parse(JSON.stringify(result.data.studentEndsemsMarks));
+      console.log(this.marks);
       this.sems= new Array;
       for(let subj of this.marks){
-        if(!this.sems.includes(subj.semester))
-          this.sems.push(subj.semester);
+        if(!this.sems.includes(subj.Semester))
+          this.sems.push(subj.Semester);
       }
     }));
+
     const req2=gql`
 	  query studentGpas($data:studentGpasQueryInput!){
       studentGpas(data:$data){
@@ -84,8 +84,8 @@ export class MarkComponent implements OnInit {
   	this.queryRef2.valueChanges.subscribe(((result: any) => {
       this.gpas = JSON.parse(JSON.stringify(result.data.studentGpas));
       console.log(this.gpas);
-
     }));
+
     this.studentDetailsService.getDropDown('Session').subscribe(result => {
       this.sessions = result;
       console.log(this.sessions);
@@ -96,41 +96,74 @@ export class MarkComponent implements OnInit {
       width: "100%",
       data:{
         currentSem: this.currentSem,
-        gpa: this.filterGpa()
+        gpa: this.filterGpa(),
+        sessions: this.sessions,
+        grades: this.semMarks
       }
     });
     dialogRef.afterClosed().subscribe(result => {
 			if (result) {
-        console.log(result);
-        const req = gql `
+        let updateGrades=new Array(); 
+        for(let subj of result.grades){
+          updateGrades.push({
+            Mark_ID:subj.Mark_ID,
+            Semester: subj.Semester,
+            Session_Ref: subj.Session_Ref, 
+            Grade: subj.Grade,
+            Credits: subj.Credits,
+            Entry_Date: subj.Entry_Date
+          })
+        }
+        console.log(result.grades);
+        const req1 = gql `
+        mutation  updateStudentEndsemMark($data: [updateStudentEndsemMarkInput!]!){
+          updateStudentEndsemMark(data:$data){
+            Register_No
+          }
+        }`;
+				this.apollo.mutate({
+					mutation: req1,
+					variables: {
+						data: updateGrades
+					}
+				}).subscribe(({ data }) => {
+					console.log(data);
+					this.queryRef1.refetch();
+        });
+
+        const req2 = gql `
 				mutation updateStudentGpa($data: updateStudentGpaInput!){
           updateStudentGpa(data:$data){
             Gpa_ID
           }
         }`;
 				this.apollo.mutate({
-					mutation: req,
+					mutation: req2,
 					variables: {
 						data: {
-              Gpa_ID: result.Gpa_ID,
-              GPA: parseFloat(result.Gpa)
+              Gpa_ID: this.filterGpa().Gpa_ID,
+              GPA: parseFloat(result.gpa)
 						}
 					}
 				}).subscribe(({ data }) => {
 					console.log(data);
 					this.queryRef2.refetch();
-				});
+        });
 			} 
 		});
   }
   
   semFilter(semester){
-    this.semMarks=this.marks.filter(l => l.semester === semester);
+    this.semMarks=this.marks.filter(l => l.Semester === semester);
     this.currentSem=semester;
     console.log(this.semMarks);
   }
 
   filterGpa(){
     return this.gpas.filter(l => l.Semester === this.currentSem)[0];
+  }
+
+  filterSession(session){
+    return this.sessions.filter(l => l.Ref_Code === session)[0];
   }
 }

@@ -83,6 +83,7 @@ export class StudentComponent implements OnInit {
       myDate1.setUTCSeconds(temp1);
       //console.log(myDate1);
       this.student.DOB = myDate1 ;
+      this.student.Aadhar_Card=this.addSpace(this.student.Aadhar_Card);
 
       const temp2 = parseFloat(result.data.student.Admission_Date) / 1000;
       const myDate2 = new Date(0);
@@ -129,6 +130,7 @@ export class StudentComponent implements OnInit {
     })
     
   }
+
   convertDate(inputDate:any){
     if(inputDate.isMomentObject){
       inputDate=inputDate._d;
@@ -136,6 +138,14 @@ export class StudentComponent implements OnInit {
     const dt=new Date(inputDate);
     const date=new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()));
     return date;
+  }
+
+  addSpace(number: String){
+    return number.substring(0,4) + ' ' + number.substring(4,8) + ' ' + number.substring(8,12);
+  }
+
+  removeSpace(number: String){
+    return number.substring(0,4) + number.substring(5,9) + number.substring(10,14);
   }
 
   onOpenModel() {
@@ -165,6 +175,7 @@ export class StudentComponent implements OnInit {
         if(result.Scholarship_Received_Ref==87){  
           result.Scholarship_Details='';
         }
+        result.Aadhar_Card=this.removeSpace(result.Aadhar_Card)
         console.log(result.Residential_Type_Ref,result.Scholarship_Received_Ref);
         const req = gql `
         mutation updateStudent($data: updateStudentInput!) {

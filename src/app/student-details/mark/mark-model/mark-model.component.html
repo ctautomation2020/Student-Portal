@@ -2,30 +2,29 @@
 
 <mat-dialog-content>
     <form [formGroup]="markForm">
-        <div *ngFor="let m of edit_marks">
+      <ng-container formArrayName="grade">
+        <div *ngFor="let c of data.grades;let i=index">
           <mat-form-field class="form-field four-field">
-              <input matInput [value]="m.course_code" [readonly]="true">
+              <input matInput [value]="c.Course_Code" [readonly]="true">
           </mat-form-field>
         <mat-form-field class="form-field four-field">
-            <input matInput [value]="m.course_name" [readonly]="true">
+            <input matInput [value]="c.course_list.title" [readonly]="true">
         </mat-form-field>
         <mat-form-field class="form-field four-field">
             <mat-label>Grade</mat-label>
-            <input matInput formControlName="Grade" [value]="m.grade" required>
-            <mat-error *ngIf="markForm.get('Grade').invalid">Please Enter Grade</mat-error>
+            <input matInput [formControl]= "grade.controls[i]" required>
         </mat-form-field>
         <mat-form-field class="form-field four-field" appearance="fill">
           <mat-label>Session</mat-label>
-          <mat-select formControlName="Session_Ref" required>
-            <mat-option>Nov-Mar</mat-option>
-            <mat-option>Jun-Nov</mat-option>
+          <mat-select [formControl]= "session.controls[i]" required>
+            <mat-option *ngFor="let s of data.sessions" [value]="s.Ref_Code">{{s.Ref_Name}}</mat-option>
           </mat-select>
         </mat-form-field>
        </div>
+      </ng-container>
        <mat-form-field class="form-field two-field">
            <mat-label>Gpa</mat-label>
            <input matInput formControlName="Gpa" required>
-           <mat-error *ngIf="markForm.get('Gpa').invalid">Please Enter Gpa</mat-error>
        </mat-form-field>
        <div class="file-div two-field">
          <label class="file-label" for="file">Certificate</label>
