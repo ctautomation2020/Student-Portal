@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="main">
+      <h2>Academics</h2>
+      <div class="quick-links">
+          <a href="" class="link">Attendence</a>
+      </div>
+      <div class="time-period">
+          <div class="layout">
+              <div class="time" *ngFor="let a of attendence">
+                  <span class="point"></span>
+                  <div class="period">
+                      <span class="month">{{a.date | date:'mediumDate'}}</span>
+                      <span class="session">{{a.date | date:'EEEE'}}</span>
+                  </div>
+              </div>
+              <button class="button" mat-raised-button color="primary" (click)="onCreateAttendence()">Add Attendence</button>
+          </div>
+      </div>
+  </div>
+</div>

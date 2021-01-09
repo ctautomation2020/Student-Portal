@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="main">
+      <h2>Course</h2>
+      <div class="quick-links">
+        <a routerLink="/student-details/academics" class="link">Academics</a>
+          <span class="slash"></span>
+          <a *ngIf="session != null" [routerLink]="['/student-details', 'academics', 'course-list', session.reference_id]" class="link">{{session.description}}</a>
+          <span class="slash"></span>
+          <a  class="link" *ngIf="courseTitle != null">{{courseTitle}}</a>
+      </div>
+      <div class="time-period">
+          <div class="layout">
+                <div class="time" [routerLink]="['/student-details','academics', 'assessment-list', sallot_id]">
+                    <span class="point assessment"></span>
+                    <div class="period">
+                        <span class="month">Assessment</span>
+                        <span class="session"></span>
+                    </div>
+                </div>
+                <div class="time" [routerLink]="['/student-details','academics', 'assignment-list', sallot_id]">
+                    <span class="point assignment"></span>
+                    <div class="period">
+                        <span class="month">Assignment</span>
+                        <span class="session"></span>
+                    </div>
+                </div>
+                <div class="time" [routerLink]="['/student-details','academics', 'attendence']">
+                    <span class="point calendar"></span>
+                    <div class="period">
+                        <span class="month">Attendance</span>
+                        <span class="session"></span>
+                    </div>
+                </div>
+                <div class="time">
+                    <span class="point internals"></span>
+                    <div class="period">
+                        <span class="month">Internals</span>
+                        <span class="session"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

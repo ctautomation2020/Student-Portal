@@ -8,7 +8,6 @@ import { EventComponent } from './event/event.component';
 import { InternshipComponent } from './internship/internship.component';
 import { PlacementsComponent } from './placements/placements.component';
 import { AwardsComponent } from './awards/awards.component';
-import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   {
@@ -44,8 +43,8 @@ const routes: Routes = [
         component: AwardsComponent
       },
       {
-        path: 'report',
-        component: ReportComponent
+        path: 'academics',
+        loadChildren: () => import('./academics/academics.module').then(m => m.AcademicsModule )
       }
     ]
   }
