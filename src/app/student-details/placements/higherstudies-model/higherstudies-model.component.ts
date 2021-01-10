@@ -54,6 +54,7 @@ export class HigherstudiesModelComponent implements OnInit {
   onSubmit() {
     console.log(this.higherStudiesForm.value);
     console.log(this.fileToUpload);
+    if(this.data.higherstudy!=null){
     const req = gql `
       mutation uploadStudentHigherStudy($data: uploadStudentHigherStudyInput!){
         uploadStudentHigherStudy(data: $data)
@@ -72,6 +73,7 @@ export class HigherstudiesModelComponent implements OnInit {
     }).subscribe(({ data }) => {
       console.log(data);
     });
+    }
     this.dialogRef.close(this.higherStudiesForm.value);
   }
 

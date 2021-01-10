@@ -72,25 +72,27 @@ export class AwardsModelComponent implements OnInit {
 
   onSubmit() {
     console.log(this.awardsForm.value);
-    console.log(this.fileToUpload);
-    const req = gql `
-      mutation uploadStudentAward($data: uploadStudentAwardInput!) {
-        uploadStudentAward(data: $data)
-      }`;
-    this.apollo.mutate({
-      mutation: req,
-      variables: {
-        data:{
-          Award_ID: this.data.award.Award_ID,
-          file: this.fileToUpload
+    if(this.data.award!=null){
+      console.log(this.fileToUpload);
+      const req = gql `
+        mutation uploadStudentAward($data: uploadStudentAwardInput!) {
+          uploadStudentAward(data: $data)
+        }`;
+      this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data:{
+            Award_ID: this.data.award.Award_ID,
+            file: this.fileToUpload
+          }
+        },
+        context: {
+          useMultipart: true
         }
-      },
-      context: {
-        useMultipart: true
-      }
-    }).subscribe(({ data }) => {
-      console.log(data);
-    });
+      }).subscribe(({ data }) => {
+        console.log(data);
+      });
+    }
     this.dialogRef.close(this.awardsForm.value);
   }
 

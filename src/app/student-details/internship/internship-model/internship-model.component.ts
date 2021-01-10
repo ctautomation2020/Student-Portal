@@ -71,24 +71,26 @@ export class InternshipModelComponent implements OnInit {
   onSubmit() {
     console.log(this.internshipForm.value);
     console.log(this.fileToUpload);
-    const req = gql `
-      mutation uploadStudentInternship($data: uploadStudentInternshipInput!){
-        uploadStudentInternship(data: $data)
-      }`;
-    this.apollo.mutate({
-      mutation: req,
-      variables: {
-        data:{
-          Internship_ID: this.data.internship.Internship_ID,
-          file: this.fileToUpload
+    if(this.data.internship!=null){
+      const req = gql `
+        mutation uploadStudentInternship($data: uploadStudentInternshipInput!){
+          uploadStudentInternship(data: $data)
+        }`;
+      this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data:{
+            Internship_ID: this.data.internship.Internship_ID,
+            file: this.fileToUpload
+          }
+        },
+        context: {
+          useMultipart: true
         }
-      },
-      context: {
-        useMultipart: true
-      }
-    }).subscribe(({ data }) => {
-      console.log(data);
-    });
+      }).subscribe(({ data }) => {
+        console.log(data);
+      });        
+    }       
     this.dialogRef.close(this.internshipForm.value); 
   }
 

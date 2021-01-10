@@ -74,6 +74,7 @@ export class PlacementsModelComponent implements OnInit {
   onSubmit() {
     console.log(this.placementsForm.value);
     console.log(this.fileToUpload);
+    if(this.data.placement!=null){
     const req = gql `
       mutation uploadStudentPlacement($data: uploadStudentPlacementInput!){
         uploadStudentPlacement(data: $data)
@@ -92,6 +93,7 @@ export class PlacementsModelComponent implements OnInit {
     }).subscribe(({ data }) => {
       console.log(data);
     });
+  }
     this.dialogRef.close(this.placementsForm.value);
   }
   convertDate(edate){

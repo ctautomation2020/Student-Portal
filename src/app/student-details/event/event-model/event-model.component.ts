@@ -58,6 +58,10 @@ export class EventModelComponent implements OnInit {
       Prize_Won_Details:  new FormControl(this.data.event!=null?this.data.event.Prize_Won_Details:"", Validators.required),
       file: new FormControl("")
     });
+    this.eventForm.get('Participation_Type_Ref').valueChanges.subscribe(x => {
+      if(x==119)
+        this.eventForm.controls.Team_Size.setValue(1);
+    });
   }
   onFileChange(event) {
     if(event.target.files && event.target.files.length) {
@@ -72,32 +76,80 @@ export class EventModelComponent implements OnInit {
   onSubmit() {
     console.log(this.eventForm.value);
     console.log(this.fileToUpload);
-    const req = gql `
-      mutation uploadEventParticipated($data: uploadEventParticipatedInput!) {
-        uploadEventParticipated(data: $data)
-      }`;
-    this.apollo.mutate({
-      mutation: req,
-      variables: {
-        data:{
-          Event_ID: this.data.event.Event_ID,
-          file: this.fileToUpload
+    if(this.data.event==null){
+      const req = gql `
+      mutation createEventParticipated($data:createEventParticipatedInput!){
+        createEventParticipated(data: $data){
+          Event_ID
         }
-      },
-      context: {
-        useMultipart: true
-      }
-    }).subscribe(({ data }) => {
-      console.log(data);
-    });
-    console.log("Uploaded Certificate");
-    this.dialogRef.close(this.eventForm.value); 
+      }`;
+      this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data: {
+            Event_Type_Ref: this.eventForm.value.Event_Type_Ref,
+            Participation_Type_Ref: this.eventForm.value.Participation_Type_Ref,
+            Team_Size: this.eventForm.value.Team_Size,
+            Event_Organizer: this.eventForm.value.Event_Organizer,
+            Event_Name: this.eventForm.value.Event_Name,
+            Event_Date: this.convertDate2(this.eventForm.value.Event_Date),
+            Prize_Won_Details: this.eventForm.value.Prize_Won_Details,
+            file: this.fileToUpload
+          }
+        },
+        context: {
+          useMultipart: true
+        }
+      }).subscribe(({ data }) => {
+        console.log(data);
+		  });
+    }
+    else{
+      const req = gql `
+      mutation updateEventParticipated($data:updateEventParticipatedInput!){
+        updateEventParticipated(data: $data){
+          Event_ID
+        }
+      }`;
+      this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data: {
+            Event_ID: this.data.event.Event_ID,
+            Event_Type_Ref: this.eventForm.value.Event_Type_Ref,
+            Participation_Type_Ref: this.eventForm.value.Participation_Type_Ref,
+            Team_Size: this.eventForm.value.Team_Size,
+            Event_Organizer: this.eventForm.value.Event_Organizer,
+            Event_Name: this.eventForm.value.Event_Name,
+            Event_Date: this.convertDate2(this.eventForm.value.Event_Date),
+            Prize_Won_Details: this.eventForm.value.Prize_Won_Details,
+            file: this.fileToUpload
+          }
+        },
+        context: {
+          useMultipart: true
+        }
+      }).subscribe(({ data }) => {
+        console.log(data);
+      });
+    }
+    this.dialogRef.close(true); 
   }
+
   convertDate(edate){
     const myDate = new Date(0);
     const temp = parseFloat(edate) / 1000;
     myDate.setUTCSeconds(temp);
     return myDate;
   }
+  convertDate2(inputDate:any){
+    if(inputDate.isMomentObject){
+      inputDate=inputDate._d;
+    }
+    const dt=new Date(inputDate);
+    const date=new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()));
+    return date;
+  }
+
 
 }

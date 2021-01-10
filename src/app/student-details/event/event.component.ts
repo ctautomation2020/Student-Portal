@@ -87,39 +87,25 @@ export class EventComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const date=this.convertDate(result.Event_Date);
-        console.log(result);
-        if(result.Participation_Type_Ref==119){  
-          result.Team_Size=1;
-        }
-        const req = gql `
-				mutation updateEventParticipated($data:updateEventParticipatedInput!){
-          updateEventParticipated(data: $data){
-            Event_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              Event_ID: id,
-              Event_Type_Ref: result.Event_Type_Ref,
-              Participation_Type_Ref: result.Participation_Type_Ref,
-              Team_Size: result.Team_Size,
-              Event_Organizer: result.Event_Organizer,
-              Event_Name: result.Event_Name,
-              Event_Date: date,
-              Prize_Won_Details: result.Prize_Won_Details
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef.refetch();
-				});
-			} 
+        this.queryRef.refetch();
 		});
   }
+
+  addModel(){
+    const dialogRef = this.dialog.open(EventModelComponent,{
+      data:{
+        event: null,
+        eventType: this.eventType,
+        participationType: this.participationType
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      this.queryRef.refetch();
+      console.log("new event added");
+    });
+  }
+
   deleteModel(id: number): void {
     const dialogDeleteRef = this.dialog.open(AlertboxComponent);
     dialogDeleteRef.afterClosed().subscribe(result => {
@@ -144,47 +130,6 @@ export class EventComponent implements OnInit {
     });
   }
 
-  addModel(){
-    const dialogRef = this.dialog.open(EventModelComponent,{
-      data:{
-        event: null,
-        eventType: this.eventType,
-        participationType: this.participationType
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const date=this.convertDate(result.Event_Date);
-        console.log(result);
-        if(result.Participation_Type_Ref==119){  
-          result.Team_Size=1;
-        }
-        const req = gql `
-				mutation createEventParticipated($data:createEventParticipatedInput!){
-          createEventParticipated(data: $data){
-            Event_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              Event_Type_Ref: result.Event_Type_Ref,
-              Participation_Type_Ref: result.Participation_Type_Ref,
-              Team_Size: result.Team_Size,
-              Event_Organizer: result.Event_Organizer,
-              Event_Name: result.Event_Name,
-              Event_Date: date,
-              Prize_Won_Details: result.Prize_Won_Details
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef.refetch();
-				});
-			} 
-		});
-  }
   filterEventType(etype): PersonReferenceModel {
     return this.eventType.filter(l => l.Ref_Code === etype)[0];
   }
