@@ -9,35 +9,77 @@
           <a  class="link" *ngIf="courseTitle != null">{{courseTitle}}</a>
       </div>
       <div class="time-period">
-          <div class="layout">
-                <div class="time" [routerLink]="['/student-details','academics', 'assessment-list', sallot_id]">
-                    <span class="point assessment"></span>
-                    <div class="period">
-                        <span class="month">Assessment</span>
-                        <span class="session"></span>
-                    </div>
-                </div>
-                <div class="time" [routerLink]="['/student-details','academics', 'assignment-list', sallot_id]">
-                    <span class="point assignment"></span>
-                    <div class="period">
-                        <span class="month">Assignment</span>
-                        <span class="session"></span>
-                    </div>
-                </div>
-                <div class="time" [routerLink]="['/student-details','academics', 'attendence']">
-                    <span class="point calendar"></span>
-                    <div class="period">
-                        <span class="month">Attendance</span>
-                        <span class="session"></span>
-                    </div>
-                </div>
-                <div class="time">
-                    <span class="point internals"></span>
-                    <div class="period">
-                        <span class="month">Internals</span>
-                        <span class="session"></span>
-                    </div>
-                </div>
+          <div class="outer-layout">
+            <div class="layout">
+                  <div class="time" [routerLink]="['/student-details','academics', 'assessment-list', sallot_id]">
+                      <span class="point assessment"></span>
+                      <div class="period">
+                          <span class="month">Assessment</span>
+                          <span class="session"></span>
+                      </div>
+                  </div>
+                  <div class="time" [routerLink]="['/student-details','academics', 'assignment-list', sallot_id]">
+                      <span class="point assignment"></span>
+                      <div class="period">
+                          <span class="month">Assignment</span>
+                          <span class="session"></span>
+                      </div>
+                  </div>
+                  <div class="time" [routerLink]="['/student-details','academics', 'attendence']">
+                      <span class="point calendar"></span>
+                      <div class="period">
+                          <span class="month">Attendance</span>
+                          <span class="session"></span>
+                      </div>
+                  </div>
+                  <div class="time">
+                      <span class="point internals"></span>
+                      <div class="period">
+                          <span class="month">Internals</span>
+                          <span class="session"></span>
+                      </div>
+                  </div>
+              </div>
+              <div class="vertical-line"></div>
+              <div class="fac-info">
+                  <div class="fac-details">
+                      <table>
+                          <tr>
+                              <th colspan="3">Faculty Info</th>
+                          </tr>
+                          <tr>
+                              <th colspan="3">
+                                  <div class="fac-img"></div>
+                              </th>
+                          </tr>
+                          <tr>
+                              <th>Name</th>
+                              <td>:</td>
+                              <td>{{faculty.name}}</td>
+                          </tr>
+                          <tr>
+                              <th>Designation</th>
+                              <td>:</td>
+                              <td>{{faculty.designation}}</td>
+                          </tr>
+                          <tr>
+                              <th>Course</th>
+                              <td>:</td>
+                              <td>{{faculty.course}}</td>
+                          </tr>
+                          <tr>
+                              <th>Email Id</th>
+                              <td>:</td>
+                              <td>{{faculty.email}}</td>
+                          </tr>
+                          <tr>
+                              <th>Mobile No.</th>
+                              <td>:</td>
+                              <td>{{faculty.mobile}}</td>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
             </div>
         </div>
     </div>

@@ -48,7 +48,7 @@
 .layout{
   display: flex;
   flex-direction: column;
-  margin: 1em 0;
+  margin: 1em;
 }
 .time{
   display: flex;
@@ -165,4 +165,84 @@
   .month{
       font-size: 0.95em;
   }
+}
+.outer-layout {
+  display: flex;
+}
+.fac-info {
+  margin: 10px auto;
+  padding: 10px;
+  height: fit-content;
+  width: 50%;
+}
+td, th {
+  padding: 10px;
+}
+th {
+  text-align: left;
+}
+table tr:first-child th {
+  text-align: center;
+  font-size: 20px;
+  padding-top: 0;
+}
+.vertical-line {
+  width: 1px;
+  background-color: black;
+  height: 370px;
+  margin: 15px 100px;
+}
+@media only screen and (max-width: 1360px) {
+  .vertical-line {
+    margin: 15px 50px;
+  }
+  .time {
+    width: 300px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .vertical-line {
+    margin: 15px 10px;
+  }
+}
+@media only screen and (max-width: 1040px) {
+  .time {
+    width: 250px;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .time {
+    width: 350px;
+  }
+}
+@media only screen and (max-width: 885px) {
+  .time {
+    width: 300px;
+  }
+}
+@media only screen and (max-width: 815px) {
+  .time {
+    width: 250px;
+  }
+}
+@media only screen and (max-width: 740px) {
+  .outer-layout {
+    flex-direction: column;
+  }
+  .vertical-line {
+    display: none;
+  }
+  .fac-info {
+    margin: .5em;
+  }
+  td, th {
+    padding: 15px 5px;
+  }
+}
+.fac-img {
+  border-radius: 50%;
+  background-color: #0f3970;
+  height: 100px;
+  width: 100px;
+  margin: auto;
 }
