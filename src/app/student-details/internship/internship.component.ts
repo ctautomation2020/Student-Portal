@@ -80,36 +80,7 @@ export class InternshipComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const date1=this.convertDate(result.Start_Date);
-        const date2=this.convertDate(result.End_Date);
-        console.log(result);
-        const req = gql `
-				mutation createStudentInternship($data:createStudentInternshipInput!){
-          createStudentInternship(data:$data){
-            Internship_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              Company: result.Company,
-              Title: result.Title,
-              Address: result.Address,
-              Order_Copy:"",
-              Start_Date: date1,
-              End_Date: date2,
-              Stiphend_Option_Ref: result.Stiphend_Option_Ref,
-              Stiphend_Amount: result.Stiphend_Amount,
-              Selection_Mode_Ref: result.Selection_Mode_Ref
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef.refetch();
-				});
-			} 
+      this.queryRef.refetch();
 		});
   }
 
@@ -123,37 +94,10 @@ export class InternshipComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const date1=this.convertDate(result.Start_Date);
-        const date2=this.convertDate(result.End_Date);
-        const req = gql `
-				mutation updateStudentInternship($data:updateStudentInternshipInput!){
-          updateStudentInternship(data:$data){
-            Internship_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              Internship_ID:id,
-              Company: result.Company,
-              Title: result.Title,
-              Address: result.Address,
-              Start_Date: date1,
-              End_Date: date2,
-              Stiphend_Option_Ref: result.Stiphend_Option_Ref,
-              Stiphend_Amount: result.Stiphend_Amount,
-              Selection_Mode_Ref: result.Selection_Mode_Ref
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef.refetch();
-				});
-			} 
+			this.queryRef.refetch(); 
 		});
   }
+  
   deleteModel(id:number) {
     let dialogRef = this.dialog.open(AlertboxComponent);
     dialogRef.afterClosed().subscribe(result => {

@@ -58,6 +58,7 @@ export class InternshipModelComponent implements OnInit {
       file: new FormControl("")
     });
   }
+
   onFileChange(event) {
     if(event.target.files && event.target.files.length) {
       this.fileToUpload=event.target.files[0];
@@ -71,16 +72,25 @@ export class InternshipModelComponent implements OnInit {
   onSubmit() {
     console.log(this.internshipForm.value);
     console.log(this.fileToUpload);
-    if(this.data.internship!=null){
+    if(this.data.internship==null){
       const req = gql `
-        mutation uploadStudentInternship($data: uploadStudentInternshipInput!){
-          uploadStudentInternship(data: $data)
-        }`;
+      mutation createStudentInternship($data:createStudentInternshipInput!){
+        createStudentInternship(data:$data){
+          Internship_ID
+        }
+      }`;
       this.apollo.mutate({
         mutation: req,
         variables: {
-          data:{
-            Internship_ID: this.data.internship.Internship_ID,
+          data: {
+            Company: this.internshipForm.value.Company,
+            Title: this.internshipForm.value.Title,
+            Address: this.internshipForm.value.Address,
+            Start_Date: this.convertDate2(this.internshipForm.value.Start_Date),
+            End_Date: this.convertDate2(this.internshipForm.value.End_Date),
+            Stiphend_Option_Ref: this.internshipForm.value.Stiphend_Option_Ref,
+            Stiphend_Amount: this.internshipForm.value.Stiphend_Amount,
+            Selection_Mode_Ref: this.internshipForm.value.Selection_Mode_Ref,
             file: this.fileToUpload
           }
         },
@@ -89,9 +99,40 @@ export class InternshipModelComponent implements OnInit {
         }
       }).subscribe(({ data }) => {
         console.log(data);
-      });        
-    }       
-    this.dialogRef.close(this.internshipForm.value); 
+        this.dialogRef.close();
+      });
+    }
+    else{
+      const req = gql `
+				mutation updateStudentInternship($data:updateStudentInternshipInput!){
+          updateStudentInternship(data:$data){
+            Internship_ID
+          }
+        }`;
+      this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data: {
+            Internship_ID: this.data.internship.Internship_ID,
+            Company: this.internshipForm.value.Company,
+            Title: this.internshipForm.value.Title,
+            Address: this.internshipForm.value.Address,
+            Start_Date: this.convertDate2(this.internshipForm.value.Start_Date),
+            End_Date: this.convertDate2(this.internshipForm.value.End_Date),
+            Stiphend_Option_Ref: this.internshipForm.value.Stiphend_Option_Ref,
+            Stiphend_Amount: this.internshipForm.value.Stiphend_Amount,
+            Selection_Mode_Ref: this.internshipForm.value.Selection_Mode_Ref,
+            file: this.fileToUpload
+          }
+        },
+        context: {
+          useMultipart: true
+        }
+      }).subscribe(({ data }) => {
+        console.log(data);
+        this.dialogRef.close();
+      });
+    }
   }
 
   convertDate(edate){
@@ -99,5 +140,14 @@ export class InternshipModelComponent implements OnInit {
     const temp = parseFloat(edate) / 1000;
     myDate.setUTCSeconds(temp);
     return myDate;
+  }
+
+  convertDate2(inputDate:any){
+    if(inputDate.isMomentObject){
+      inputDate=inputDate._d;
+    }
+    const dt=new Date(inputDate);
+    const date=new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()));
+    return date;
   }
 }

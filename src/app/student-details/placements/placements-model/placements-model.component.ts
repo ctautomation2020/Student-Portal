@@ -74,33 +74,82 @@ export class PlacementsModelComponent implements OnInit {
   onSubmit() {
     console.log(this.placementsForm.value);
     console.log(this.fileToUpload);
-    if(this.data.placement!=null){
-    const req = gql `
-      mutation uploadStudentPlacement($data: uploadStudentPlacementInput!){
-        uploadStudentPlacement(data: $data)
-      }`;
-    this.apollo.mutate({
-      mutation: req,
-      variables: {
-        data:{
-          Placement_ID: this.data.placement.Placement_ID,
-          file: this.fileToUpload
+    if(this.data.placement==null){
+      const req = gql `
+      mutation createStudentPlacement($data: createStudentPlacementInput!){
+        createStudentPlacement(data:$data){
+          Placement_ID
         }
-      },
-      context: {
-        useMultipart: true
-      }
-    }).subscribe(({ data }) => {
-      console.log(data);
-    });
-  }
-    this.dialogRef.close(this.placementsForm.value);
+      }`;
+      this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data: {
+            Company: this.placementsForm.value.Company,
+            Package: parseFloat(this.placementsForm.value.Package),
+            Location: this.placementsForm.value.Location,
+            Designation: this.placementsForm.value.Designation,
+            Appointment_OrderNum: this.placementsForm.value.Appointment_OrderNum,
+            Appointment_Letter_IssueDate: this.convertDate2(this.placementsForm.value.Appointment_Letter_IssueDate),
+            Joining_Date: this.convertDate2(this.placementsForm.value.Joining_Date),
+            Placement_Type_Ref: this.placementsForm.value.Placement_Type_Ref,
+            file: this.fileToUpload
+          }
+        },
+        context: {
+          useMultipart: true
+        }
+      }).subscribe(({ data }) => {
+        console.log(data);
+        this.dialogRef.close();
+      });
+    }
+    else{
+      const req = gql `
+      mutation updateStudentPlacement($data: updateStudentPlacementInput!){
+        updateStudentPlacement(data:$data){
+          Placement_ID
+        }
+      }`;
+      this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data: {
+            Placement_ID: this.data.placement.Placement_ID,
+            Company: this.placementsForm.value.Company,
+            Package: parseFloat(this.placementsForm.value.Package),
+            Location: this.placementsForm.value.Location,
+            Designation: this.placementsForm.value.Designation,
+            Appointment_OrderNum: this.placementsForm.value.Appointment_OrderNum,
+            Appointment_Letter_IssueDate: this.convertDate2(this.placementsForm.value.Appointment_Letter_IssueDate),
+            Joining_Date: this.convertDate2(this.placementsForm.value.Joining_Date),
+            Placement_Type_Ref: this.placementsForm.value.Placement_Type_Ref,
+            file: this.fileToUpload
+          }
+        },
+        context: {
+          useMultipart: true
+        }
+      }).subscribe(({ data }) => {
+        console.log(data);
+        this.dialogRef.close();
+			});
+    }
   }
   convertDate(edate){
     const myDate = new Date(0);
     const temp = parseFloat(edate) / 1000;
     myDate.setUTCSeconds(temp);
     return myDate;
+  }
+
+  convertDate2(inputDate:any){
+    if(inputDate.isMomentObject){
+      inputDate=inputDate._d;
+    }
+    const dt=new Date(inputDate);
+    const date=new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()));
+    return date;
   }
 
 }

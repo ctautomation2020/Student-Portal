@@ -147,35 +147,7 @@ export class PlacementsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const date1=this.convertDate(result.Appointment_Letter_IssueDate);
-        const date2=this.convertDate(result.Joining_Date);
-        const req = gql `
-				mutation createStudentPlacement($data: createStudentPlacementInput!){
-          createStudentPlacement(data:$data){
-            Placement_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              Company: result.Company,
-              Package: parseFloat(result.Package),
-              Appointment_Order_Copy: "",
-              Location: result.Location,
-              Designation: result.Designation,
-              Appointment_OrderNum: result.Appointment_OrderNum,
-              Appointment_Letter_IssueDate: date1,
-              Joining_Date: date2,
-              Placement_Type_Ref: result.Placement_Type_Ref
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef1.refetch();
-				});
-			} 
+      this.queryRef1.refetch();
 		});
   }
 	editPlacement(id:number){
@@ -187,35 +159,7 @@ export class PlacementsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const date1=this.convertDate(result.Appointment_Letter_IssueDate);
-        const date2=this.convertDate(result.Joining_Date);
-        const req = gql `
-				mutation updateStudentPlacement($data: updateStudentPlacementInput!){
-          updateStudentPlacement(data:$data){
-            Placement_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              Placement_ID: id,
-              Company: result.Company,
-              Package: parseFloat(result.Package),
-              Location: result.Location,
-              Designation: result.Designation,
-              Appointment_OrderNum: result.Appointment_OrderNum,
-              Appointment_Letter_IssueDate: date1,
-              Joining_Date: date2,
-              Placement_Type_Ref: result.Placement_Type_Ref
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef1.refetch();
-				});
-			} 
+			this.queryRef1.refetch();
 		});
   }
   deletePlacement(id:number){
