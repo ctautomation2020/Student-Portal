@@ -102,6 +102,7 @@ export class EventModelComponent implements OnInit {
         }
       }).subscribe(({ data }) => {
         console.log(data);
+        this.dialogRef.close();
 		  });
     }
     else{
@@ -131,9 +132,9 @@ export class EventModelComponent implements OnInit {
         }
       }).subscribe(({ data }) => {
         console.log(data);
+        this.dialogRef.close();
       });
     }
-    this.dialogRef.close(true); 
   }
 
   convertDate(edate){

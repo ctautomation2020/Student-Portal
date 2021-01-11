@@ -6,8 +6,6 @@ export interface AcademicsModel {
   description: string;
 }
 
-
-
 export interface Assessment {
   section: Section[];
   assess_num: number;

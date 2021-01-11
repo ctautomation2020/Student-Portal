@@ -18,7 +18,7 @@ export class EventComponent implements OnInit {
   eventType: PersonReferenceModel[];
   participationType: PersonReferenceModel[];
   queryRef: QueryRef<EventModel[], any>;
-  fileSrc: String = "";
+  fileSrc: String = "../../assets/sample.pdf";
   filesSrc= new Array();
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
 
@@ -52,12 +52,7 @@ export class EventComponent implements OnInit {
     });
   	this.queryRef.valueChanges.subscribe(((result: any) => {
       this.events = JSON.parse(JSON.stringify(result.data.studentEventsParticipated));
-      console.log(this.events); 
-      for(let event of this.events){
-        this.filesSrc.push(baseURL+event.Certificate_Copy)
-      }
-      console.log(this.filesSrc);
-      
+      console.log(this.events);      
     }));
     this.studentDetailsService.getDropDown('SEvent_Type').subscribe(result => {
       this.eventType = result;
@@ -86,6 +81,7 @@ export class EventComponent implements OnInit {
         participationType: this.participationType
       }
     });
+
     dialogRef.afterClosed().subscribe(result => {
         this.queryRef.refetch();
 		});
@@ -100,9 +96,8 @@ export class EventComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
-      this.queryRef.refetch();
-      console.log("new event added");
+      this.queryRef.refetch()
+      console.log(this.events)
     });
   }
 
