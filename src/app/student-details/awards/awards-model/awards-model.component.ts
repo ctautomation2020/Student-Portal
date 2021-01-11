@@ -72,17 +72,23 @@ export class AwardsModelComponent implements OnInit {
 
   onSubmit() {
     console.log(this.awardsForm.value);
-    if(this.data.award!=null){
-      console.log(this.fileToUpload);
+    if(this.data.award==null){
       const req = gql `
-        mutation uploadStudentAward($data: uploadStudentAwardInput!) {
-          uploadStudentAward(data: $data)
-        }`;
+      mutation createStudentAward($data: createStudentAwardInput!){
+        createStudentAward(data:$data){
+          Award_ID
+        }
+      }`;
       this.apollo.mutate({
         mutation: req,
         variables: {
-          data:{
-            Award_ID: this.data.award.Award_ID,
+          data: {
+            Award_Name: this.awardsForm.value.Award_Name,
+            Organizer_Name: this.awardsForm.value.Organizer_Name,
+            Award_Type_Ref: this.awardsForm.value.Award_Type_Ref,
+            Award_Category_Ref: this.awardsForm.value.Award_Category_Ref,
+            Place_of_Event: this.awardsForm.value.Place_of_Event,
+            Award_Date: this.convertDate2(this.awardsForm.value.Award_Date),
             file: this.fileToUpload
           }
         },
@@ -91,9 +97,38 @@ export class AwardsModelComponent implements OnInit {
         }
       }).subscribe(({ data }) => {
         console.log(data);
+        this.dialogRef.close();
       });
     }
-    this.dialogRef.close(this.awardsForm.value);
+    else{
+      const req = gql `
+      mutation updateStudentAward($data: updateStudentAwardInput!){
+        updateStudentAward(data:$data){
+          Award_ID
+        }
+      }`;
+      this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data: {
+            Award_ID: this.data.award.Award_ID,
+            Award_Name: this.awardsForm.value.Award_Name,
+            Organizer_Name: this.awardsForm.value.Organizer_Name,
+            Award_Type_Ref: this.awardsForm.value.Award_Type_Ref,
+            Award_Category_Ref: this.awardsForm.value.Award_Category_Ref,
+            Place_of_Event: this.awardsForm.value.Place_of_Event,
+            Award_Date: this.convertDate2(this.awardsForm.value.Award_Date),
+            file: this.fileToUpload
+          }
+        },
+        context: {
+          useMultipart: true
+        }
+      }).subscribe(({ data }) => {
+        console.log(data);
+        this.dialogRef.close();
+      });
+    }
   }
 
   convertDate(edate){
@@ -103,5 +138,12 @@ export class AwardsModelComponent implements OnInit {
     return myDate;
   }
 
-
+  convertDate2(inputDate:any){
+    if(inputDate.isMomentObject){
+      inputDate=inputDate._d;
+    }
+    const dt=new Date(inputDate);
+    const date=new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()));
+    return date;
+  }
 }

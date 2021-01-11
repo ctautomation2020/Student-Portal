@@ -194,33 +194,7 @@ export class PlacementsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const req = gql `
-				mutation createStudentHigherStudy($data: createStudentHigherStudyInput!){
-          createStudentHigherStudy(data:$data){
-            HigherStudies_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              University: result.University,
-              Degree: result.Degree,
-              Specialization: result.Specialization,
-              Admission_Mode_Ref: result.Admission_Mode_Ref,
-              Score: parseFloat(result.Score),
-              Country: result.Country,
-              Location: result.Location,
-              LOR_Details: result.LOR_Details,
-              Score_Card_Copy: ""         
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef2.refetch();
-				});
-			} 
+      this.queryRef2.refetch();
 		});
 	}
 	editHigherStudies(id:number){
@@ -232,34 +206,8 @@ export class PlacementsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const req = gql `
-				mutation updateStudentHigherStudy($data: updateStudentHigherStudyInput!){
-          updateStudentHigherStudy(data:$data){
-            HigherStudies_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              HigherStudies_ID: id,
-              University: result.University,
-              Degree: result.Degree,
-              Specialization: result.Specialization,
-              Admission_Mode_Ref: result.Admission_Mode_Ref,
-              Score: parseFloat(result.Score),
-              Country: result.Country,
-              Location: result.Location,
-              LOR_Details: result.LOR_Details           
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef2.refetch();
-				});
-			} 
-		});
+      this.queryRef2.refetch();
+    });
   }
   deleteHigherStudies(id:number){
     const dialogRef = this.dialog.open(AlertboxComponent);

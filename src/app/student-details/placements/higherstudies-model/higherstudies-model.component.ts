@@ -54,27 +54,66 @@ export class HigherstudiesModelComponent implements OnInit {
   onSubmit() {
     console.log(this.higherStudiesForm.value);
     console.log(this.fileToUpload);
-    if(this.data.higherstudy!=null){
-    const req = gql `
-      mutation uploadStudentHigherStudy($data: uploadStudentHigherStudyInput!){
-        uploadStudentHigherStudy(data: $data)
-      }`;
-    this.apollo.mutate({
-      mutation: req,
-      variables: {
-        data:{
-          HigherStudies_ID: this.data.higherstudy.HigherStudies_ID,
-          file: this.fileToUpload
-        }
-      },
-      context: {
-        useMultipart: true
-      }
-    }).subscribe(({ data }) => {
-      console.log(data);
-    });
+    if(this.data.higherstudy==null){
+      const req = gql `
+				mutation createStudentHigherStudy($data: createStudentHigherStudyInput!){
+          createStudentHigherStudy(data:$data){
+            HigherStudies_ID
+          }
+        }`;
+				this.apollo.mutate({
+					mutation: req,
+					variables: {
+						data: {
+              University: this.higherStudiesForm.value.University,
+              Degree: this.higherStudiesForm.value.Degree,
+              Specialization: this.higherStudiesForm.value.Specialization,
+              Admission_Mode_Ref: this.higherStudiesForm.value.Admission_Mode_Ref,
+              Score: parseFloat(this.higherStudiesForm.value.Score),
+              Country: this.higherStudiesForm.value.Country,
+              Location: this.higherStudiesForm.value.Location,
+              LOR_Details: this.higherStudiesForm.value.LOR_Details,
+              file: this.fileToUpload     
+						},
+            context: {
+              useMultipart: true
+            }
+					}
+				}).subscribe(({ data }) => {
+					console.log(data);
+					this.dialogRef.close();
+				});
     }
-    this.dialogRef.close(this.higherStudiesForm.value);
+    else{
+      const req = gql `
+				mutation updateStudentHigherStudy($data: updateStudentHigherStudyInput!){
+          updateStudentHigherStudy(data:$data){
+            HigherStudies_ID
+          }
+        }`;
+				this.apollo.mutate({
+					mutation: req,
+					variables: {
+						data: {
+              HigherStudies_ID: this.data.higherstudy.HigherStudies_ID,
+              University: this.higherStudiesForm.value.University,
+              Degree: this.higherStudiesForm.value.Degree,
+              Specialization: this.higherStudiesForm.value.Specialization,
+              Admission_Mode_Ref: this.higherStudiesForm.value.Admission_Mode_Ref,
+              Score: parseFloat(this.higherStudiesForm.value.Score),
+              Country: this.higherStudiesForm.value.Country,
+              Location: this.higherStudiesForm.value.Location,
+              LOR_Details: this.higherStudiesForm.value.LOR_Details,
+              file: this.fileToUpload        
+						}
+					},
+          context: {
+            useMultipart: true
+          }
+				}).subscribe(({ data }) => {
+					console.log(data);
+					this.dialogRef.close();
+				});
+    }
   }
-
 }

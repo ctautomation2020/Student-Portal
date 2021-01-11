@@ -80,32 +80,10 @@ export class AwardsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const req = gql `
-				mutation createStudentAward($data: createStudentAwardInput!){
-          createStudentAward(data:$data){
-            Award_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              Award_Name: result.Award_Name,
-              Organizer_Name: result.Organizer_Name,
-              Award_Type_Ref: result.Award_Type_Ref,
-              Award_Category_Ref: result.Award_Category_Ref,
-              Place_of_Event: result.Place_of_Event,
-              Award_Date: this.convertDate(result.Award_Date)
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef.refetch();
-				});
-			} 
-		});
+      this.queryRef.refetch();
+		}); 
   }
+  
   editModel(id:number){
     let award=this.awards.filter((q) => q.Award_ID === id);
     const dialogRef = this.dialog.open(AwardsModelComponent,{
@@ -116,34 +94,10 @@ export class AwardsComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-        const req = gql `
-				mutation updateStudentAward($data: updateStudentAwardInput!){
-          updateStudentAward(data:$data){
-            Award_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req,
-					variables: {
-						data: {
-              Award_ID: id,
-              Award_Name: result.Award_Name,
-              Organizer_Name: result.Organizer_Name,
-              Award_Type_Ref: result.Award_Type_Ref,
-              Award_Category_Ref: result.Award_Category_Ref,
-              Place_of_Event: result.Place_of_Event,
-              Certificate_Copy: "",
-              Award_Date: this.convertDate(result.Award_Date)
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef.refetch();
-				});
-			} 
+			this.queryRef.refetch();
 		});
   }
+  
   deleteModel(id: number): void {
     const dialogDeleteRef = this.dialog.open(AlertboxComponent);
     dialogDeleteRef.afterClosed().subscribe(result => {
