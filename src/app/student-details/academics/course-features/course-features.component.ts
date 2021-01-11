@@ -16,6 +16,13 @@ export class CourseFeaturesComponent implements OnInit {
   sallot_id: number = 0;
   //session: AcademicsModel;
   session = {reference_id: 2, description: "December 2020 - April 2021", category: "Session"};
+  faculty = {
+	  name: "Thanasekhar B",
+	  designation: "Associate Professor",
+	  course: "Data Structures & Algorithms",
+	  email: "thanasekhar@gmail.com",
+	  mobile: "6835428909"
+  }
   ngOnInit(): void {
     /* this.route.params.subscribe(params => {
      this.sallot_id = +params['sallot_id'];

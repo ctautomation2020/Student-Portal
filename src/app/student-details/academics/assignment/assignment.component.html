@@ -2,53 +2,39 @@
   <div class="main">
 
       <div class="assignment-section">
-        <h3 class="section-title">Machine Learning - Assesment</h3>
+        <h3 class="section-title">Machine Learning - Assignment</h3>
         <div *ngFor="let s of assignment.section; let sId = index">
         <div class="horizontal-line-break"></div>
-          <mat-form-field  class="form-field">
-            <mat-label>Section Name</mat-label>
-            <input matInput [(ngModel)]="s.name">
-          </mat-form-field>
-
-          <button mat-raised-button color="accent" (click)="deleteSection(assignment.section, sId)" >Delete Section</button><br>
-
-
+         <h4 class="part">{{s.name}}</h4>
+          <div>
+            <div class="question-number bold">
+              Q.No.
+            </div>
+            <div class="question bold">
+              Question
+            </div>
+            <div  class="mark bold">
+              Marks
+            </div>
+          </div>
           <div *ngFor="let q of s.questions; let qId = index">
             <div>
-              <mat-form-field appearance="fill" class="form-field-question-number">
-                <mat-label>Q.No</mat-label>
-                <input matInput [(ngModel)]="q.question_num">
-              </mat-form-field>
-              <mat-form-field  class="form-field-question">
-                <textarea matInput [(ngModel)]="q.question_stmt"></textarea>
-              </mat-form-field>
-              <mat-form-field  class="form-field-question-number">
-                <mat-label>Marks</mat-label>
-                <input matInput [(ngModel)]="q.marks">
-              </mat-form-field>
-              <mat-form-field class="form-field-dropdown" appearance="fill">
-                <mat-label>Blooms Level</mat-label>
-                <mat-select [(ngModel)]="q.blooms_level">
-                  <mat-option *ngFor="let b of bloomsLevel" [value]="b.Reference_Code">{{b.Ref_Name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field class="form-field-dropdown-small" appearance="fill">
-                <mat-label>CO</mat-label>
-                <mat-select [(ngModel)]="q.co_num">
-                  <mat-option *ngFor="let c of coLevel" [value]="c.Reference_Code">{{c.Ref_Name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <span class="icon-pointer" (click)="deleteQuestion(s.questions, qId)"><mat-icon>delete</mat-icon></span>
-              <br>
+              <div class="question-number">
+                {{q.question_num}}.
+              </div>
+              <div class="question">
+                {{q.question_stmt}}
+              </div>
+              <div  class="mark">
+                {{q.marks}}
+              </div>
             </div>
-
           </div>
-          <span class="icon-pointer" (click)="createQuestion(s.questions)"><mat-icon>add_circle</mat-icon></span>
         </div><br><br>
-        <button mat-stroked-button class="button" color="primary" (click)="createSection()" >Add Section</button><br>
         <br><br>
-        <button mat-raised-button class="button" color="primary" (click)="submitAssignment()" >Submit</button>
+        <div class="btn">
+          <button mat-raised-button class="button" color="primary" (click)="submitAssignment()" >Submit</button>
+        </div>
       </div>
   </div>
 </div>
