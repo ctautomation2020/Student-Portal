@@ -1,75 +1,9 @@
-.header {
-  display: block;
-  padding: 7px;
-}
-
-.sidebar {
-  background: #efefef;
-  padding: 10px;
-  width: 250px;
-}
-mat-list-item:hover {
-  color: #3f51b5;
-}
-mat-list-item {
-  cursor: pointer;
-}
-
-.settings {
-  font-size: 15px;
-}
-.add-btn {
-  margin-left: 30px;
-}
-.page {
-  width: 100%;
-  height: 100vh;
-  padding: 20px;
-}
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
-}
-.title {
-  position: relative;
-  width: 150px;
-  padding-left:10px;
-  bottom: 5px;
-  font-size: 20px;
-}
-.form-field-container {
-  padding: 15px;
 }
 .form-field-dropdown,.form-field {
   padding-left: 20px;
   padding-bottom: 10px;
-}
-.staff-form-field {
-  padding-left: 20px;
-  width: 500px;
-}
-.buttons {
-  float: right;
-  position: relative;
-  bottom: 10px;
-}
-table {
-  width: 100%;
-}
-
-.input-field{
-    display: flex;
-}
-.input-field .text-wrap{
-    width: 50%;
-    padding-right: 0.15em;
-}
-@media only screen and (max-width:700px){
-    .input-field{
-        flex-direction: column;
-    }
-    .input-field .text-wrap{
-        width: 100%;
-    }
 }
 .three-field{
    width: 30%;
@@ -87,4 +21,42 @@ table {
 }
 .dialog-title{
    font-size: 25px;
+}
+.radio-btn {
+  padding-top: 5px;
+  width: fit-content;
+}
+@media only screen and (max-width: 1490px) {
+  .gender-label {
+    display: block;
+  }
+}
+@media only screen and (max-width: 1225px) {
+   .radio-btn:first-child {
+     margin-left: -5px;
+   }
+}
+@media only screen and (max-width: 900px) {
+   .three-field, .four-field {
+     width: 45%;
+   }
+}
+@media only screen and (max-width: 845px) {
+   .radio-btn:first-child {
+     margin-left: -3px;
+   }
+}
+@media only screen and (max-width: 600px) {
+   .two-field, .three-field, .four-field {
+     width: 90%;
+   }
+   .form-field, .form-field-dropdown {
+     padding-left: 10px;
+   }
+   .radio-btn {
+     width: 80%;
+   }
+   .radio-btn:first-child {
+     margin-left: 6px;
+   }
 }

@@ -112,6 +112,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.5em 1em 0.5em 0.5em;
+    margin: 5px auto;
     cursor: pointer;
     border: none;
     transition-duration: .5s;
@@ -177,24 +178,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5em 1em 0.5em 0.5em;
+    padding: .5em;
     cursor: pointer;
     width: 50%;
     border: none;
     transition-duration: .5s;
-}
-.tab-title::before{
-    content: '';
-    width: 1.5em;
-    height: 1.5em;
-    background-size: 1em;
-    margin-right: 0.25em;
-    display: block;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 50%;
-    cursor: pointer;
-    filter: invert(1);
 }
 .tab-title:hover{
     background-color: #0c3e66;
@@ -218,13 +206,6 @@
     margin-right: 0;
     width: 80%;
 }
-.pdf-preview {
-    position: absolute;
-    bottom: 20px; 
-    display: inline-block;
-    width: 15%;
-    height: 167px;
-}
 .tab-title:nth-child(2) {
     border-right: .5px solid black;
     border-left: .5px solid black;
@@ -244,6 +225,68 @@
 }
 .form-field {
     width: 90%;
-    padding-left: 20px;
-    padding-bottom: 10px;
+    padding: 10px 20px;
+}
+.pdf-preview {
+    position: absolute;
+    bottom: 2px; 
+    top: 2px;
+    display: inline-block;
+    width: 15%;
+    height: fit-content;
+    margin: auto;
+}
+@media only screen and (max-width:700px) {
+    .pdf-preview {
+        width: 50%;
+        right: 20px;
+    }
+}
+@media only screen and (max-width:515px) {
+    .pdf-preview {
+        display: block;
+        position: static;
+        width: 90%;
+        height: fit-content;
+    }
+}
+@media only screen and (max-width:400px) {
+    .btns {
+        width: 100%;
+    }
+    .btns button {
+        width: 100px;
+    }
+}
+@media only screen and (max-width:300px) {
+    .btns button {
+        width: 80px;
+    }
+}
+@media only screen and (max-width:700px){
+    .input-field{
+        flex-direction: column;
+    }
+    .input-field .text-wrap{
+        width: 100%;
+    }
+}
+@media only screen and (max-width:535px) {
+    .section-title {
+        flex-direction: column;
+    }
+    .tab-title {
+        width: 80%;
+    }
+    .tab-title:nth-child(2) {
+        border-left: none;
+        border-right: none;
+        border-top: .5px solid black;
+        border-bottom: .5px solid black;
+    }
+}
+@media only screen and (max-width:680px) {
+    .form-field {
+        padding: 10px 2px;
+    }
 }

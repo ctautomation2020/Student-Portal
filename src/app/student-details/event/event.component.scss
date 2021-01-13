@@ -50,6 +50,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.5em 1em 0.5em 0.5em;
+    margin: 5px auto;
     cursor: pointer;
     border: none;
     transition-duration: .5s;
@@ -117,27 +118,7 @@
         width: 60%;
     }
 }
-.button{
-    background-color: #1982e4;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    width: max-content;
-    padding: 0.5em 1.1em;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: .5s;
-}
-.button:hover{
-    background-color: #0d5086;
-    box-shadow: 0 5px 8px 1px gainsboro;
-}
 @media only screen and (max-width:1100px){
-    .main{
-        width: 85%;
-    }
-}
-@media only screen and (max-width:1000px){
     .main{
         width: 85%;
     }
@@ -183,8 +164,37 @@
 }
 .pdf-preview {
     position: absolute;
-    bottom: 20px;
+    bottom: 2px; 
+    top: 2px;
     display: inline-block;
     width: 15%;
-    height: 167px;
+    height: fit-content;
+    margin: auto;
+}
+@media only screen and (max-width:700px) {
+    .pdf-preview {
+        width: 50%;
+        right: 20px;
+    }
+}
+@media only screen and (max-width:515px) {
+    .pdf-preview {
+        display: block;
+        position: static;
+        width: 90%;
+        height: fit-content;
+    }
+}
+@media only screen and (max-width:400px) {
+    .btns {
+        width: 100%;
+    }
+    .btns button {
+        width: 100px;
+    }
+}
+@media only screen and (max-width:300px) {
+    .btns button {
+        width: 80px;
+    }
 }

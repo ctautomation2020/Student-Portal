@@ -26,9 +26,9 @@
       </mat-form-field>
 
       <div class="form-field three-field" style="display: inline-block;">
-        <mat-label>Gender:*</mat-label>
+        <mat-label class="gender-label">Gender:*</mat-label>
         <mat-radio-group class="form-field" formControlName="Gender_Ref" aria-label="Gender" required>
-          <mat-radio-button *ngFor="let g of data.gender" [value]="g.Ref_Code">{{g.Ref_Name}}</mat-radio-button>
+          <mat-radio-button *ngFor="let g of data.gender" class="radio-btn" [value]="g.Ref_Code">{{g.Ref_Name}}</mat-radio-button>
         </mat-radio-group>
       </div>
 

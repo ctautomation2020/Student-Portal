@@ -14,12 +14,6 @@
     width: 100%;
     min-height: 100vh;
 }
-.nav-bar{
-    padding: 1em;
-    background-color: #0c3e66;
-    color: white;
-    font-size: 1.1em;
-}
 .main{
     display: flex;
     flex-direction: column;
@@ -145,8 +139,7 @@
 .text-wrap a:hover{
     text-decoration: underline;
 }
-.personal-section,
-.education-section{
+.personal-section{
     display: flex;
     flex-direction: column;
     padding: 1.5em 2em;
@@ -166,77 +159,6 @@
     height: 1px;
     background-color: gainsboro;
     margin: 1em 0.15em;
-}
-.button{
-    background-color: #1982e4;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    width: max-content;
-    padding: 0.5em 1.1em;
-    cursor: pointer;
-    font-size: 0.9em;
-}
-.button:hover{
-    background-color: #0d5086;
-    box-shadow: 0 5px 8px 1px gainsboro;
-}
-.education-section .section-title{
-    margin-bottom: 0.1em;
-}
-.note{
-    color: #356d9b;
-    font-size: 0.8em;
-    margin-bottom: 0.5em;
-    display: block;
-}
-.education{
-    display: flex;
-    flex-direction: column;
-}
-.education .label{
-    margin-bottom: 0.1em;
-}
-.education .text-wrap{
-    margin-bottom: 0.75em;
-}
-.degree-college{
-    color: gray;
-    font-size: 0.975em;
-}
-.degree-time{
-    color: #7c7c7c;
-    font-weight: bold;
-}
-.degree-branch{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.degree-title{
-    margin-right: auto;
-}
-.edit-educ,
-.delete-educ{
-    background-image: url("../../../assets/edit.png");
-    width: 1.75em;
-    height: 1.75em;
-    background-size: 1em;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: block;
-    cursor: pointer;
-    opacity: 0.5;
-    margin-left: 0.25em;
-    border-radius: 50%;
-}
-.delete-educ{
-    background-image: url("../../../assets/remove.png");
-}
-.edit-educ:hover,
-.delete-educ:hover{
-    opacity: 1;
-    background-color: gainsboro;
 }
 @media only screen and (max-width:1100px){
     .main{
