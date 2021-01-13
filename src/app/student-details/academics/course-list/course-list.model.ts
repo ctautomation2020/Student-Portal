@@ -6,5 +6,4 @@ export interface CourseListModel {
   title: string;
   credit: number;
   objectives: string;
-  sallot_id: number;
 }

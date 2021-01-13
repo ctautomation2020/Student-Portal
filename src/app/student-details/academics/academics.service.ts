@@ -54,6 +54,7 @@ export class AcademicsService {
     JSON.parse(JSON.stringify(result.data.assess_evaluation))
     ));
   }
+
   getAssignment(query: any) {
     const req = gql`
   query assessment($data: assesmentQueryInput!) {
@@ -124,67 +125,63 @@ export class AcademicsService {
   }
   getCourseDetails(json: any) {
     const req = gql`
-        query courseDetails($data: courseDetailsQueryInput!) {
-        courseDetails(data: $data) {
+    query studentCourseDetails($data: studentCourseDetailsQueryInput){
+      studentCourseDetails(data:$data){
         sallot_id
+        staff_id
         course_code
         group_ref
         session_ref
       }
-    }
-    `;
-      return  this.apollo
-        .watchQuery<any>({
-          query: req,
-          variables: {
-            data: json
-          }
-        }).valueChanges.pipe(map((result: any) =>
-        JSON.parse(JSON.stringify(result.data.courseDetails))
-        ));
+    }`;
+    return  this.apollo.watchQuery<any>({
+      query: req,
+      variables: {
+        data: json
+      }
+    }).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.studentCourseDetails))));
   }
-  getStaffCourses(json: any) {
+
+  getStudentCourses(json){
     const req = gql`
-        query staffCourses($data: staffCoursesQueryInput!) {
-      staffCourses(data: $data) {
-        sallot_id
+    query studentRegisteredCourses($data: studentRegisteredCoursesQueryInput){
+      studentRegisteredCourses(data:$data){
+        cregst_id
         course_code
+        reg_no
+        semester
         group_ref
         session_ref
+        course_list{
+          title
+        }
       }
-    }
-    `;
-      return  this.apollo
-        .watchQuery<any>({
-          query: req,
-          variables: {
-            data: json
-          }
-        }).valueChanges.pipe(map((result: any) =>
-        JSON.parse(JSON.stringify(result.data.staffCourses))
-        ));
+    }`;
+    
+    return  this.apollo.watchQuery<any>({
+      query: req,
+      variables: {
+        data: json
+      }
+    }).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.studentRegisteredCourses))));
   }
+
   getSession(reference_id: number) {
     const req = gql`
-    query
-    courseReference($data: Course_Reference_Input) {
+    query courseReference($data: Course_Reference_Input) {
       courseReference(data: $data) {
         reference_id
         ref_code
         description
       }
-    }
-    `;
-     return this.apollo.watchQuery({
+    }`;
+    return this.apollo.watchQuery({
       query: req,
       variables: {
         data: {
           category: this.category,
           reference_id: reference_id
         }
-      }
-    }).valueChanges.pipe(map((result: any) =>
-    JSON.parse(JSON.stringify(result.data.courseReference))
-    ));
+      }}).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.courseReference))));
   }
 }
