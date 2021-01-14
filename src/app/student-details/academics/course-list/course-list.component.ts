@@ -19,7 +19,7 @@ export class CourseListComponent implements OnInit {
   courseCodes: any;
   subjAllotId: number;
   queryRef: QueryRef<any, any>;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute,private academicsService: AcademicsService, private title: Title,public studentDetailsService: StudentDetailsService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,private academicsService: AcademicsService, private title: Title,private studentDetailsService: StudentDetailsService) {
     this.title.setTitle('Course Features');
   }
 
@@ -50,7 +50,8 @@ export class CourseListComponent implements OnInit {
     const key = strArray[0][0] + strArray[strArray.length - 1][0];
     return key;
   }
-  onCourseSelect(c): void{
+
+  onCourseSelect(c: CourseListModel): void{
     this.router.navigate(['/student-details', 'academics', 'course-features', c.cregst_id ]);
   }
 

@@ -1,9 +1,8 @@
 export interface CourseListModel {
   course_code: string;
-  stream: number;
-  regulation: number;
+  cregst_id: number;
+  group_ref: number;
+  reg_no: number;
   semester: number;
-  title: string;
-  credit: number;
-  objectives: string;
+  session_ref: number;
 }

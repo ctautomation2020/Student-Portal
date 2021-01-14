@@ -11,14 +11,14 @@
       <div class="time-period">
           <div class="outer-layout">
             <div class="layout">
-                  <div class="time" [routerLink]="['/student-details','academics', 'assessment-list', sallot_id]">
+                  <div class="time" [routerLink]="['/student-details','academics', 'assessment-list', cregst_id]">
                       <span class="point assessment"></span>
                       <div class="period">
                           <span class="month">Assessment</span>
                           <span class="session"></span>
                       </div>
                   </div>
-                  <div class="time" [routerLink]="['/student-details','academics', 'assignment-list', sallot_id]">
+                  <div class="time" [routerLink]="['/student-details','academics', 'assignment-list', cregst_id]">
                       <span class="point assignment"></span>
                       <div class="period">
                           <span class="month">Assignment</span>
@@ -42,7 +42,7 @@
               </div>
               <div class="vertical-line"></div>
               <div class="fac-info">
-                  <div class="fac-details">
+                  <div class="fac-details" *ngIf="faculty!=null && course!=null">
                       <table>
                           <tr>
                               <th colspan="3">Faculty Info</th>
@@ -55,27 +55,22 @@
                           <tr>
                               <th>Name</th>
                               <td>:</td>
-                              <td>{{faculty.name}}</td>
-                          </tr>
-                          <tr>
-                              <th>Designation</th>
-                              <td>:</td>
-                              <td>{{faculty.designation}}</td>
+                              <td>{{faculty.First_Name+" "+faculty.Last_Name}}</td>
                           </tr>
                           <tr>
                               <th>Course</th>
                               <td>:</td>
-                              <td>{{faculty.course}}</td>
+                              <td>{{course.course_code}}</td>
                           </tr>
                           <tr>
                               <th>Email Id</th>
                               <td>:</td>
-                              <td>{{faculty.email}}</td>
+                              <td>{{faculty.Primary_MailID}}</td>
                           </tr>
                           <tr>
                               <th>Mobile No.</th>
                               <td>:</td>
-                              <td>{{faculty.mobile}}</td>
+                              <td>{{faculty.Primary_ContactNumber}}</td>
                           </tr>
                       </table>
                   </div>

@@ -57,32 +57,31 @@ export class AcademicsService {
 
   getAssignment(query: any) {
     const req = gql`
-  query assessment($data: assesmentQueryInput!) {
-    assessment(data: $data) {
-      cassess_id
-      course_code
-      group_ref
-      session_ref
-      assess_num
-      question_num
-      question_stmt
-      blooms_level
-      co_num
-      marks
-      section
-    }
-  }
-  `;
-  return this.apollo
-  .watchQuery({
-    query: req,
-    variables: {
-      data: query
-    },
-    fetchPolicy: 'no-cache'
-  }).valueChanges.pipe(map((result: any) =>
-  JSON.parse(JSON.stringify(result.data.assessment))
-  ));
+    query assessment($data: assesmentQueryInput!) {
+      assessment(data: $data) {
+        cassess_id
+        course_code
+        group_ref
+        session_ref
+        assess_num
+        question_num
+        question_stmt
+        blooms_level
+        co_num
+        marks
+        section
+      }
+    }`;
+    return this.apollo
+    .watchQuery({
+      query: req,
+      variables: {
+        data: query
+      },
+      fetchPolicy: 'no-cache'
+    }).valueChanges.pipe(map((result: any) =>
+    JSON.parse(JSON.stringify(result.data.assessment))
+    ));
   }
   getCourse(course_code: string) {
     const reqNew = gql`
@@ -123,23 +122,28 @@ export class AcademicsService {
         ));
 
   }
-  getCourseDetails(json: any) {
+  getStaffDetails(json: any) {
     const req = gql`
-    query studentCourseDetails($data: studentCourseDetailsQueryInput){
-      studentCourseDetails(data:$data){
+    query staffAlloted($data: staffAllotedQueryInput){
+      staffAlloted(data:$data){
         sallot_id
         staff_id
-        course_code
-        group_ref
-        session_ref
-      }
+        class_room
+        student_count
+        person{
+          First_Name
+          Last_Name
+          Primary_MailID
+          Primary_ContactNumber
+        }
+      } 
     }`;
-    return  this.apollo.watchQuery<any>({
+    return this.apollo.watchQuery<any>({
       query: req,
       variables: {
         data: json
       }
-    }).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.studentCourseDetails))));
+    }).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.staffAlloted))));
   }
 
   getStudentCourses(json){
@@ -182,6 +186,7 @@ export class AcademicsService {
           category: this.category,
           reference_id: reference_id
         }
-      }}).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.courseReference))));
+      }
+    }).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.courseReference))));
   }
 }

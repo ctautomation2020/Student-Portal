@@ -25,7 +25,7 @@ const routes: Routes =  [
         component: CourseListComponent
       },
       {
-        path: 'course-features/:sallot_id',
+        path: 'course-features/:cregst_id',
         component: CourseFeaturesComponent
       },
       {
