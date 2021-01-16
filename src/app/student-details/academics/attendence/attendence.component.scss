@@ -26,7 +26,7 @@
   align-items: center;
   margin: 0.5em 0;
 }
-.link{
+.link, .disabled-link{
   text-decoration: none;
   color: #061c64;
   font-size: 0.975em;
@@ -49,6 +49,7 @@
   display: flex;
   flex-direction: column;
   margin: 1em 0;
+  width: 50%;
 }
 .time{
   display: flex;
@@ -155,7 +156,32 @@
       font-size: 0.95em;
   }
 }
-.button{
-  width: max-content;
-  padding: 0.5em 1.1em;
+table, td, th{
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+td, th {
+   height: 50px;
+   width: 50px;
+}
+td {
+  position: relative;
+}
+.date {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  font-size: 15px;
+  color: #06a065;
+}
+.left {
+  float: left;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.right {
+  float: right;
+  margin-right: 10px;
+  cursor: pointer;
 }

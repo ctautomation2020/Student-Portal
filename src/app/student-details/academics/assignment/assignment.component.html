@@ -3,6 +3,29 @@
 
       <div class="assignment-section">
         <h3 class="section-title">Machine Learning - Assignment</h3>
+        <div class="quick-links" *ngIf="courseTitle != null && session!=null">
+            <a routerLink="/student-details/academics" class="link">Academics</a>
+            <span class="slash"></span>
+            <a [routerLink]="['/student-details', 'academics', 'course-list', session.reference_id]" class="link">{{session.description}}</a>
+            <span class="slash"></span>
+            <a [routerLink]="['/student-details', 'academics', 'course-features', cregst_id]" class="link" >{{courseTitle}}</a>
+            <span class="slash"></span>
+            <a [routerLink]="['/student-details', 'academics', 'assignment-list', cregst_id]" class="link">Assignments</a>
+        </div>
+        <div class="header">
+          <div class="college-details">
+              <div class="image"><img src="../../../../assets/mit_logo.png" alt="college-logo" class="college-logo"></div>
+              <h1 class="college-title">Madras Institute of Technology</h1>
+          </div>
+          <div class="assignment-details">
+              <h2 class="assesment-name">{{course.course_code}} - {{courseTitle}}</h2>
+              <div class="assignment-values">
+                  <p class="assignment-time">Time : 3 hrs</p>
+                  <p class="assignment-number">Assignment 1</p>
+                  <p class="total-marks">Total Marks : 100</p>
+              </div>
+          </div>
+        </div>
         <div *ngFor="let s of assignment.section; let sId = index">
         <div class="horizontal-line-break"></div>
          <h4 class="part">{{s.name}}</h4>

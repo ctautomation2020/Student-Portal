@@ -1,6 +1,3 @@
-.main {
-  padding-left: 10px;
-}
 .form-field {
   padding: 8px;
 
@@ -16,8 +13,8 @@
   display: flex;
   flex-direction: column;
   padding: 1.25em;
-  width: 85%;
-  margin: 0 auto;
+  width: 95%;
+  margin: 1em auto;
 }
 .assignment-section{
   display: flex;
@@ -66,6 +63,49 @@
 .bold {
   font-weight: bold;
 }
+.quick-links{
+  display: flex;
+  align-items: center;
+  margin: 0.5em 0;
+}
+.link{
+  text-decoration: none;
+  color: #061c64;
+  font-size: 0.975em;
+  margin: 0 0.75em;
+}
+.link:first-of-type{
+  margin-left: 0;
+}
+.slash{
+  width: 0.5em;
+  height: 0.5em;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  transform: rotate(135deg);
+}
+.link:hover{
+  text-decoration: underline;
+}
+.btn {
+  text-align: center;
+}
+.college-details *, .assignment-details * {
+   text-align: center;
+}
+.assignment-values {
+  width: 90%;
+  margin: auto;
+}
+.assignment-values * {
+  display: inline-block;
+}
+.assignment-time {
+  float: left;
+}
+.total-marks {
+  float: right;
+}
 @media only screen and (max-width: 1150px) {
   .question-number, .mark {
     width: 5%;
@@ -79,7 +119,13 @@
   .question-number.bold {
     display: none;
   }
+  .assignment-values {
+    width: 100%;
+  }
 }
-.btn {
-  text-align: center;
+@media only screen and (max-width: 500px) {
+  .assignment-values * {
+    display: block;
+    float: none;
+  }
 }

@@ -3,7 +3,7 @@
     <div class="assessment-section" *ngIf="assessment!=null">
       <h3 class="section-title">Assessment {{assess_num}}</h3>
       <div class="quick-links" *ngIf="courseTitle != null && session!=null">
-        <a routerLink="/student-details/academics" class="link">Academics</a>
+          <a routerLink="/student-details/academics" class="link">Academics</a>
           <span class="slash"></span>
           <a [routerLink]="['/student-details', 'academics', 'course-list', session.reference_id]" class="link">{{session.description}}</a>
           <span class="slash"></span>
@@ -13,9 +13,8 @@
       </div>
       <div class="header">
         <div class="college-details">
-            <img src="../../../../assets/mit_logo.png" alt="college-logo" class="college-logo">
+            <div class="image"><img src="../../../../assets/mit_logo.png" alt="college-logo" class="college-logo"></div>
             <h1 class="college-title">Madras Institute of Technology</h1>
-            <span class="dummy"></span>
         </div>
         <div class="assessment-details">
             <h2 class="assesment-name">{{course.course_code}} - {{courseTitle}}</h2>

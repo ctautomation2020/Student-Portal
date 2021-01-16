@@ -1,6 +1,3 @@
-.main {
-  padding-left: 10px;
-}
 .form-field {
   padding: 8px;
 
@@ -16,8 +13,8 @@
   display: flex;
   flex-direction: column;
   padding: 1.25em;
-  width: 85%;
-  margin: 0 auto;
+  width: 95%;
+  margin: 1em auto;
 }
 .assessment-section{
   display: flex;
@@ -90,6 +87,25 @@
 .link:hover{
   text-decoration: underline;
 }
+.btn {
+  text-align: center;
+}
+.college-details *, .assessment-details * {
+   text-align: center;
+}
+.assessment-values {
+  width: 90%;
+  margin: auto;
+}
+.assessment-values * {
+  display: inline-block;
+}
+.assessment-time {
+  float: left;
+}
+.total-marks {
+  float: right;
+}
 @media only screen and (max-width: 1150px) {
   .question-number, .mark {
     width: 5%;
@@ -103,7 +119,13 @@
   .question-number.bold {
     display: none;
   }
+  .assessment-values {
+    width: 100%;
+  }
 }
-.btn {
-  text-align: center;
+@media only screen and (max-width: 500px) {
+  .assessment-values * {
+    display: block;
+    float: none;
+  }
 }

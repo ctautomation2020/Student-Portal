@@ -78,6 +78,7 @@ table {
 }
 .file-div {
   margin: 10px 20px;
+  width: 100%;
 }
 .file-input {
   width: 70%;
@@ -98,6 +99,7 @@ table {
 .pdf-link {
   margin: 2px 0px 2px 2px;
   text-decoration: none;
+  text-align: center;
   background-color: #1982e4;
   color: white;
   padding: 2px 5px;
@@ -106,4 +108,52 @@ table {
 }
 .pdf-link:hover {
   background-color: #053e74;
+}
+@media only screen and (max-width: 1120px){
+  .input-view {
+    width: 40%;
+  }
+}
+@media only screen and (max-width: 1000px){
+  .input-view {
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 810px){
+  .input-view {
+    width: 60%;
+  }
+  .three-field {
+    width: 45%;
+  }
+}
+@media only screen and (max-width: 630px){
+  .input-view {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 560px){
+  .two-field, .three-field {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 450px){
+  .form-field, .form-field-dropdown {
+    padding-left: 5px;
+  }
+  .file-div {
+    margin: 10px;
+  }
+}
+@media only screen and (max-width: 420px){
+  .file-input {
+    display: block;
+    width: 100%;
+    margin: auto;
+  }
+  .pdf-link {
+    display: block;
+    margin: 5px auto;
+    width: 90px;
+  }
 }

@@ -2,18 +2,34 @@
   <div class="main">
       <h2>Academics</h2>
       <div class="quick-links">
-          <a href="" class="link">Attendence</a>
+        <a routerLink="/student-details/academics" class="link">Academics</a>
+          <span class="slash"></span>
+          <a [routerLink]="['/student-details', 'academics', 'course-list', session.reference_id]" class="link">{{session.description}}</a>
+          <span class="slash"></span>
+          <a [routerLink]="['/student-details', 'academics', 'course-features', cregst_id]" class="link" >{{courseTitle}}</a>
+          <span class="slash"></span>
+          <a [routerLink]="['/student-details', 'academics', 'attendance']" class="link">Attendance</a>
       </div>
       <div class="time-period">
           <div class="layout">
-              <div class="time" *ngFor="let a of attendence">
-                  <span class="point"></span>
-                  <div class="period">
-                      <span class="month">{{a.date | date:'mediumDate'}}</span>
-                      <span class="session">{{a.date | date:'EEEE'}}</span>
-                  </div>
-              </div>
-              <button class="button" mat-raised-button color="primary" (click)="onCreateAttendence()">Add Attendence</button>
+              <table>
+                  <tr>
+                      <th colspan="7">
+                          <span class="left" (click)="previous()">&#9668;</span>
+                          {{months[curMonth]+" "+curYear}}
+                          <span class="right" (click)="next()">&#9658;</span>
+                      </th>
+                  </tr>
+                  <tr>
+                      <th *ngFor="let d of days">{{d}}</th>
+                  </tr>
+                  <tr *ngFor="let vals of displayValues">
+                      <td *ngFor="let p of vals">
+                        <div *ngIf="p.date" class="date">{{p.date}}</div>
+                        {{p.presence}}
+                      </td>
+                  </tr>
+              </table>
           </div>
       </div>
   </div>

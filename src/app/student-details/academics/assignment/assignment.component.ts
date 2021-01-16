@@ -146,6 +146,10 @@ export class AssignmentComponent implements OnInit {
       }
     ]
   }
+  course = {course_code: 'CS6101'}
+  session = {reference_id: 9, description: 'December 2019 - April 2020'};
+  cregst_id = 16;
+  courseTitle = 'Machine Learning';
   queryRef: QueryRef<Assignment, any>;
   constructor(private apollo: Apollo) { }
 
