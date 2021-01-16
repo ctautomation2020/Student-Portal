@@ -20,13 +20,11 @@ export class CourseFeaturesComponent implements OnInit {
   faculty;
   ngOnInit(): void {
 	this.route.params.subscribe(params => {
-
 		this.cregst_id = +params['cregst_id'];
      	const query = {
 			reg_no:  this.studentDetailsService.getRegisterNo(),
 			cregst_id: this.cregst_id
 		}
-		 
      	this.academicsService.getStudentCourses(query).subscribe((result: any) => {
 			if(result.length == 0) {
 				this.router.navigate(['/student-details', 'academics']);

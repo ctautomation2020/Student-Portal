@@ -29,7 +29,7 @@ const routes: Routes =  [
         component: CourseFeaturesComponent
       },
       {
-        path: 'assessment-list/:sallot_id',
+        path: 'assessment-list/:cregst_id',
         component: AssessmentListComponent
       },
       {
@@ -37,7 +37,7 @@ const routes: Routes =  [
         component: AssessmentComponent
       },
       {
-        path: 'assessment/:assess_num/:sallot_id',
+        path: 'assessment/:assess_num/:cregst_id',
         component: AssessmentComponent
       },
       {
@@ -49,7 +49,7 @@ const routes: Routes =  [
         component: ViewAttendenceComponent
       },
       {
-        path: 'assignment-list/:sallot_id',
+        path: 'assignment-list/:cregst_id',
         component: AssignmentListComponent
       },
       {

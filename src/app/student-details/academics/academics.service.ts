@@ -55,7 +55,7 @@ export class AcademicsService {
     ));
   }
 
-  getAssignment(query: any) {
+  getAssessment(query: any) {
     const req = gql`
     query assessment($data: assesmentQueryInput!) {
       assessment(data: $data) {

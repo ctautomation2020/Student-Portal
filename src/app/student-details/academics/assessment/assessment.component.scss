@@ -66,6 +66,30 @@
 .bold {
   font-weight: bold;
 }
+.quick-links{
+  display: flex;
+  align-items: center;
+  margin: 0.5em 0;
+}
+.link{
+  text-decoration: none;
+  color: #061c64;
+  font-size: 0.975em;
+  margin: 0 0.75em;
+}
+.link:first-of-type{
+  margin-left: 0;
+}
+.slash{
+  width: 0.5em;
+  height: 0.5em;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  transform: rotate(135deg);
+}
+.link:hover{
+  text-decoration: underline;
+}
 @media only screen and (max-width: 1150px) {
   .question-number, .mark {
     width: 5%;

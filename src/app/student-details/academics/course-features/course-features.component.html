@@ -1,10 +1,10 @@
 <div class="container">
   <div class="main">
       <h2>Course</h2>
-      <div class="quick-links">
+      <div class="quick-links" *ngIf="session != null">
         <a routerLink="/student-details/academics" class="link">Academics</a>
           <span class="slash"></span>
-          <a *ngIf="session != null" [routerLink]="['/student-details', 'academics', 'course-list', session.reference_id]" class="link">{{session.description}}</a>
+          <a [routerLink]="['/student-details', 'academics', 'course-list', session.reference_id]" class="link">{{session.description}}</a>
           <span class="slash"></span>
           <a  class="link" *ngIf="courseTitle != null">{{courseTitle}}</a>
       </div>

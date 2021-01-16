@@ -1,27 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import {Apollo, QueryRef} from 'apollo-angular';
+import { ActivatedRoute, Router } from '@angular/router';
 import gql from 'graphql-tag';
-
-export interface Assessment {
-  section: Section[];
-  assess_num: number;
-  course_code: string;
-  group_ref: number;
-  session_ref: number;
-  entry_date: Date;
-}
-export interface Section {
-  name: string;
-  questions: Question[]
-}
-export interface Question {
-  question_num: string;
-  question_stmt: string;
-  marks: number;
-  blooms_level: number;
-  co_num: number;
-}
+import { StudentDetailsService } from './../../student-details.service';
+import { AcademicsService } from './../academics.service';
+import { Assessment, Question, Section, AcademicsModel } from './../academics.model';
 
 @Component({
   selector: 'app-assessment',
@@ -82,133 +66,109 @@ export class AssessmentComponent implements OnInit {
       Ref_Name: 'Evaluation'
     }
   ]
-  assessment: Assessment = {
-    entry_date: new Date(),
-    course_code: 'CS0078',
-    session_ref: 6,
-    group_ref: 2,
-    assess_num: 1,
-    section: [
-      {
-
-        name: 'Part A',
-        questions : [
-          {
-            question_num : '1',
-            question_stmt : "Define Exploration?",
-            marks: 2,
-            blooms_level: 16,
-            co_num: 22
-          },
-          {
-            question_num : '2',
-            question_stmt : "Define Examination?",
-            marks: 2,
-            blooms_level: 17,
-            co_num: 22
-          },
-          {
-            question_num : '3',
-            question_stmt : "Define Abomination?",
-            marks: 2,
-            blooms_level: 17,
-            co_num: 22
-          }
-        ]
-
-      },
-      {
-
-        name: 'Part B',
-        questions : [
-          {
-            question_num : '4',
-            question_stmt : "What is Teams?",
-            marks: 5,
-            blooms_level: 18,
-            co_num: 22
-          },
-          {
-            question_num : '5',
-            question_stmt : "What is Management?",
-            marks: 5,
-            blooms_level: 19,
-            co_num: 22
-          },
-          {
-            question_num : '6',
-            question_stmt : "What are the types of DBMS?",
-            marks: 5,
-            blooms_level: 20,
-            co_num: 22
-          }
-        ]
-      }
-    ]
-  }
+  courseTitle: string = "Course Title";
+  cregst_id: number;
+  assess_num: number;
+  session: AcademicsModel;
+  course;
+  sections;
+  assessment;
   queryRef: QueryRef<Assessment, any>;
-  constructor(private apollo: Apollo) { }
+  constructor(private academicsService: AcademicsService, private studentDetailsService: StudentDetailsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    let assessment: Assessment = {
+      course_code: '',
+      group_ref: 0,
+      session_ref: 0,
+      assess_num: 0,
+      entry_date: new Date(),
+      section: []
+    };
+    this.route.params.subscribe(params => {
+      this.cregst_id = +params['cregst_id'];
+      this.assess_num= +params['assess_num'];
+      const query = {
+        reg_no:  this.studentDetailsService.getRegisterNo(),
+        cregst_id: this.cregst_id
+      }
+      this.academicsService.getStudentCourses(query).subscribe((result: any) => {
+        if(result.length == 0) {
+          this.router.navigate(['/student-details', 'academics']);
+        }
+        else {
+          this.course=result[0]
+          console.log(result[0]);
+          this.courseTitle=result[0].course_list.title
+          this.academicsService.getSession(result[0].session_ref).subscribe((session: any) => {
+             this.session = session[0];
+          });
+          const new_query = {
+            group_ref: result[0].group_ref,
+            session_ref: result[0].session_ref,
+            course_code: result[0].course_code,
+            assess_num: this.assess_num
+          }
+          this.academicsService.getAssessment(new_query).subscribe((assessment_questions: any) => {
+            this.assessment = assessment_questions;
+            console.log(assessment_questions);
+            var groupByName: any;
+            const groupBy = (array: any, key: any) => {
+              // Return the end result
+              return array.reduce((result: any, currentValue: any) => {
+                // If an array already present for key, push it to the array. Else create an array and push the object
+                (result[currentValue[key]] = result[currentValue[key]] || []).push(
+                  currentValue
+                );
+                // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
+                return result;
+              }, {}); // empty object is the initial value for result object
+            };
+            /*
+            sections = [ { name: , }, {}, {}]
 
+            */
+            const sections = groupBy(assessment_questions, 'section');
+            assessment = {
+              course_code: new_query.course_code,
+              group_ref: new_query.group_ref,
+              session_ref: new_query.session_ref,
+              assess_num: this.assess_num,
+              entry_date: new Date(),
+              section: []
+            }
+            Object.keys(sections).forEach(function(key) {
+              console.log(sections);
+              const str = sections[key][0].question_num;
+              console.log(str);
+              const alpha = str.charAt(str.length - 1);
+              let section: Section = {
+                name: key,
+                section_mark: sections[key][0].marks,
+                type: alpha == "a" || alpha == "b" ? "E": "F",
+                q_num: sections[key].length,
+                questions: []
+              }
+              for(let q of sections[key]) {
+                const question: Question = {
+                  question_num: q.question_num,
+                  question_stmt: q.question_stmt,
+                  marks: q.marks,
+                  blooms_level: q.blooms_level,
+                  co_num: q.co_num
+                }
+                section.questions.push(question);
+              }
+              assessment.section.push(section);
+            });
+            this.assessment=assessment;
+          });
+        }
+      });
+    });
   }
-  createQuestion(questions: Question[]) {
-    const question: Question = {
-      question_num : '',
-      question_stmt: '',
-      marks: 0,
-      blooms_level: 0,
-      co_num: 0
-    }
-    questions.push(question);
-  }
-  createSection() {
-    const section: Section = {
-      name: '',
-      questions: [
 
-      ]
-    }
-    this.assessment.section.push(section);
-
-  }
-  deleteQuestion(questions: Question[], qId: number) {
-    questions.splice(qId, 1);
-    console.log(questions);
-  }
-  setQuestionNum(sId: number, qId: number): number {
-    console.log(sId);
-    if(sId === 0) {
-      return qId;
-    }
-    let qNo = 0;
-    for (let i=0;i<sId; i++) {
-      qNo += this.assessment.section[i].questions.length;
-    }
-
-    return qNo + qId;
-
-  }
-  deleteSection(s:Section[], sId: number) {
-    s.splice(sId, 1);
-  }
   submitAssessment(): void {
     console.log(JSON.stringify(this.assessment));
-    const req = gql`
-      mutation createAssessment($data: custom_type!) {
-        createAssessment(data: $data) {
-          cassess_id
-        }
-      }
-    `;
-    this.apollo
-    .mutate({
-      mutation: req,
-      variables: {
-        data: this.assessment
-      }
-    }).subscribe(({ data }) => {
-      console.log(data);
-    });
   }
 }
