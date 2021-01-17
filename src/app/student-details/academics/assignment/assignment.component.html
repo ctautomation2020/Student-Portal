@@ -2,7 +2,7 @@
   <div class="main">
 
       <div class="assignment-section">
-        <h3 class="section-title">Machine Learning - Assignment</h3>
+        <h3 class="section-title">Assignment {{assign_num}}</h3>
         <div class="quick-links" *ngIf="courseTitle != null && session!=null">
             <a routerLink="/student-details/academics" class="link">Academics</a>
             <span class="slash"></span>
@@ -14,46 +14,40 @@
         </div>
         <div class="header">
           <div class="college-details">
-              <div class="image"><img src="../../../../assets/mit_logo.png" alt="college-logo" class="college-logo"></div>
               <h1 class="college-title">Madras Institute of Technology</h1>
           </div>
           <div class="assignment-details">
               <h2 class="assesment-name">{{course.course_code}} - {{courseTitle}}</h2>
               <div class="assignment-values">
-                  <p class="assignment-time">Time : 3 hrs</p>
-                  <p class="assignment-number">Assignment 1</p>
+                  <p class="assignment-time">Deadline : {{deadline | date:'dd-MM-yyyy'}}</p>
                   <p class="total-marks">Total Marks : 100</p>
               </div>
           </div>
         </div>
-        <div *ngFor="let s of assignment.section; let sId = index">
         <div class="horizontal-line-break"></div>
-         <h4 class="part">{{s.name}}</h4>
+        <div>
+          <div class="question-number bold">
+            Q.No.
+          </div>
+          <div class="question bold">
+            Question
+          </div>
+          <div  class="mark bold">
+            Marks
+          </div>
+        </div>
+        <div *ngFor="let q of assignment">
           <div>
-            <div class="question-number bold">
-              Q.No.
+            <div class="question-number">
+              {{q.question_num}}.
             </div>
-            <div class="question bold">
-              Question
-            </div>
-            <div  class="mark bold">
-              Marks
+            <div class="question" [innerHTML]="q.question_stmt"></div>
+            <div class="mark">
+              <span *ngIf="marks!=null">{{filterMarks(q.question_num)}} /</span> {{q.marks}}
             </div>
           </div>
-          <div *ngFor="let q of s.questions; let qId = index">
-            <div>
-              <div class="question-number">
-                {{q.question_num}}.
-              </div>
-              <div class="question">
-                {{q.question_stmt}}
-              </div>
-              <div  class="mark">
-                {{q.marks}}
-              </div>
-            </div>
-          </div>
-        </div><br><br>
+        </div>
+        <div class="horizontal-line-break"></div>
         <br><br>
         <div class="btn">
           <button mat-raised-button class="button" color="primary" (click)="submitAssignment()" >Submit</button>

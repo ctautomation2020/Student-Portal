@@ -20,7 +20,6 @@
             <h2 class="assesment-name">{{course.course_code}} - {{courseTitle}}</h2>
             <div class="assessment-values">
                 <p class="assessment-time">Time : 3 hrs</p>
-                <p class="assessment-number">Assessment 1</p>
                 <p class="total-marks">Total Marks : 100</p>
             </div>
         </div>
@@ -45,13 +44,13 @@
               {{q.question_num}}.
             </div>
             <div class="question" [innerHTML]="q.question_stmt"></div>
-            <div  class="mark">
-              {{q.marks}}
+            <div class="mark">
+              <span *ngIf="marks!=null">{{filterMarks(q.question_num)}} /</span> {{q.marks}}
             </div>
           </div>
         </div>
-      </div><br><br>
-      <br><br>
+      </div>
+      <br><br><div class="horizontal-line-break"></div>
       <div class="btn">
         <button mat-raised-button class="button" color="primary" (click)="submitAssessment()" >Submit</button>
       </div>

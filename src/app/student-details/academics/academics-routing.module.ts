@@ -33,10 +33,6 @@ const routes: Routes =  [
         component: AssessmentListComponent
       },
       {
-        path: 'assessment/:sallot_id',
-        component: AssessmentComponent
-      },
-      {
         path: 'assessment/:assess_num/:cregst_id',
         component: AssessmentComponent
       },
@@ -53,7 +49,7 @@ const routes: Routes =  [
         component: AssignmentListComponent
       },
       {
-        path: 'assignment/:assign_num/:sallot_id',
+        path: 'assignment/:assign_num/:cregst_id',
         component: AssignmentComponent
       }
     ]

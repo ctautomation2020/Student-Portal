@@ -46,34 +46,5 @@ export class AssessmentListComponent implements OnInit {
         }
       })
     });
-    /* this.activatedRoute.params.subscribe(params => {
-     this.sallot_id = +params['sallot_id'];
-     const query = {
-      sallot_id: this.sallot_id
-     }
-     this.academicsService.getCourseDetails(query).subscribe((result: any) => {
-       if(result == null) {
-         this.router.navigate(['/person-details', 'academics']);
-       }
-       else {
-         console.log(result);
-
-        this.academicsService.getSession(result.session_ref).subscribe((session) => {
-          this.session = session[0];
-        })
-        this.academicsService.getCourse(result.course_code).subscribe((course: any) => {
-          this.courseTitle = course.title;
-        })
-        const newQuery = {
-          session_ref: result.session_ref,
-          group_ref: result.group_ref,
-          course_code: result.course_code
-        }
-        this.academicsService.getAssessmentList(newQuery).subscribe((assessList: any) => {
-          this.assessList = assessList.sort();
-        });
-       }
-     })
-    }) */
   }
 }
