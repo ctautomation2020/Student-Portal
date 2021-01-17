@@ -16,6 +16,7 @@ export class AssessmentListComponent implements OnInit {
   assessList: any;
   cregst_id: number;
   session: AcademicsModel;
+  evaluated = true;
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.cregst_id = +params['cregst_id'];
