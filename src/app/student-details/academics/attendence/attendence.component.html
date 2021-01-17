@@ -14,19 +14,18 @@
           <div class="layout">
               <table>
                   <tr>
-                      <th colspan="7">
+                      <th colspan="7" class="month">
                           <span class="left" (click)="previous()">&#9668;</span>
                           {{months[curMonth]+" "+curYear}}
                           <span class="right" (click)="next()">&#9658;</span>
                       </th>
                   </tr>
                   <tr>
-                      <th *ngFor="let d of days">{{d}}</th>
+                      <th *ngFor="let d of days" class="day">{{d}}</th>
                   </tr>
                   <tr *ngFor="let vals of displayValues">
-                      <td *ngFor="let p of vals">
+                      <td *ngFor="let p of vals" [style.backgroundColor]="getColor(p.presence)">
                         <div *ngIf="p.date" class="date">{{p.date}}</div>
-                        {{p.presence}}
                       </td>
                   </tr>
               </table>

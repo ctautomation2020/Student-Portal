@@ -4,7 +4,6 @@ import { AcademicsComponent } from "./academics.component";
 import { AssessmentListComponent } from "./assessment-list/assessment-list.component";
 import { AssessmentComponent } from "./assessment/assessment.component";
 import { AttendenceComponent } from "./attendence/attendence.component";
-import { ViewAttendenceComponent } from "./attendence/view-attendence/view-attendence.component";
 import { CourseFeaturesComponent } from "./course-features/course-features.component";
 import { CourseListComponent } from "./course-list/course-list.component";
 import { SessionComponent } from "./session/session.component";
@@ -39,10 +38,6 @@ const routes: Routes =  [
       {
         path: 'attendence',
         component: AttendenceComponent
-      },
-      {
-        path: 'attendence/view-attendence',
-        component: ViewAttendenceComponent
       },
       {
         path: 'assignment-list/:cregst_id',

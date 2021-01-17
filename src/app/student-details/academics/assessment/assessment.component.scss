@@ -1,10 +1,12 @@
-.form-field {
-  padding: 8px;
-
+*,::after,::before{
+  font-family: 'Source Sans Pro','Open Sans', serif;
+  box-sizing: border-box;
+  outline: none;
+  padding: 0;
+  margin: 0;
 }
 .container{
   display: flex;
-  flex-direction: column;
   background-color: whitesmoke;
   width: 100%;
   min-height: 100vh;
@@ -12,17 +14,16 @@
 .main{
   display: flex;
   flex-direction: column;
-  padding: 1.25em;
+  padding: 2em;
   width: 95%;
   margin: 1em auto;
+  background-color: white;
+  border: 1px solid gainsboro;
+  border-radius: 0.5em;
 }
 .assessment-section{
   display: flex;
   flex-direction: column;
-  padding: 1.5em 2em;
-  background-color: white;
-  border-radius: 0.75em;
-  border: 1px solid gainsboro;
 }
 .button{
   width: max-content;
@@ -37,23 +38,23 @@
 .icon-pointer {
   cursor: pointer;
 }
-.section-title{
-  margin-bottom: 1em;
-  font-size: 1.3em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 .question, .question-number, .mark {
   display: inline-block;
+  vertical-align: text-top;
+  padding-top: 10px;
 }
 .question {
-  width: 70%;
+  width: 80%;
   padding: 10px 20px;
 }
-.question-number, .mark {
-  width: 10%;
-  padding: 10px;
+.question-number {
+  width: 35px;
+  margin-right: 10px;
+  text-align: center;
+}
+.mark {
+  width: fit-content;
+  padding: 3px;
   text-align: center;
 }
 .part {
@@ -106,26 +107,42 @@
 .total-marks {
   float: right;
 }
-@media only screen and (max-width: 1150px) {
-  .question-number, .mark {
-    width: 5%;
+@media only screen and (max-width: 684px) {
+  .question {
+    width: 70%;
   }
 }
 @media only screen and (max-width: 550px) {
-  .question-number, .mark {
-    width: 2%;
-    padding: 2px;
-  }
   .question-number.bold {
-    display: none;
+    visibility: hidden;
+  }
+  .question-number {
+    width: 2px;
+    margin-right: 5px;
   }
   .assessment-values {
     width: 100%;
+  }
+  .question {
+    width: 80%;
   }
 }
 @media only screen and (max-width: 500px) {
   .assessment-values * {
     display: block;
     float: none;
+  }
+}
+@media only screen and (max-width: 484px) {
+  .question {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 345px) {
+  .question-number {
+    margin-right: 3px;
+  }
+  .question {
+    width: 60%;
   }
 }

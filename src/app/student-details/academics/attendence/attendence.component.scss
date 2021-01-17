@@ -76,10 +76,6 @@
   display: flex;
   flex-direction: column;
 }
-.month{
-  color: black;
-  font-weight: 600;
-}
 .session{
   font-size: 0.9em;
   margin-top: 0.1em;
@@ -144,16 +140,8 @@
   }
 }
 @media only screen and (max-width:450px){
-  .month{
-      font-size: 0.975em;
-  }
   .main{
       padding: 1em;
-  }
-}
-@media only screen and (max-width:360px){
-  .month{
-      font-size: 0.95em;
   }
 }
 table, td, th{
@@ -173,7 +161,7 @@ td {
   top: 0;
   left: 2px;
   font-size: 15px;
-  color: #06a065;
+  color: #025233;
 }
 .left {
   float: left;
@@ -184,4 +172,10 @@ td {
   float: right;
   margin-right: 10px;
   cursor: pointer;
+}
+.day {
+   background-color: #78a5df;
+}
+.month {
+  background-color: #4793f7;
 }

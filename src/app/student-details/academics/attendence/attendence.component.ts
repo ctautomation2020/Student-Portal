@@ -119,4 +119,11 @@ export class AttendenceComponent implements OnInit {
      this.displayValues = this.getStructure()
   }
 
+  getColor(presence): String{
+     if(presence == 'P') return "rgb(12, 235, 45)";
+     if(presence == 'A') return "rgb(245, 59, 65)";
+     if(presence == '-') return "#e8ecea";
+     return "white";
+  }
+
 }
