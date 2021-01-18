@@ -36,7 +36,7 @@ const routes: Routes =  [
         component: AssessmentComponent
       },
       {
-        path: 'attendence',
+        path: 'attendence/:cregst_id',
         component: AttendenceComponent
       },
       {

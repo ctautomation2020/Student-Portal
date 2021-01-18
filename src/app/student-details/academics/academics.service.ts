@@ -119,6 +119,34 @@ export class AcademicsService {
     }).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.assessment))));
   }
 
+  isAssessEvaluated(query){
+    const req = gql `
+    query assessIsEval($data: assesIsEvalQueryInput!){
+      assessIsEval(data:$data)
+    }`;
+    return this.apollo.watchQuery({
+      query: req,
+      variables: {
+        data: query
+      },
+      fetchPolicy: 'no-cache'
+    }).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.assessIsEval))));
+  }
+
+  isAssignEvaluated(query){
+    const req = gql `
+    query assignIsEval($data: assignIsEvalQueryInput!){
+      assignIsEval(data:$data)
+    }`;
+    return this.apollo.watchQuery({
+      query: req,
+      variables: {
+        data: query
+      },
+      fetchPolicy: 'no-cache'
+    }).valueChanges.pipe(map((result: any) => JSON.parse(JSON.stringify(result.data.assignIsEval))));
+  }
+
   getAssessEvaluation(query: any) {
     const req = gql `
     query assess_evaluation($data: assess_evaluationQueryInput!) {

@@ -24,7 +24,7 @@ import { SessionComponent } from './session/session.component';
     AssessmentListComponent,
     CourseFeaturesComponent,
     SessionComponent,
-    AssignmentListComponent
+    AssignmentListComponent,
   ],
   imports: [
     RouterModule,
