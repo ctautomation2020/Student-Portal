@@ -101,10 +101,10 @@ export class AttendenceComponent implements OnInit {
     let presence:any={};
     let pArray=[];
     this.monthAttendance.forEach((day) => {
-      // presence.push({
-      //   "dt":this.convertDate(day.date).getDate(),
-      //   "presence":day.presence
-      // })
+       /* presence.push({
+         "dt":this.convertDate(day.date).getDate(),
+         "presence":day.presence
+       }) */
       presence[this.convertDate(day.date).getDate()]=day.presence
     })
     for(let i=1;i<=31;i++){
@@ -118,15 +118,15 @@ export class AttendenceComponent implements OnInit {
     for(var i=0;i<day;i++) week.push(' ')
     var curDate = 0, lastDate = new Date(this.curYear, this.curMonth+1, 0).getDate()
     while(curDate < lastDate){
-        // if(presence[curDate+1])
-        //   week.push({date: curDate+1,presence: presence[curDate+1]})
-        // else
-        //   week.push({date: curDate+1,presence: '-'})
-        // if(val!=null){
-        //   week.push({date: curDate+1,presence: val.presence})
-        // }
-        // else
-        // week.push({date: curDate+1,presence: '-'})
+         /* if(presence[curDate+1])
+           week.push({date: curDate+1,presence: presence[curDate+1]})
+         else
+           week.push({date: curDate+1,presence: '-'})
+         if(val!=null){
+           week.push({date: curDate+1,presence: val.presence})
+         }
+         else
+         week.push({date: curDate+1,presence: '-'}) */
         
         week.push({date: curDate+1,presence: pArray[curDate++]})
         if(week.length === 7){

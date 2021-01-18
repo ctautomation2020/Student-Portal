@@ -18,6 +18,32 @@
 .item {
   padding-left: 10px;
 }
-
-.title .regno { float:right }
-.title .dept { float:left }
+.title {
+  width: 100%;
+}
+.regno {
+  float: right;
+}
+.dept {
+  width: inherit;
+}
+.break {
+  display: none;
+}
+@media only screen and (max-width: 520px) {
+  .break {
+    display: block;
+  }
+  .mat-toolbar {
+    height: fit-content;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .regno {
+    float: none;
+  }
+  .dept, .regno {
+    display: block;
+    text-align: center;
+  }
+}
