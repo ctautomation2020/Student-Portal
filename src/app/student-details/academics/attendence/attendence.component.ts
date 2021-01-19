@@ -15,7 +15,7 @@ export class AttendenceComponent implements OnInit {
   months = ["January","Febraury","March","April","May","June","July","August","September","October","November","December"];
   days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
   presence = ['P','A','P','P','P','P','P','P','P','P','P','A','P','P','P','P','P','P','P','P','P','P','P','P','-','-','-','-','-','-','-'];
-  displayValues;
+  displayValues = [];
   startMonth: number;
   endMonth: number;
   curMonth: number;
@@ -85,7 +85,11 @@ export class AttendenceComponent implements OnInit {
           this.queryRef.valueChanges.subscribe(((result: any) => {
             this.attendance = JSON.parse(JSON.stringify(result.data.studentAttendance));
             console.log(this.attendance);
-            this.displayValues = this.getStructure(); 
+            while(this.curMonth != this.endMonth){
+              this.displayValues.push({month: this.curMonth, year: this.curYear, values: this.getStructure()});
+              this.next();
+            }
+            this.displayValues.push({month: this.curMonth, year: this.curYear, values: this.getStructure()});
           }));    
         }
       })
@@ -162,7 +166,7 @@ export class AttendenceComponent implements OnInit {
      else {
         this.curMonth++;
      }
-     this.displayValues = this.getStructure()
+     //this.displayValues = this.getStructure()
   }
 
   getColor(presence): String{

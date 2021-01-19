@@ -12,23 +12,23 @@
       </div>
       <div class="time-period">
           <div class="layout">
-              <table>
-                  <tr>
-                      <th colspan="7" class="month">
-                          <span class="left" (click)="previous()">&#9668;</span>
-                          {{months[curMonth]+" "+curYear}}
-                          <span class="right" (click)="next()">&#9658;</span>
-                      </th>
-                  </tr>
-                  <tr>
-                      <th *ngFor="let d of days" class="day">{{d}}</th>
-                  </tr>
-                  <tr *ngFor="let vals of displayValues">
-                      <td *ngFor="let p of vals" [style.backgroundColor]="getColor(p.presence)">
-                        <div *ngIf="p.date" class="date">{{p.date}}</div>
-                      </td>
-                  </tr>
-              </table>
+              <div class="tables" *ngFor="let month of displayValues">
+                <table>
+                    <tr>
+                        <th colspan="7" class="month">
+                            {{months[month.month]+" "+month.year}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th *ngFor="let d of days" class="day">{{d}}</th>
+                    </tr>
+                    <tr *ngFor="let vals of month.values">
+                        <td *ngFor="let p of vals" [style.backgroundColor]="getColor(p.presence)">
+                          <div *ngIf="p.date" class="date">{{p.date}}</div>
+                        </td>
+                    </tr>
+                </table>
+              </div>
           </div>
       </div>
   </div>

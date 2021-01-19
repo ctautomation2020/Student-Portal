@@ -45,23 +45,6 @@
 .link:hover{
   text-decoration: underline;
 }
-.layout{
-  display: flex;
-  flex-direction: column;
-  margin: 1em 0;
-  width: 50%;
-}
-.time{
-  display: flex;
-  align-items: center;
-  font-size: 1.1em;
-  width: 400px;
-  padding: 0.5em;
-  border: 1px solid gainsboro;
-  border-radius: 0.5em;
-  cursor: pointer;
-  margin-bottom: 1em;
-}
 .point{
   width: 3em;
   height: 3em;
@@ -72,73 +55,6 @@
   margin-right: 0.75em;
   display: block;
 }
-.period{
-  display: flex;
-  flex-direction: column;
-}
-.session{
-  font-size: 0.9em;
-  margin-top: 0.1em;
-  color: gray;
-}
-.time:hover{
-  background-color: whitesmoke;
-  border-color: gray;
-}
-.sem-layout{
-  margin-top: 1em;
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 1em;
-}
-.sem-subject{
-  display: flex;
-  align-items: center;
-  padding: 1em;
-  background-color: white;
-  box-shadow: inset 0 0 0 1px gainsboro;
-  cursor: pointer;
-  border-radius: 0.5em;
-}
-.sem-symbol{
-  width: 2.5em;
-  height: 2.5em;
-  background-color: #354fa325;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  border-radius: 0.5em;
-  letter-spacing: 0.5px;
-}
-.sem-details{
-  width: calc(100% - 3.5em);
-  margin-left: 1em;
-  display: flex;
-  flex-direction: column;
-}
-.sem-text{
-  font-weight: 600;
-  font-size: 1.1em;
-}
-.sem-code{
-  margin-top: 0.2em;
-  color: #0f3970;
-}
-.sem-subject:hover{
-  background-color: #f8f8f8;
-  box-shadow: inset 0 0 0 1px gray;
-}
-@media only screen and (max-width:900px){
-  .sem-layout{
-      grid-template-columns: 1fr;
-  }
-}
-@media only screen and (max-width:768px){
-  .time{
-      width: 100%;
-  }
-}
 @media only screen and (max-width:450px){
   .main{
       padding: 1em;
@@ -148,6 +64,9 @@ table, td, th{
   border: 1px solid black;
   border-collapse: collapse;
   text-align: center;
+}
+table {
+  border-width: 2px;
 }
 td, th {
    height: 50px;
@@ -163,19 +82,28 @@ td {
   font-size: 15px;
   color: #025233;
 }
-.left {
-  float: left;
-  margin-left: 10px;
-  cursor: pointer;
-}
-.right {
-  float: right;
-  margin-right: 10px;
-  cursor: pointer;
-}
 .day {
    background-color: #78a5df;
 }
 .month {
   background-color: #4793f7;
+}
+.layout{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.tables {
+  width: 40%;
+  margin: 20px;
+}
+@media only screen and (max-width:800px) {
+  .layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .tables {
+    width: auto;
+    margin: 20px auto;
+  } 
 }
