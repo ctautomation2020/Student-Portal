@@ -13,6 +13,7 @@ import { AttendenceComponent } from "./attendence/attendence.component";
 import { CourseFeaturesComponent } from "./course-features/course-features.component";
 import { CourseListComponent } from "./course-list/course-list.component";
 import { SessionComponent } from './session/session.component';
+import { MaterialsComponent } from './materials/materials.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SessionComponent } from './session/session.component';
     CourseFeaturesComponent,
     SessionComponent,
     AssignmentListComponent,
+    MaterialsComponent,
   ],
   imports: [
     RouterModule,

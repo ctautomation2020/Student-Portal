@@ -9,6 +9,7 @@ import { CourseListComponent } from "./course-list/course-list.component";
 import { SessionComponent } from "./session/session.component";
 import { AssignmentComponent } from './assignment/assignment.component';
 import { AssignmentListComponent } from './assignment-list/assignment-list.component';
+import { MaterialsComponent } from './materials/materials.component';
 
 const routes: Routes =  [
   {
@@ -46,6 +47,10 @@ const routes: Routes =  [
       {
         path: 'assignment/:assign_num/:cregst_id',
         component: AssignmentComponent
+      },
+      {
+        path: 'materials/:cregst_id',
+        component: MaterialsComponent
       }
     ]
   }

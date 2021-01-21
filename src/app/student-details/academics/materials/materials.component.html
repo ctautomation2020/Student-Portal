@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="main">
+      <h2>Course Materials</h2>
+      <div class="quick-links" *ngIf="courseTitle != null && session!=null">
+        <a routerLink="/student-details/academics" class="link">Academics</a>
+          <span class="slash"></span>
+          <a [routerLink]="['/student-details', 'academics', 'course-list', session.reference_id]" class="link">{{session.description}}</a>
+          <span class="slash"></span>
+          <a [routerLink]="['/student-details', 'academics', 'course-features', cregst_id]" class="link" >{{courseTitle}}</a>
+          <span class="slash"></span>
+          <a class="link">Course Materials</a>
+      </div>
+      <div class="time-period">
+          <div class="layout">
+              <div class="time" (click)="openPDF()">
+                  <span class="point-assessment"></span>
+                  <div class="period">
+                      <span class="month">Syllabus</span>
+                      <span class="session"></span>
+                  </div>
+              </div>
+              <object *ngIf="syllabus" [data]="getUrl()" width="100%" height="600"></object>
+          </div>
+      </div>
+</div>
