@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const materialModules = [
     MatCardModule,
@@ -42,7 +43,8 @@ const materialModules = [
     MatSelectModule,
     MatDialogModule,
     MatDividerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTooltipModule
 ];
 
 

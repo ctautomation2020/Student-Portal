@@ -72,14 +72,7 @@ td, th {
    height: 50px;
    width: 50px;
 }
-td {
-  position: relative;
-}
 .date {
-  position: absolute;
-  top: 0;
-  left: 2px;
-  font-size: 15px;
   color: #025233;
 }
 .day {
@@ -107,3 +100,48 @@ td {
     margin: 20px auto;
   } 
 }
+.hours {
+  text-align: right;
+  margin-right: 10px;
+}
+
+.period[data-tooltip] {
+  position: relative;
+}
+.period[data-tooltip]:before,
+.period[data-tooltip]:after {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+}
+.period[data-tooltip]:before {
+  border-bottom: .6em solid #09f;
+  border-bottom: .6em solid rgba(0,153,255,0.8);
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  content: "";
+  left: 20px;
+  margin-bottom: 1em;
+}
+.period[data-tooltip]:after {
+  background-color: #0099ff;
+  background-color: rgba(0,153,255,0.8);
+  border: 4px solid #0099ff;
+  border: 4px solid rgba(0,153,255,0.8);
+  border-radius: 7px;
+  color: #ffffff;
+  content: attr(data-tooltip-label) ":\A" attr(data-tooltip-message);
+  left: 0;
+  margin-bottom: 1.5em;
+  padding: 5px 15px;
+  white-space: pre-wrap;
+  width: fit-content;
+}
+.period[data-tooltip]:hover:after,
+.period[data-tooltip]:hover:before {
+  display: block;
+}
+/* .break {
+  white-space: pre-line;
+} */

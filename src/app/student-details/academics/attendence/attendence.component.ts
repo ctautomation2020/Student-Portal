@@ -31,7 +31,7 @@ export class AttendenceComponent implements OnInit {
   
 
   ngOnInit(): void {
-    console.log(this.presence);
+    //console.log(this.presence);
      this.route.params.subscribe(params => {
       this.cregst_id = +params['cregst_id'];
       const reg_no=this.studentDetailsService.getRegisterNo();
@@ -44,18 +44,17 @@ export class AttendenceComponent implements OnInit {
           this.router.navigate(['/student-details', 'academics']);
         }
         else {
-          console.log(result[0])
+          //console.log(result[0])
           this.courseTitle=result[0].course_list.title
           this.academicsService.getSession(result[0].session_ref).subscribe((session: any) => {
             this.session = session[0];
-            console.log(session[0])
+            //console.log(session[0])
             let months=session[0].description.split(" ");
-            console.log(months)
+            //console.log(months)
             this.startMonth=this.getMonth(months[0])-1
             this.curMonth=this.startMonth
             this.endMonth=this.getMonth(months[3])-1
             this.curYear=parseInt(months[1])
-            
           });
           const query2 = {
             group_ref: result[0].group_ref,
@@ -84,7 +83,8 @@ export class AttendenceComponent implements OnInit {
           });
           this.queryRef.valueChanges.subscribe(((result: any) => {
             this.attendance = JSON.parse(JSON.stringify(result.data.studentAttendance));
-            console.log(this.attendance);
+            //console.log(this.attendance);
+
             while(this.curMonth != this.endMonth){
               this.displayValues.push({month: this.curMonth, year: this.curYear, values: this.getStructure()});
               this.next();
@@ -102,37 +102,31 @@ export class AttendenceComponent implements OnInit {
 
   getStructure(){
     this.filterMonth()
-    let presence:any={};
+    let presence:any = [];
     let pArray=[];
     this.monthAttendance.forEach((day) => {
-       /* presence.push({
-         "dt":this.convertDate(day.date).getDate(),
-         "presence":day.presence
-       }) */
-      presence[this.convertDate(day.date).getDate()]=day.presence
+      //presence[this.convertDate(day.date).getDate()]=day.presence
+      let x = this.convertDate(day.date).getDate()
+      if(presence[x])
+        presence[x].push({period: day.period, presence: day.presence})
+      else
+        presence[x] = [{period: day.period, presence: day.presence}]
     })
     for(let i=1;i<=31;i++){
-      if(presence[i])
+      /* if(presence[i])
         pArray.push(presence[i])
       else
-        pArray.push("-")
+        pArray.push("-") */
+      if(presence[i]) pArray.push(presence[i])
+      else pArray.push("-")
     }
     const day = new Date(this.curYear, this.curMonth, 1).getDay()
     var matrix = [], week = []
     for(var i=0;i<day;i++) week.push(' ')
     var curDate = 0, lastDate = new Date(this.curYear, this.curMonth+1, 0).getDate()
     while(curDate < lastDate){
-         /* if(presence[curDate+1])
-           week.push({date: curDate+1,presence: presence[curDate+1]})
-         else
-           week.push({date: curDate+1,presence: '-'})
-         if(val!=null){
-           week.push({date: curDate+1,presence: val.presence})
-         }
-         else
-         week.push({date: curDate+1,presence: '-'}) */
         
-        week.push({date: curDate+1,presence: pArray[curDate++]})
+        week.push({date: curDate+1, periods: pArray[curDate++]})//change presence to periods
         if(week.length === 7){
             matrix.push(week)
             week = []
@@ -142,20 +136,8 @@ export class AttendenceComponent implements OnInit {
         while(week.length<7) week.push(' ')
         matrix.push(week)
     }
-    console.log(matrix);
+    //console.log(matrix);
     return matrix
-  }
-
-  previous(){
-     if(this.curMonth == this.startMonth) return;
-     if(this.curMonth == 0) {
-        this.curMonth = 11;
-        this.curYear--;
-     }
-     else {
-        this.curMonth--;
-     }
-     this.displayValues = this.getStructure()
   }
   next(){
      if(this.curMonth == this.endMonth) return;
@@ -166,7 +148,6 @@ export class AttendenceComponent implements OnInit {
      else {
         this.curMonth++;
      }
-     //this.displayValues = this.getStructure()
   }
 
   getColor(presence): String{
@@ -185,13 +166,22 @@ export class AttendenceComponent implements OnInit {
 
   filterMonth(){
     this.monthAttendance=this.attendance.filter(l => this.convertDate(l.date).getMonth()==this.curMonth)
-    console.log(this.monthAttendance);
+    //console.log(this.monthAttendance);
   }
 
   attendanceCount(){
     let temp=this.attendance.filter(l => l.presence=="P");
-    console.log(temp);
+    //console.log(temp);
     return temp.length
+  }
+
+  getString(periods): String {
+     if(!periods||periods=='-') return '';
+     let displayString = '';
+     for(let i=0;i<periods.length;i++)
+       displayString += 'period '+periods[i].period+': '+periods[i].presence+'\n'
+     //console.log(displayString)
+     return displayString;
   }
 
 }
