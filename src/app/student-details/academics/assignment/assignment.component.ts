@@ -24,6 +24,8 @@ export class AssignmentComponent implements OnInit {
   course;
   marks;
   reg_no;
+  total:number=0;
+  totalEval:number=0;
   deadline:Date;
   queryRef: QueryRef<any>;
   constructor(private academicsService: AcademicsService, private studentDetailsService: StudentDetailsService, private router: Router, private route: ActivatedRoute) { }
@@ -62,9 +64,15 @@ export class AssignmentComponent implements OnInit {
             if(assignment_questions.length == 0)
               this.router.navigate(['/student-details','academics']);
             else{
+              this.assignment.forEach(ques => {
+                this.total+=ques.marks
+              });
               this.academicsService.getAssignEvaluation(new_query).subscribe((marks: any) => {
                 this.marks = marks;
                 console.log(marks);
+                marks.forEach(ques => {
+                  this.totalEval+=ques.mark
+                });
               });
             }
           });

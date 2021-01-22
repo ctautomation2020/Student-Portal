@@ -188,9 +188,10 @@ export class AttendenceComponent implements OnInit {
     console.log(this.monthAttendance);
   }
 
-  filterDate(i:number){
-    let temp=this.attendance.filter(l => this.convertDate(l.date).getDate()==i && this.convertDate(l.date).getMonth()==this.curMonth)
-    return temp[0]
+  attendanceCount(){
+    let temp=this.attendance.filter(l => l.presence=="P");
+    console.log(temp);
+    return temp.length
   }
 
 }
