@@ -24,7 +24,7 @@
                     </tr>
                     <tr *ngFor="let vals of month.values">
                         <td *ngFor="let p of vals" [style.backgroundColor]="getColor(p.periods?p.periods[0].presence:' ')" 
-                            [matTooltip]="getString(p.periods)" matTooltipPosition="above" matTooltipClass="break">
+                            [matTooltip]="getString(p.periods)" matTooltipPosition="above" matTooltipClass="multiline-tooltip">
                           <div *ngIf="p.date" class="date">{{p.date}}</div>
                         </td>
                     </tr>

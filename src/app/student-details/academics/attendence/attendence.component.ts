@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
 import gql from 'graphql-tag';
 import {Apollo, QueryRef} from 'apollo-angular';
 import { AttendenceModel } from './attendence.model';
@@ -9,7 +9,8 @@ import { StudentDetailsService } from './../../student-details.service';
 @Component({
   selector: 'app-attendence',
   templateUrl: './attendence.component.html',
-  styleUrls: ['./attendence.component.scss']
+  styleUrls: ['./attendence.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AttendenceComponent implements OnInit {
   months = ["January","Febraury","March","April","May","June","July","August","September","October","November","December"];
@@ -90,6 +91,8 @@ export class AttendenceComponent implements OnInit {
               this.next();
             }
             this.displayValues.push({month: this.curMonth, year: this.curYear, values: this.getStructure()});
+            console.log(this.displayValues);
+            
           }));    
         }
       })
@@ -179,8 +182,7 @@ export class AttendenceComponent implements OnInit {
      if(!periods||periods=='-') return '';
      let displayString = '';
      for(let i=0;i<periods.length;i++)
-       displayString += 'period '+periods[i].period+': '+periods[i].presence+'\n'
-     //console.log(displayString)
+      displayString += 'period '+periods[i].period+': '+periods[i].presence+'\n'
      return displayString;
   }
 
