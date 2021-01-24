@@ -60,15 +60,15 @@
       padding: 1em;
   }
 }
-table, td, th{
+.tables table, .tables td, .tables th{
   border: 1px solid black;
   border-collapse: collapse;
   text-align: center;
 }
-table {
+.tables table {
   border-width: 2px;
 }
-td, th {
+.tables td, .tables th {
    height: 50px;
    width: 50px;
 }
@@ -81,7 +81,7 @@ td, th {
 .month {
   background-color: #4793f7;
 }
-.layout{
+.att-layout{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -91,7 +91,7 @@ td, th {
   margin: 20px;
 }
 @media only screen and (max-width:800px) {
-  .layout {
+  .att-layout {
     flex-direction: column;
     align-items: center;
   }

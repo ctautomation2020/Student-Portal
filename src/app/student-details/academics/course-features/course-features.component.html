@@ -14,35 +14,35 @@
                   <div class="time" [routerLink]="['/student-details','academics', 'assessment-list', cregst_id]">
                       <span class="point assessment"></span>
                       <div class="period">
-                          <span class="month">Assessment</span>
+                          <span class="feature">Assessment</span>
                           <span class="session"></span>
                       </div>
                   </div>
                   <div class="time" [routerLink]="['/student-details','academics', 'assignment-list', cregst_id]">
                       <span class="point assignment"></span>
                       <div class="period">
-                          <span class="month">Assignment</span>
+                          <span class="feature">Assignment</span>
                           <span class="session"></span>
                       </div>
                   </div>
                   <div class="time" [routerLink]="['/student-details','academics', 'attendence',cregst_id]">
                       <span class="point calendar"></span>
                       <div class="period">
-                          <span class="month">Attendance</span>
+                          <span class="feature">Attendance</span>
                           <span class="session"></span>
                       </div>
                   </div>
                   <div class="time">
                       <span class="point internals"></span>
                       <div class="period">
-                          <span class="month">Internals</span>
+                          <span class="feature">Internals</span>
                           <span class="session"></span>
                       </div>
                   </div>
                   <div class="time" [routerLink]="['/student-details','academics', 'materials',cregst_id]">
                       <span class="point materials"></span>
                       <div class="period">
-                          <span class="month">Materials</span>
+                          <span class="feature">Materials</span>
                           <span class="session"></span>
                       </div>
                   </div>
@@ -50,7 +50,7 @@
               <div class="vertical-line"></div>
               <div class="fac-info">
                   <div class="fac-details" *ngIf="faculty!=null && course!=null">
-                      <table>
+                      <table class="fac-table">
                           <tr>
                               <th colspan="3">Faculty Info</th>
                           </tr>

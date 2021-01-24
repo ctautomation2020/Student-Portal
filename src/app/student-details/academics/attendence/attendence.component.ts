@@ -120,7 +120,10 @@ export class AttendenceComponent implements OnInit {
         pArray.push(presence[i])
       else
         pArray.push("-") */
-      if(presence[i]) pArray.push(presence[i])
+      if(presence[i]){ 
+        presence[i].sort((p1,p2) => {return p1.period-p2.period})
+        pArray.push(presence[i])
+      }
       else pArray.push("-")
     }
     const day = new Date(this.curYear, this.curMonth, 1).getDay()
@@ -153,11 +156,34 @@ export class AttendenceComponent implements OnInit {
      }
   }
 
-  getColor(presence): String{
-     if(presence == 'P') return "rgb(12, 235, 45)";
-     if(presence == 'A') return "rgb(245, 59, 65)";
-     if(presence == '-') return "#e8ecea";
-     return "white";
+  getColor(periods): String{
+    /* if(!periods||!periods.length||periods=='-') return 'white'
+    let total = periods.length
+    let pre = 0
+    let perc = 100/total
+    let present = 0
+    let color = 'linear-gradient(135deg, '
+    for(let i=0;i<total-1;i++){
+       if(periods[i].presence=='P') 
+         color += '#2be40d '+' '+pre+'%, #2be40d '+(pre+perc)+'%,'
+       else
+         color += '#f71515 '+' '+pre+'%, #f71515 '+(pre+perc)+'%,'
+       pre += perc
+    }
+    if(periods[total-1].presence=='P') 
+      color += '#2be40d '+' '+pre+'%, #2be40d 100%)'
+    else
+      color += '#f71515 '+' '+pre+'%, #f71515 100%)'
+    return color */
+
+     if(!periods||!periods.length||periods=='-') return 'white'
+     let total = periods.length
+     let present = 0
+     for(let i=0;i<total;i++)
+        if(periods[i].presence=='P') 
+          present++
+     present = (present/total)*100
+     return 'linear-gradient(135deg, #2be40d '+present+'%, #f71515 '+present+'%, #f71515 100%)'
   }
 
   convertDate(inputDate){

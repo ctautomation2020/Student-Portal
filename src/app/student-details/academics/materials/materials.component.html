@@ -13,13 +13,15 @@
       <div class="time-period">
           <div class="layout">
               <div class="time" (click)="openPDF()">
-                  <span class="point-assessment"></span>
+                  <span class="syllabus"></span>
                   <div class="period">
-                      <span class="month">Syllabus</span>
+                      <span class="material">Syllabus</span>
                       <span class="session"></span>
                   </div>
               </div>
-              <object *ngIf="syllabus" [data]="getUrl()" width="100%" height="600"></object>
+              <object *ngIf="syllabus" [data]="getUrl()" type="application/pdf" class="syllabus-pdf">
+                  <p>Can't display pdf. View syllabus <a [href]="getUrl()" target="_blank">here</a></p>
+              </object>
           </div>
       </div>
 </div>
