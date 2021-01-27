@@ -146,3 +146,18 @@
 .total td:first-child {
   font-weight: bold;
 }
+.final {
+  background-color: #0692e4;
+  width: fit-content;
+  margin-top: 20px;
+  border-radius: 10px;
+  color: white;
+}
+.final>div{
+  padding: 10px;
+}
+.topic {
+  font-weight: bold;
+  display: inline-block;
+  width: 60px;
+}

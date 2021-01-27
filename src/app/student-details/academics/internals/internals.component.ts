@@ -15,13 +15,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class InternalsComponent implements OnInit {
 
   internals = [
-    {type:"Assessment",number:"1",total_marks:"60",obtained_marks:"50",weightage:"5"},
-    {type:"Assignment",number:"1",total_marks:"60",obtained_marks:"40",weightage:"5"},
-    {type:"Assessment",number:"2",total_marks:"60",obtained_marks:"50",weightage:"15"},
-    {type:"Assignment",number:"2",total_marks:"40",obtained_marks:"35",weightage:"5"},
-    {type:"Assignment",number:"3",total_marks:"60",obtained_marks:"40",weightage:"10"}
+    {type:"Assessment",number:"1",total_marks:"60",obtained_marks:"50",weightage:"5",obtained_weightage:"4"},
+    {type:"Assignment",number:"1",total_marks:"60",obtained_marks:"40",weightage:"5",obtained_weightage:"3"},
+    {type:"Assessment",number:"2",total_marks:"60",obtained_marks:"50",weightage:"15",obtained_weightage:"12"},
+    {type:"Assignment",number:"2",total_marks:"40",obtained_marks:"35",weightage:"5",obtained_weightage:"4.5"},
+    {type:"Assignment",number:"3",total_marks:"60",obtained_marks:"60",weightage:"10",obtained_weightage:"10"}
   ];
   total;
+  ca = 30;
+  midsem = 17;
 
   constructor(private academicsService: AcademicsService,private apollo: Apollo, private studentDetailsService: StudentDetailsService, 
         private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
@@ -63,12 +65,14 @@ export class InternalsComponent implements OnInit {
      let total = {
         total_marks: 0,
         obtained_marks: 0,
-        weightage: 0
+        weightage: 0,
+        obtained_weightage: 0
      }
      for(let i=0;i<this.internals.length;i++){
         total.total_marks += Number(this.internals[i].total_marks)
         total.obtained_marks += Number(this.internals[i].obtained_marks)
         total.weightage += Number(this.internals[i].weightage)
+        total.obtained_weightage += Number(this.internals[i].obtained_weightage)
      }
      return total
   }

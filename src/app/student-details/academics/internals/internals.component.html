@@ -12,17 +12,20 @@
       </div>
       <table class="t-table" >
         <tr class="t-tr">
-            <th class="t-th" style="background-color:rgb(2, 72, 143);">
+            <th class="t-th" style="background-color:rgb(22, 95, 168);">
                 Name
             </th>
-            <th class="t-th" style="background-color:rgb(24, 100, 175);">
-                Total marks
-            </th>
-            <th class="t-th" style="background-color:rgb(53, 125, 197);">
+            <th class="t-th" style="background-color:rgb(34, 108, 182);">
                 Marks Obtained
             </th>
-            <th class="t-th" style="background-color:rgb(93, 159, 224);">
+            <th class="t-th" style="background-color:rgb(53, 125, 197);">
+                Maximum marks
+            </th>
+            <th class="t-th" style="background-color:rgb(76, 144, 212);">
                 Weightage
+            </th>
+            <th class="t-th" style="background-color:rgb(93, 159, 224);">
+                Obtained Weightage
             </th>
         </tr>
         <tr class="t-tr" *ngFor="let i of internals">
@@ -30,13 +33,16 @@
                  {{i.type+' '+i.number}}
             </td>
             <td class="t-td">
-                {{i.total_marks}}
-            </td>
-            <td class="t-td">
                  {{i.obtained_marks}}
             </td>
             <td class="t-td">
+                 {{i.total_marks}}
+            </td>
+            <td class="t-td">
                  {{i.weightage}}
+            </td>
+            <td class="t-td">
+                 {{i.obtained_weightage}}
             </td>
         </tr>
         <tr class="t-tr total">
@@ -44,15 +50,23 @@
                  Total
             </th>
             <th class="t-th" style="background-color: #b2b2b3">
-                {{total.total_marks}}
+                {{total.obtained_marks}}
             </th>
             <th class="t-th" style="background-color: #b7b7b9">
-                 {{total.obtained_marks}}
+                {{total.total_marks}}
             </th>
             <th class="t-th" style="background-color: #cacacc">
                  {{total.weightage}}
             </th>
+            <th class="t-th" style="background-color: #d6d6da">
+                 {{total.obtained_weightage}}
+            </th>
         </tr>
       </table>
+      <div class="final">
+          <div><span class="topic">CA </span>:  {{ca}} / 40</div>
+          <div><span class="topic">Midsem </span>: {{midsem}} / 20</div>
+          <div><span class="topic">Total </span>: {{ca+midsem}} / 60</div>
+      </div>
     </div>
 </div>
