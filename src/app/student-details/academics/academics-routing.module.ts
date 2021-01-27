@@ -10,6 +10,7 @@ import { SessionComponent } from "./session/session.component";
 import { AssignmentComponent } from './assignment/assignment.component';
 import { AssignmentListComponent } from './assignment-list/assignment-list.component';
 import { MaterialsComponent } from './materials/materials.component';
+import { InternalsComponent } from './internals/internals.component';
 
 const routes: Routes =  [
   {
@@ -51,6 +52,10 @@ const routes: Routes =  [
       {
         path: 'materials/:cregst_id',
         component: MaterialsComponent
+      },
+      {
+        path: 'internals/:cregst_id',
+        component: InternalsComponent
       }
     ]
   }

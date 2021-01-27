@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="main">
+      <h2>Internals</h2>
+      <div class="quick-links" *ngIf="courseTitle != null && session!=null">
+        <a routerLink="/student-details/academics" class="link">Academics</a>
+          <span class="slash"></span>
+          <a [routerLink]="['/student-details', 'academics', 'course-list', session.reference_id]" class="link">{{session.description}}</a>
+          <span class="slash"></span>
+          <a [routerLink]="['/student-details', 'academics', 'course-features', cregst_id]" class="link" >{{courseTitle}}</a>
+          <span class="slash"></span>
+          <a class="link">Internals</a>
+      </div>
+      <table class="t-table" >
+        <tr class="t-tr">
+            <th class="t-th" style="background-color:rgb(2, 72, 143);">
+                Name
+            </th>
+            <th class="t-th" style="background-color:rgb(24, 100, 175);">
+                Total marks
+            </th>
+            <th class="t-th" style="background-color:rgb(53, 125, 197);">
+                Marks Obtained
+            </th>
+            <th class="t-th" style="background-color:rgb(93, 159, 224);">
+                Weightage
+            </th>
+        </tr>
+        <tr class="t-tr" *ngFor="let i of internals">
+            <td class="t-td">
+                 {{i.type+' '+i.number}}
+            </td>
+            <td class="t-td">
+                {{i.total_marks}}
+            </td>
+            <td class="t-td">
+                 {{i.obtained_marks}}
+            </td>
+            <td class="t-td">
+                 {{i.weightage}}
+            </td>
+        </tr>
+        <tr class="t-tr total">
+            <th class="t-th" style="background-color: #9d9d9e">
+                 Total
+            </th>
+            <th class="t-th" style="background-color: #b2b2b3">
+                {{total.total_marks}}
+            </th>
+            <th class="t-th" style="background-color: #b7b7b9">
+                 {{total.obtained_marks}}
+            </th>
+            <th class="t-th" style="background-color: #cacacc">
+                 {{total.weightage}}
+            </th>
+        </tr>
+      </table>
+    </div>
+</div>

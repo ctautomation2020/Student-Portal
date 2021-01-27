@@ -14,6 +14,7 @@ import { CourseFeaturesComponent } from "./course-features/course-features.compo
 import { CourseListComponent } from "./course-list/course-list.component";
 import { SessionComponent } from './session/session.component';
 import { MaterialsComponent } from './materials/materials.component';
+import { InternalsComponent } from './internals/internals.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MaterialsComponent } from './materials/materials.component';
     SessionComponent,
     AssignmentListComponent,
     MaterialsComponent,
+    InternalsComponent,
   ],
   imports: [
     RouterModule,
