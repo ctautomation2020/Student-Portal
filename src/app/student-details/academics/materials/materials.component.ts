@@ -15,43 +15,41 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class MaterialsComponent implements OnInit {
   constructor(private academicsService: AcademicsService,private apollo: Apollo, private studentDetailsService: StudentDetailsService, 
         private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
-
+  
   courseTitle: string;
   cregst_id: number;
   session: AcademicsModel;
-  filePath: string = "../../../../assets/CP5111.pdf";
+  filePath: string = "../../../../assets/pdfs/syllabus/";
   syllabus: Boolean = false;
-
+  
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-        this.cregst_id = +params['cregst_id'];
-        const query = {
-          reg_no:  this.studentDetailsService.getRegisterNo(),
-          cregst_id: this.cregst_id
+      this.cregst_id = +params['cregst_id'];
+      const reg_no=this.studentDetailsService.getRegisterNo();
+      const query = {
+        reg_no:  reg_no,
+        cregst_id: this.cregst_id
+      }
+      this.academicsService.getStudentCourses(query).subscribe((result: any) => {
+        if(result.length == 0) {
+          this.router.navigate(['/student-details', 'academics']);
         }
-        this.academicsService.getStudentCourses(query).subscribe((result: any) => {
-          if(result.length == 0) {
-            this.router.navigate(['/student-details', 'academics']);
-          }
-          else {
-            console.log(result[0])
-            this.courseTitle=result[0].course_list.title
-            this.academicsService.getSession(result[0].session_ref).subscribe((session: any) => {
-              this.session = session[0];
-              console.log(session[0])
-            });
-            const query2 = {
-              group_ref: result[0].group_ref,
-              session_ref: result[0].session_ref,
-              course_code: result[0].course_code
-            }          
-          }
-        })
-      });
+        else {
+          console.log(result[0])
+          this.courseTitle=result[0].course_list.title
+          this.academicsService.getSession(result[0].session_ref).subscribe((session: any) => {
+            this.session = session[0];
+            console.log(session[0])
+            
+          });
+          this.filePath=this.filePath+result[0].course_code+".pdf";
+        }
+      })
+    });
   }
 
   openPDF(){
-     this.syllabus = !this.syllabus;
+    this.syllabus = !this.syllabus;
   }
 
   getUrl(){
