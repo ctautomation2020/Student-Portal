@@ -11,17 +11,23 @@
           <a class="link">Course Materials</a>
       </div>
       <div class="time-period">
-          <div class="layout">
-              <div class="time" (click)="openPDF()">
-                  <span class="syllabus"></span>
-                  <div class="period">
-                      <span class="material">Syllabus</span>
-                      <span class="session"></span>
-                  </div>
-              </div>
-              <object *ngIf="syllabus" [data]="getUrl()" type="application/pdf" class="syllabus-pdf">
-                  <p>Can't display pdf. View syllabus <a [href]="getUrl()" target="_blank">here</a></p>
-              </object>
+          <div class="outer">
+            <div class="layout">
+                <div class="time" (click)="openPDF()">
+                    <span class="syllabus"></span>
+                    <div class="period">
+                        <span class="material">Syllabus</span>
+                        <span class="session"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="aside">
+                <div *ngIf="syllabus" class="syllabus-pdf">
+                  <a [href]="filePath" target="_blank">  
+                    <pdf-viewer [src]="filePath" [original-size]="false" [autoresize]="true"></pdf-viewer>
+                  </a>
+                </div>
+            </div>
           </div>
       </div>
 </div>

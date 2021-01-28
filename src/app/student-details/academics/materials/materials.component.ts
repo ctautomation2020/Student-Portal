@@ -5,7 +5,7 @@ import {Apollo, QueryRef} from 'apollo-angular';
 import { AcademicsModel } from '../academics.model';
 import { AcademicsService } from '../academics.service';
 import { StudentDetailsService } from './../../student-details.service';
-import { DomSanitizer } from '@angular/platform-browser';
+//import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-materials',
@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class MaterialsComponent implements OnInit {
   constructor(private academicsService: AcademicsService,private apollo: Apollo, private studentDetailsService: StudentDetailsService, 
-        private router: Router, private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
+        private router: Router, private route: ActivatedRoute/* , private sanitizer: DomSanitizer */) { }
   
   courseTitle: string;
   cregst_id: number;
@@ -52,8 +52,8 @@ export class MaterialsComponent implements OnInit {
     this.syllabus = !this.syllabus;
   }
 
-  getUrl(){
+  /* getUrl(){
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.filePath);
-  }
+  } */
 
 }

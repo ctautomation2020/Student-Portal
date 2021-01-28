@@ -96,8 +96,7 @@
   margin-top: 3em;
   border: 1px solid grey;
   border-collapse: collapse;
-  padding: 5px;
-  width: 80%;
+  padding: 5px 10px;
 }
 .t-th  {
   border: 1px solid grey;
@@ -138,20 +137,15 @@
     width: 100px;
   }
 }
-.total {
-  th {
-    color: black;
-  }
-}
-.total td:first-child {
-  font-weight: bold;
-}
 .final {
   background-color: #0692e4;
   width: fit-content;
-  margin-top: 20px;
+  height: fit-content;
   border-radius: 10px;
   color: white;
+  margin: 50px auto;
+  padding: 10px;
+  font-size: 18px;
 }
 .final>div{
   padding: 10px;
@@ -159,5 +153,13 @@
 .topic {
   font-weight: bold;
   display: inline-block;
-  width: 60px;
+  width: 65px;
+}
+.table-container {
+  overflow-x: auto;
+  margin: auto;
+}
+.outer-div {
+  display: flex;
+  flex-wrap: wrap;
 }

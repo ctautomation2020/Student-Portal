@@ -15,6 +15,7 @@ import { CourseListComponent } from "./course-list/course-list.component";
 import { SessionComponent } from './session/session.component';
 import { MaterialsComponent } from './materials/materials.component';
 import { InternalsComponent } from './internals/internals.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { InternalsComponent } from './internals/internals.component';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AcademicsRoutingModule
+    AcademicsRoutingModule,
+    PdfViewerModule
   ]
 })
 export class AcademicsModule {
