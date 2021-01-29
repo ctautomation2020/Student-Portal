@@ -24,7 +24,7 @@
                     Maximum marks
                 </th>
                 <th class="t-th" style="background-color:rgb(76, 144, 212);">
-                    Weightage(%)
+                    Weightage
                 </th>
                 <th class="t-th" style="background-color:rgb(93, 159, 224);">
                     Score Obtained
@@ -32,26 +32,26 @@
             </tr>
             <tr class="t-tr" *ngFor="let i of caComp;let ind=index">
                 <td class="t-td">
-                     {{filterType(i.type)+' '+i.number}}
+                    {{filterType(i.type)+' '+i.number}}
                 </td>
                 <td class="t-td">
-                     {{i.marks_obtained}}
+                    {{i.marks_obtained}}
                 </td>
                 <td class="t-td">
-                     {{i.total_mark}}
+                    {{i.total_mark}}
                 </td>
                 <td class="t-td">
-                     {{i.weightage}}
+                    {{i.weightage}}
                 </td>
                 <td class="t-td">
-                     {{calculateScore(ind)}}
+                    {{i.weighted_marks}}
                 </td>
             </tr>
           </table>
         </div>
         <div class="final" *ngIf="internals!=null">
-            <div><span class="topic">CA </span>:  {{internals.ca}} / 40</div>
-            <div><span class="topic">Midsem </span>: {{internals.midterm}} / 20</div>
+            <div><span class="topic">CA </span>:  {{internals.ca}} / 100</div>
+            <div><span class="topic">Midsem </span>: {{internals.midterm}} / 100</div>
             <div><span class="topic">Total </span>: {{internals.total_marks}} / 60</div>
         </div>
       </div>

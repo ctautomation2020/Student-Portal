@@ -87,16 +87,16 @@ export class InternalsComponent implements OnInit {
             const req2=gql`
             query studentCourseCAComp($data: studentCourseCACompQueryInput!) {
               studentCourseCAComp(data: $data) {
-                caval_id
+                ccacomp_id
                 course_code
                 group_ref
                 session_ref
                 type
                 number
-                total_mark
-                marks_obtained
-                reg_no
                 weightage
+                marks_obtained
+                total_mark
+                weighted_marks
               }
             }`;
             this.queryRef2 = this.apollo.watchQuery({
@@ -119,16 +119,16 @@ export class InternalsComponent implements OnInit {
     return catype==0?"Assignment":"Assessment";
   }
 
-  isInt(inp:string):boolean{
-    const val=(parseFloat(inp)-parseInt(inp)).toFixed(2);
-    return parseFloat(val)==0?true:false;
-  }
-  calculateScore(ind:number): String{
-    const caComp=this.caComp[ind];
-    const tot=(caComp.weightage/100)*40;
-    let obtained:any=((caComp.marks_obtained/caComp.total_mark)*tot).toFixed(1);
-    if(this.isInt(obtained))
-      obtained=caComp.marks_obtained/caComp.total_mark*tot;
-    return String(obtained)+" / "+String(tot);
-  }
+  // isInt(inp:string):boolean{
+  //   const val=(parseFloat(inp)-parseInt(inp)).toFixed(2);
+  //   return parseFloat(val)==0?true:false;
+  // }
+  // calculateScore(ind:number): String{
+  //   const caComp=this.caComp[ind];
+  //   const tot=(caComp.weightage/100)*40;
+  //   let obtained:any=((caComp.marks_obtained/caComp.total_mark)*tot).toFixed(1);
+  //   if(this.isInt(obtained))
+  //     obtained=caComp.marks_obtained/caComp.total_mark*tot;
+  //   return String(obtained)+" / "+String(tot);
+  // }
 }
