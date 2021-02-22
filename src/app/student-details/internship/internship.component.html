@@ -14,7 +14,7 @@
                                 <span class="label">Title</span>
                                 <p>{{i.Title}}</p>
                             </div>
-                            <div class="text-wrap">
+                            <div class="text-wrap" *ngIf="selectionType != null">
                                 <span class="label">Mode</span>
                                 <p>{{filterSelectionType(i.Selection_Mode_Ref).Ref_Name}}</p>
                             </div>

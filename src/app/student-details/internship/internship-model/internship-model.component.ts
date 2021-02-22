@@ -57,6 +57,10 @@ export class InternshipModelComponent implements OnInit {
       Selection_Mode_Ref: new FormControl(this.data.internship!=null?this.data.internship.Selection_Mode_Ref:"", Validators.required),
       file: new FormControl("")
     });
+    this.internshipForm.get('Stiphend_Option_Ref').valueChanges.subscribe(x => {
+      if(x==87)
+        this.internshipForm.controls.Stiphend_Amount.setValue(0);
+    });
   }
 
   onFileChange(event) {

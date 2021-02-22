@@ -23,11 +23,11 @@
                             </div>
                         </div>
                         <div class="input-field">
-                            <div class="text-wrap">
+                            <div class="text-wrap" *ngIf="eventType!=null">
                                 <span class="label">Type</span>
                                 <p>{{filterEventType(e.Event_Type_Ref).Ref_Name}}</p>
                             </div>
-                            <div class="text-wrap">
+                            <div class="text-wrap" *ngIf="participationType!=null">
                                 <span class="label">Participation</span>
                                 <p>{{filterParticipationType(e.Participation_Type_Ref).Ref_Name}}</p>
                             </div>
