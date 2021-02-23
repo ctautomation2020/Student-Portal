@@ -38,7 +38,7 @@ export class AwardsModelComponent implements OnInit {
   fileToUpload;
   sizeValid: boolean=false;
   typeValid: boolean=false;
-  fileSrc: String = "../../../../assets/sample.pdf";
+  fileSrc: String = "../../../../assets/pdfs/sample.pdf";
   today = new Date();
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<AwardsModelComponent>,public studentDetailsService: StudentDetailsService) {

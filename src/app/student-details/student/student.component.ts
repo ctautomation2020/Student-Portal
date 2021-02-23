@@ -29,7 +29,7 @@ export class StudentComponent implements OnInit {
   student: StudentModel;
   facultyAdvisors: PersonModel[];
   queryRef: QueryRef<StudentModel, any>;
-  photoURL="../../../assets/back.jpg";
+  photoURL="../../../assets/img/student/back.jpg";
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
   ngOnInit(): void {
     const id: number = this.studentDetailsService.getRegisterNo();
@@ -91,7 +91,7 @@ export class StudentComponent implements OnInit {
       //console.log(myDate2);
       this.student.Admission_Date = myDate2 ;
       
-      this.photoURL=result.data.student.Photo!=""?baseURL+result.data.student.Photo:"../../../assets/back.jpg";
+      this.photoURL=result.data.student.Photo!=""?baseURL+result.data.student.Photo:"../../../assets/img/student/back.jpg";
       console.log(this.photoURL);
 
     }));

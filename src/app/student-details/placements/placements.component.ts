@@ -31,7 +31,7 @@ export class PlacementsComponent implements OnInit {
   oColor: String = "#1982e4";
   othersForm: FormGroup;
   types = ['Govt. Job', 'Banking', 'Civil Service', 'Self Employed', 'Entrepreneurship'];
-  fileSrc: String = "../../../assets/sample.pdf";
+  fileSrc: String = "../../../assets/pdfs/sample.pdf";
   
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
 

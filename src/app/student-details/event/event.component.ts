@@ -18,7 +18,7 @@ export class EventComponent implements OnInit {
   eventType: PersonReferenceModel[];
   participationType: PersonReferenceModel[];
   queryRef: QueryRef<EventModel[], any>;
-  fileSrc: String = "../../assets/sample.pdf";
+  fileSrc: String = "../../assets/pdfs/sample.pdf";
   filesSrc= new Array();
   constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
 

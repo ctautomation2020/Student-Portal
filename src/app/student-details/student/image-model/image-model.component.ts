@@ -15,7 +15,7 @@ export class ImageModelComponent implements OnInit {
   sizeValid: boolean=false;
   typeValid: boolean=false;
 
-  imageSrc: string="../../../../assets/back.jpg";
+  imageSrc: string="../../../../assets/img/student/back.jpg";
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private apollo: Apollo,public dialogRef: MatDialogRef<ImageModelComponent>) { }
   
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class ImageModelComponent implements OnInit {
   }
    
   deletephoto(){
-    this.imageSrc="../../../../assets/back.jpg";
+    this.imageSrc="../../../../assets/img/student/back.jpg";
     const req = gql `
     mutation deletePhoto{
       deletePhoto

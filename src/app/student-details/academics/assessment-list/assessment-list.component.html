@@ -15,8 +15,8 @@
               <div class="time" *ngFor="let assess of assessList" [routerLink]="['/student-details', 'academics', 'assessment' , assess ,cregst_id]">
                   <span class="point-assessment"></span>
                   <div class="period">
-                      <span class="month">Assessment {{assess}} <img *ngIf="evaluated[assess]" class="icon" src="../../../../assets/evaluated.jpg"></span>
-                      <span class="session"></span>
+                      <span class="asses">Assessment {{assess}} <img *ngIf="evaluated[assess]" class="icon" src="../../../../assets/img/student/evaluated.jpg"></span>
+                      <span class="sess"></span>
                   </div>
               </div>
           </div>

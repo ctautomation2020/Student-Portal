@@ -38,7 +38,7 @@ export class PlacementsModelComponent implements OnInit {
   fileToUpload;
   sizeValid: boolean=false;
   typeValid: boolean=false;
-  fileSrc: String = "../../../../assets/sample.pdf";
+  fileSrc: String = "../../../../assets/pdfs/sample.pdf";
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo, public dialogRef: MatDialogRef<PlacementsModelComponent>,public studentDetailsService: StudentDetailsService) {}
 

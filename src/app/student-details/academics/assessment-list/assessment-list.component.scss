@@ -68,7 +68,7 @@
 .point-assignment {
   width: 3em;
   height: 3em;
-  background-image: url("../../../../assets/assignment.png");
+  background-image: url("../../../../assets/img/student/assignment.png");
   background-position: center;
   background-size: 2.5em;
   background-repeat: no-repeat;
@@ -79,7 +79,7 @@
 .point-assessment {
   width: 3em;
   height: 3em;
-  background-image: url("../../../../assets/assessment.png");
+  background-image: url("../../../../assets/img/student/assessment.png");
   background-position: center;
   background-size: 2.5em;
   background-repeat: no-repeat;
@@ -90,7 +90,7 @@
 .point{
   width: 3em;
   height: 3em;
-  background-image: url("../../../../assets/calendar.svg");
+  background-image: url("../../../../assets/img/student/calendar.svg");
   background-position: center;
   background-size: 2.5em;
   background-repeat: no-repeat;
@@ -101,11 +101,11 @@
   display: flex;
   flex-direction: column;
 }
-.month{
+.asses{
   color: black;
   font-weight: 600;
 }
-.session{
+.sses{
   font-size: 0.9em;
   margin-top: 0.1em;
   color: gray;
@@ -169,7 +169,7 @@
   }
 }
 @media only screen and (max-width:450px){
-  .month{
+  .asses{
       font-size: 0.975em;
   }
   .main{
@@ -177,7 +177,7 @@
   }
 }
 @media only screen and (max-width:360px){
-  .month{
+  .asses{
       font-size: 0.95em;
   }
 }
