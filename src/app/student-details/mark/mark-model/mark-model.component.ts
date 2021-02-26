@@ -59,27 +59,30 @@ export class MarkModelComponent implements OnInit {
       this.data.grades[i].Session_Ref=this.session.value[i]
       this.data.grades[i].Entry_Date=new Date()
     }
-    this.data.gpa=this.markForm.value.Gpa;
-
+    console.log(this.data,this.markForm.value);
     const req = gql `
-      mutation uploadStudentGpa($data: uploadStudentGpaInput!) {
-        uploadStudentGpa(data: $data)
-      }`;
-    this.apollo.mutate({
-      mutation: req,
-      variables: {
-        data:{
-          Gpa_ID: this.markForm.value.Gpa_ID,
-          file: this.fileToUpload
+      mutation updateStudentGpa($data: updateStudentGpaInput!){
+        updateStudentGpa(data:$data){
+          Gpa_ID
         }
-      },
-      context: {
-        useMultipart: true
-      }
-    }).subscribe(({ data }) => {
-      console.log(data);
-    });
-    this.dialogRef.close(this.data);
+      }`;
+      this.apollo.mutate({
+        mutation: req,
+        variables: {
+          data: {
+            Gpa_ID: this.markForm.value.Gpa_ID,
+            GPA: parseFloat(this.markForm.value.Gpa),
+            file: this.fileToUpload
+          }
+        },
+        context: {
+          useMultipart: true
+        }
+      }).subscribe(({ data }) => {
+        this.dialogRef.close(this.data);
+      });
+    
+    
   }
 
 }

@@ -23,26 +23,27 @@ export class LoginComponent implements OnInit {
   onLogin() {
     console.log(this.loginForm.value.uname);
     const req = gql`
-    query login($data: credentialQueryInput!) {
-      login(data: $data) {
-        token,
+    query student_auth_login($data: user_infoQueryInput!){
+      student_auth_login(data:$data){
+        token
         Register_No
+        user_role
       }
-    }
-    `;
+    }`;
     this.apollo
       .watchQuery({
         query: req,
         variables: {
           data: {
-            Username: this.loginForm.value.uname,
-            Password: this.loginForm.value.password
+            username: parseInt(this.loginForm.value.uname),
+            password: this.loginForm.value.password
           }
         }
       }).valueChanges.subscribe((result: any) => {
-        localStorage.setItem('token', result.data.login.token );
-        localStorage.setItem('regno', result.data.login.Register_No );
-        this.route.navigateByUrl('student-details');
+        localStorage.setItem('token', result.data.student_auth_login.token );
+        localStorage.setItem('regno', result.data.student_auth_login.Register_No);
+        localStorage.setItem('urole', result.data.student_auth_login.user_role);
+        this.route.navigateByUrl('student-details/student');
     });
   }
 }

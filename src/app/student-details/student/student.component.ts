@@ -72,7 +72,7 @@ export class StudentComponent implements OnInit {
         }
       }`;
     
-    this.queryRef = this.apollo
+    this.queryRef = this.apollo 
     .watchQuery<StudentModel>({
       query: req
     });

@@ -103,6 +103,7 @@ export class MarkComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
 			if (result) {
+        console.log(result);
         let updateGrades=new Array(); 
         for(let subj of result.grades){
           updateGrades.push({
@@ -129,25 +130,7 @@ export class MarkComponent implements OnInit {
 				}).subscribe(({ data }) => {
 					console.log(data);
 					this.queryRef1.refetch();
-        });
-
-        const req2 = gql `
-				mutation updateStudentGpa($data: updateStudentGpaInput!){
-          updateStudentGpa(data:$data){
-            Gpa_ID
-          }
-        }`;
-				this.apollo.mutate({
-					mutation: req2,
-					variables: {
-						data: {
-              Gpa_ID: this.filterGpa().Gpa_ID,
-              GPA: parseFloat(result.gpa)
-						}
-					}
-				}).subscribe(({ data }) => {
-					console.log(data);
-					this.queryRef2.refetch();
+          this.queryRef2.refetch();
         });
 			} 
 		});
