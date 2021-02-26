@@ -59,15 +59,15 @@ export class AwardsComponent implements OnInit {
     });
   	this.queryRef.valueChanges.subscribe(((result: any) => {
       this.awards = JSON.parse(JSON.stringify(result.data.studentAwards));
-      console.log(this.awards);
+      
     }));
     this.studentDetailsService.getDropDown('Award_Type').subscribe(result => {
       this.awardType = result;
-      console.log(this.awardType);
+      
     });
     this.studentDetailsService.getDropDown('Award_Category').subscribe(result => {
       this.awardCategory = result;
-      console.log(this.awardCategory);
+      
     });
   }
 
@@ -102,7 +102,7 @@ export class AwardsComponent implements OnInit {
     const dialogDeleteRef = this.dialog.open(AlertboxComponent);
     dialogDeleteRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
+        
         const req = gql `
         mutation deleteStudentAward($data: deleteStudentAwardInput!){
           deleteStudentAward(data:$data){

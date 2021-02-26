@@ -45,7 +45,7 @@ export class AssignmentComponent implements OnInit {
         }
         else {
           this.course=result[0]
-          console.log(result[0])
+          
           this.courseTitle=result[0].course_list.title
           this.academicsService.getSession(result[0].session_ref).subscribe((session: any) => {
              this.session = session[0];
@@ -57,7 +57,7 @@ export class AssignmentComponent implements OnInit {
             assign_num: this.assign_num
           }
           this.academicsService.getAssignment(new_query).subscribe((assignment_questions: any) => {
-            console.log(assignment_questions);
+            
             this.assignment=assignment_questions;
             this.deadline=assignment_questions[0].deadline;
             new_query.reg_no=this.reg_no
@@ -69,7 +69,7 @@ export class AssignmentComponent implements OnInit {
               });
               this.academicsService.getAssignEvaluation(new_query).subscribe((marks: any) => {
                 this.marks = marks;
-                console.log(marks);
+                
                 marks.forEach(ques => {
                   this.totalEval+=ques.mark
                 });
@@ -86,6 +86,6 @@ export class AssignmentComponent implements OnInit {
   }
 
   submitAssignment(): void {
-    console.log(JSON.stringify(this.assignment));
+    
   }
 }

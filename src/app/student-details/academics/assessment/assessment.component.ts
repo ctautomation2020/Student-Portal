@@ -58,14 +58,12 @@ export class AssessmentComponent implements OnInit {
             assess_num: this.assess_num
           }
           this.academicsService.getAssessment(new_query).subscribe((assessment_questions: any) => {
-            console.log(assessment_questions);
             new_query.reg_no=this.reg_no
             if(assessment_questions.length == 0)
               this.router.navigate(['/student-details','academics']);
             else{
               this.academicsService.getAssessEvaluation(new_query).subscribe((marks: any) => {
                 this.marks = marks;
-                console.log(marks);
               });
               var groupByName: any;
               const groupBy = (array: any, key: any) => {
@@ -90,7 +88,6 @@ export class AssessmentComponent implements OnInit {
               }
               Object.keys(sections).forEach(function(key) {
                 const str = sections[key][0].question_num;
-                console.log(str);
                 const alpha = str.charAt(str.length - 1);
                 let section: Section = {
                   name: key,
@@ -109,7 +106,6 @@ export class AssessmentComponent implements OnInit {
                   }
                   section.questions.push(question);
                 }
-                console.log(section)
                 assessment.section.push(section);
               });
               this.assessment=assessment;
@@ -123,6 +119,6 @@ export class AssessmentComponent implements OnInit {
     return this.marks.filter(l => l.question_num === qno)[0].mark;
   }
   submitAssessment(): void {
-    console.log(JSON.stringify(this.assessment));
+    
   }
 }

@@ -83,7 +83,7 @@ export class AwardsModelComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.awardsForm.value);
+    
     if(this.data.award==null){
       const req = gql `
       mutation createStudentAward($data: createStudentAwardInput!){
@@ -108,7 +108,7 @@ export class AwardsModelComponent implements OnInit {
           useMultipart: true
         }
       }).subscribe(({ data }) => {
-        console.log(data);
+        
         this.dialogRef.close();
       });
     }
@@ -137,7 +137,7 @@ export class AwardsModelComponent implements OnInit {
           useMultipart: true
         }
       }).subscribe(({ data }) => {
-        console.log(data);
+        
         this.dialogRef.close();
       });
     }

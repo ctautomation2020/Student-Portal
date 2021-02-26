@@ -84,8 +84,8 @@ export class PlacementsModelComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.placementsForm.value);
-    console.log(this.fileToUpload);
+    
+    
     if(this.data.placement==null){
       const req = gql `
       mutation createStudentPlacement($data: createStudentPlacementInput!){
@@ -112,7 +112,7 @@ export class PlacementsModelComponent implements OnInit {
           useMultipart: true
         }
       }).subscribe(({ data }) => {
-        console.log(data);
+        
         this.dialogRef.close();
       });
     }
@@ -143,7 +143,7 @@ export class PlacementsModelComponent implements OnInit {
           useMultipart: true
         }
       }).subscribe(({ data }) => {
-        console.log(data);
+        
         this.dialogRef.close();
 			});
     }

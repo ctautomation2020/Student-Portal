@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     });
   }
   onLogin() {
-    console.log(this.loginForm.value.uname);
+    
     const req = gql`
     query student_auth_login($data: user_infoQueryInput!){
       student_auth_login(data:$data){

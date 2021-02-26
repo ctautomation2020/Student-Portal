@@ -49,11 +49,11 @@ export class InternalsComponent implements OnInit {
             this.router.navigate(['/student-details', 'academics']);
           }
           else {
-            console.log(result[0])
+            
             this.courseTitle=result[0].course_list.title
             this.academicsService.getSession(result[0].session_ref).subscribe((session: any) => {
               this.session = session[0];
-              console.log(session[0])
+              
             });
             const query = {
               group_ref: result[0].group_ref,
@@ -82,7 +82,7 @@ export class InternalsComponent implements OnInit {
             });
             this.queryRef1.valueChanges.subscribe(((result: any) => {
               this.internals = JSON.parse(JSON.stringify(result.data.studentCourseInternalcalc));
-              console.log(this.internals);
+              
             }));
             const req2=gql`
             query studentCourseCAComp($data: studentCourseCACompQueryInput!) {
@@ -107,7 +107,7 @@ export class InternalsComponent implements OnInit {
             });
             this.queryRef2.valueChanges.subscribe(((result: any) => {
               this.caComp = JSON.parse(JSON.stringify(result.data.studentCourseCAComp));
-              console.log(this.caComp);
+              
             }));           
           }
         })

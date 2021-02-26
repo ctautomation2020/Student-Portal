@@ -44,7 +44,7 @@ export class EventModelComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, private apollo: Apollo,public dialogRef: MatDialogRef<EventModelComponent>,public studentDetailsService: StudentDetailsService) {
   }
   ngOnInit(): void {
-    console.log(this.data.event);
+    
     const baseURL=this.studentDetailsService.getURL();
     if(this.data.event!=null){
       this.fileSrc=baseURL+this.data.event.Certificate_Copy;
@@ -86,8 +86,8 @@ export class EventModelComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.eventForm.value);
-    console.log(this.fileToUpload);
+    
+    
     if(this.data.event==null){
       const req = gql `
       mutation createEventParticipated($data:createEventParticipatedInput!){
@@ -113,7 +113,7 @@ export class EventModelComponent implements OnInit {
           useMultipart: true
         }
       }).subscribe(({ data }) => {
-        console.log(data);
+        
         this.dialogRef.close();
 		  });
     }
@@ -143,7 +143,7 @@ export class EventModelComponent implements OnInit {
           useMultipart: true
         }
       }).subscribe(({ data }) => {
-        console.log(data);
+        
         this.dialogRef.close();
       });
     }

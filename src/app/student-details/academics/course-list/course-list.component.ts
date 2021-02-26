@@ -38,7 +38,7 @@ export class CourseListComponent implements OnInit {
           }
           this.academicsService.getStudentCourses(query).subscribe(result => {
             this.courseList=result
-            console.log(this.courseList)
+            
           });
         }
       });

@@ -60,15 +60,15 @@ export class InternshipComponent implements OnInit {
     });
   	this.queryRef.valueChanges.subscribe(((result: any) => {
       this.internships = JSON.parse(JSON.stringify(result.data.studentInternships));
-      console.log(this.internships);
+      
     }));
     this.studentDetailsService.getDropDown('Option').subscribe(result => {
       this.stiphendType = result;
-      console.log(this.stiphendType);
+      
     });
     this.studentDetailsService.getDropDown('Selection_Mode').subscribe(result => {
       this.selectionType = result;
-      console.log(this.selectionType);
+      
     });
   }
 	createModel() {
@@ -102,7 +102,7 @@ export class InternshipComponent implements OnInit {
     let dialogRef = this.dialog.open(AlertboxComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
+        
         const req = gql `
         mutation deleteStudentInternship($data: deleteStudentInternshipInput!){
           deleteStudentInternship(data:$data){

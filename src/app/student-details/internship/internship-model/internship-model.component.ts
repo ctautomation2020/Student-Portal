@@ -48,7 +48,7 @@ export class InternshipModelComponent implements OnInit {
       this.fileSrc=baseURL+this.data.internship.Order_Copy;
       this.filePresent=true;
     }
-    console.log(this.fileSrc);
+    
     this.internshipForm = new FormGroup({
       Company: new FormControl(this.data.internship!=null?this.data.internship.Company:"", Validators.required),
       Title: new FormControl(this.data.internship!=null?this.data.internship.Title:"", Validators.required),
@@ -87,8 +87,8 @@ export class InternshipModelComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.internshipForm.value);
-    console.log(this.fileToUpload);
+    
+    
     if(this.data.internship==null){
       const req = gql `
       mutation createStudentInternship($data:createStudentInternshipInput!){
@@ -115,7 +115,7 @@ export class InternshipModelComponent implements OnInit {
           useMultipart: true
         }
       }).subscribe(({ data }) => {
-        console.log(data);
+        
         this.dialogRef.close();
       });
     }
@@ -146,7 +146,7 @@ export class InternshipModelComponent implements OnInit {
           useMultipart: true
         }
       }).subscribe(({ data }) => {
-        console.log(data);
+        
         this.dialogRef.close();
       });
     }

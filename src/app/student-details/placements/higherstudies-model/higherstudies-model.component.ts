@@ -64,8 +64,8 @@ export class HigherstudiesModelComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.higherStudiesForm.value);
-    console.log(this.fileToUpload);
+    
+    
     if(this.data.higherstudy==null){
       const req = gql `
 				mutation createStudentHigherStudy($data: createStudentHigherStudyInput!){
@@ -92,7 +92,7 @@ export class HigherstudiesModelComponent implements OnInit {
             }
 					}
 				}).subscribe(({ data }) => {
-					console.log(data);
+					
 					this.dialogRef.close();
 				});
     }
@@ -123,7 +123,7 @@ export class HigherstudiesModelComponent implements OnInit {
             useMultipart: true
           }
 				}).subscribe(({ data }) => {
-					console.log(data);
+					
 					this.dialogRef.close();
 				});
     }

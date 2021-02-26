@@ -68,14 +68,14 @@ export class MarkModelComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.fileToUpload);
+    
     let i:number=0;
     for(i=0;i<this.grade.value.length;i++){
       this.data.grades[i].Grade=this.grade.value[i]
       this.data.grades[i].Session_Ref=this.session.value[i]
       this.data.grades[i].Entry_Date=new Date()
     }
-    console.log(this.data,this.markForm.value);
+    
     const req = gql `
       mutation updateStudentGpa($data: updateStudentGpaInput!){
         updateStudentGpa(data:$data){
