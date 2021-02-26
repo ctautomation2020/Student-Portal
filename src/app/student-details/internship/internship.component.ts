@@ -123,10 +123,10 @@ export class InternshipComponent implements OnInit {
 
   }
   filterStiphendType(stype): PersonReferenceModel {
-    return this.stiphendType.filter(l => l.Ref_Code === stype)[0];
+    return this.stiphendType.filter(l => l.Reference_ID === stype)[0];
   }
   filterSelectionType(stype): PersonReferenceModel {
-    return this.selectionType.filter(l => l.Ref_Code === stype)[0];
+    return this.selectionType.filter(l => l.Reference_ID === stype)[0];
   }
 
 }

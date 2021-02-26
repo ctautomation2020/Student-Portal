@@ -225,34 +225,34 @@ export class StudentComponent implements OnInit {
     });
   }
   filterGender(): PersonReferenceModel {
-    return this.gender.filter(l => l.Ref_Code === this.student.Gender_Ref)[0];
+    return this.gender.filter(l => l.Reference_ID === this.student.Gender_Ref)[0];
   }
   filterCommunity(): PersonReferenceModel {
-    return this.community.filter(l => l.Ref_Code === this.student.Community_Ref)[0];
+    return this.community.filter(l => l.Reference_ID === this.student.Community_Ref)[0];
   }
   filterResidentialType(): PersonReferenceModel {
-    return this.residentialType.filter(l => l.Ref_Code === this.student.Residential_Type_Ref)[0];
+    return this.residentialType.filter(l => l.Reference_ID === this.student.Residential_Type_Ref)[0];
   }
   filterProgramme(): PersonReferenceModel {
-    return this.programme.filter(l => l.Ref_Code === this.student.Programme_Ref)[0];
+    return this.programme.filter(l => l.Reference_ID === this.student.Programme_Ref)[0];
   }
   filterBranch(): PersonReferenceModel {
-    return this.branch.filter(l => l.Ref_Code === this.student.Branch_Ref)[0];
+    return this.branch.filter(l => l.Reference_ID === this.student.Branch_Ref)[0];
   }
   filterRegistrationMode(): PersonReferenceModel {
-    return this.registrationMode.filter(l => l.Ref_Code === this.student.Registration_Mode_Ref)[0];
+    return this.registrationMode.filter(l => l.Reference_ID === this.student.Registration_Mode_Ref)[0];
   }
   filterBloodGroup(): PersonReferenceModel {
-    return this.bloodGroup.filter(l => l.Ref_Code === this.student.Blood_Group_Ref)[0];
+    return this.bloodGroup.filter(l => l.Reference_ID === this.student.Blood_Group_Ref)[0];
   }
   filterAdmissionCategory(): PersonReferenceModel {
-    return this.admissionCategory.filter(l => l.Ref_Code === this.student.Admission_Category_Ref)[0];
+    return this.admissionCategory.filter(l => l.Reference_ID === this.student.Admission_Category_Ref)[0];
   }
   filterScholarshipReceived(): PersonReferenceModel {
-    return this.scholarshipReceived.filter(l => l.Ref_Code === this.student.Scholarship_Received_Ref)[0];
+    return this.scholarshipReceived.filter(l => l.Reference_ID === this.student.Scholarship_Received_Ref)[0];
   }
   filterVolunteer(): PersonReferenceModel {
-    return this.volunteer.filter(l => l.Ref_Code === this.student.NSS_NSO_YRC_Volunteer_Ref)[0];
+    return this.volunteer.filter(l => l.Reference_ID === this.student.NSS_NSO_YRC_Volunteer_Ref)[0];
   }
   filterFA():PersonModel{
     return this.facultyAdvisors.filter(l =>l.Person_ID === this.student.FA)[0];

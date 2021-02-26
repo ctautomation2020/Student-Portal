@@ -126,9 +126,9 @@ export class EventComponent implements OnInit {
   }
 
   filterEventType(etype): PersonReferenceModel {
-    return this.eventType.filter(l => l.Ref_Code === etype)[0];
+    return this.eventType.filter(l => l.Reference_ID === etype)[0];
   }
   filterParticipationType(ptype): PersonReferenceModel {
-    return this.participationType.filter(l => l.Ref_Code === ptype)[0];
+    return this.participationType.filter(l => l.Reference_ID === ptype)[0];
   }
 }

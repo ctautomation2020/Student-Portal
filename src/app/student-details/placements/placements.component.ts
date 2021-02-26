@@ -234,10 +234,10 @@ export class PlacementsComponent implements OnInit {
   }
 
   filterAdmissionMode(stype): PersonReferenceModel {
-    return this.admissionMode.filter(l => l.Ref_Code === stype)[0];
+    return this.admissionMode.filter(l => l.Reference_ID === stype)[0];
   }
   filterPlacementType(stype): PersonReferenceModel {
-    return this.placementType.filter(l => l.Ref_Code === stype)[0];
+    return this.placementType.filter(l => l.Reference_ID === stype)[0];
   }
   
 }

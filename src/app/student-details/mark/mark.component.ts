@@ -147,6 +147,6 @@ export class MarkComponent implements OnInit {
   }
 
   filterSession(session){
-    return this.sessions.filter(l => l.Ref_Code === session)[0];
+    return this.sessions.filter(l => l.Reference_ID === session)[0];
   }
 }

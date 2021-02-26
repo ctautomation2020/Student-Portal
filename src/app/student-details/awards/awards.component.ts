@@ -122,9 +122,9 @@ export class AwardsComponent implements OnInit {
     });
   }
   filterawardType(atype): PersonReferenceModel {
-    return this.awardType.filter(l => l.Ref_Code === atype)[0];
+    return this.awardType.filter(l => l.Reference_ID === atype)[0];
   }
   filterAwardCategory(atype): PersonReferenceModel {
-    return this.awardCategory.filter(l => l.Ref_Code === atype)[0];
+    return this.awardCategory.filter(l => l.Reference_ID === atype)[0];
   }
 }
