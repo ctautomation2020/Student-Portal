@@ -34,7 +34,8 @@ export const MY_FORMATS = {
 })
 export class InternshipModelComponent implements OnInit {
   internshipForm: FormGroup;
-  fileToUpload;
+  fileToUpload=null;
+  filePresent: boolean=false;
   sizeValid: boolean=false;
   typeValid: boolean=false;
   fileSrc: String = "../../../../assets/pdfs/sample.pdf";
@@ -43,8 +44,10 @@ export class InternshipModelComponent implements OnInit {
   }
   ngOnInit(): void {
     const baseURL=this.studentDetailsService.getURL();
-    if(this.data.internship!=null)
+    if(this.data.internship!=null){
       this.fileSrc=baseURL+this.data.internship.Order_Copy;
+      this.filePresent=true;
+    }
     console.log(this.fileSrc);
     this.internshipForm = new FormGroup({
       Company: new FormControl(this.data.internship!=null?this.data.internship.Company:"", Validators.required),
@@ -70,7 +73,17 @@ export class InternshipModelComponent implements OnInit {
       const fsize=Math.floor(this.fileToUpload.size/1024);
       this.typeValid=ftype=="pdf"?true:false;
       this.sizeValid=fsize<=1024?true:false;
+      if(this.typeValid && this.sizeValid)
+        this.filePresent=true;
+      else
+        this.filePresent=false;
     }
+    else{
+      this.filePresent=false;
+      this.fileToUpload=null;
+      if(this.data.event!=null)
+        this.filePresent=true;
+    }  
   }
 
   onSubmit() {

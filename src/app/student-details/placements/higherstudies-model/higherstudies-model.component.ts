@@ -13,7 +13,8 @@ import { StudentDetailsService } from './../../student-details.service';
 export class HigherstudiesModelComponent implements OnInit {
 
   higherStudiesForm: FormGroup;
-  fileToUpload;
+  fileToUpload=null;
+  filePresent: boolean=false;
   sizeValid: boolean=false;
   typeValid: boolean=false;
   fileSrc: String = "../../../../assets/pdfs/sample.pdf";
@@ -24,8 +25,10 @@ export class HigherstudiesModelComponent implements OnInit {
 
   ngOnInit(): void {
     const baseURL=this.studentDetailsService.getURL();
-    if(this.data.higherstudy!=null)
+    if(this.data.higherstudy!=null){
       this.fileSrc=baseURL+this.data.higherstudy.Score_Card_Copy;
+      this.filePresent=true;
+    }
     this.higherStudiesForm = new FormGroup({
       University: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.University:"", Validators.required),
       Degree: new FormControl(this.data.higherstudy!=null?this.data.higherstudy.Degree:"", Validators.required),
@@ -41,14 +44,23 @@ export class HigherstudiesModelComponent implements OnInit {
   }
 
   onFileChange(event) {
-    const reader = new FileReader();
     if(event.target.files && event.target.files.length) {
       this.fileToUpload=event.target.files[0];
       const ftype=this.fileToUpload.type.slice(-3);
       const fsize=Math.floor(this.fileToUpload.size/1024);
       this.typeValid=ftype=="pdf"?true:false;
       this.sizeValid=fsize<=1024?true:false;
+      if(this.typeValid && this.sizeValid)
+        this.filePresent=true;
+      else
+        this.filePresent=false;
     }
+    else{
+      this.filePresent=false;
+      this.fileToUpload=null;
+      if(this.data.event!=null)
+        this.filePresent=true;
+    }  
   }
 
   onSubmit() {

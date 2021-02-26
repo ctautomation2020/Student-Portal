@@ -35,7 +35,8 @@ export const MY_FORMATS = {
 export class PlacementsModelComponent implements OnInit {
 
   placementsForm: FormGroup;
-  fileToUpload;
+  fileToUpload=null;
+  filePresent: boolean=false;
   sizeValid: boolean=false;
   typeValid: boolean=false;
   fileSrc: String = "../../../../assets/pdfs/sample.pdf";
@@ -44,8 +45,10 @@ export class PlacementsModelComponent implements OnInit {
 
   ngOnInit(): void {
     const baseURL=this.studentDetailsService.getURL();
-    if(this.data.placement!=null)
+    if(this.data.placement!=null){
       this.fileSrc=baseURL+this.data.placement.Appointment_Order_Copy;
+      this.filePresent=true;
+    }
     this.placementsForm = new FormGroup({
       Company: new FormControl(this.data.placement!=null?this.data.placement.Company:"", Validators.required),
       Package: new FormControl(this.data.placement!=null?this.data.placement.Package:"", Validators.required),
@@ -61,14 +64,23 @@ export class PlacementsModelComponent implements OnInit {
   }
 
   onFileChange(event) {
-    const reader = new FileReader();
     if(event.target.files && event.target.files.length) {
       this.fileToUpload=event.target.files[0];
       const ftype=this.fileToUpload.type.slice(-3);
       const fsize=Math.floor(this.fileToUpload.size/1024);
       this.typeValid=ftype=="pdf"?true:false;
       this.sizeValid=fsize<=1024?true:false;
+      if(this.typeValid && this.sizeValid)
+        this.filePresent=true;
+      else
+        this.filePresent=false;
     }
+    else{
+      this.filePresent=false;
+      this.fileToUpload=null;
+      if(this.data.event!=null)
+        this.filePresent=true;
+    }  
   }
 
   onSubmit() {

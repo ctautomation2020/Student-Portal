@@ -73,5 +73,5 @@
 
 <mat-dialog-actions class="dialog-btns">
   <button mat-raised-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" [disabled]="placementsForm.invalid || !(sizeValid && typeValid)" (click)="onSubmit()">Save</button>
+  <button mat-raised-button color="primary" [disabled]="placementsForm.invalid || !filePresent" (click)="onSubmit()">Save</button>
 </mat-dialog-actions>
