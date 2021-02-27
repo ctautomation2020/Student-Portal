@@ -147,7 +147,15 @@
   }
 }
 @media only screen and (max-width:350px){
-  .aside, .time{
+  .aside{
     width: 90%;
+  }
+  .time {
+    width: 250px;
+  }
+}
+@media only screen and (max-width:300px) {
+  .time {
+    width: 200px;
   }
 }
