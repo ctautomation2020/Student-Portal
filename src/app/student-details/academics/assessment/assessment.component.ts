@@ -20,6 +20,7 @@ export class AssessmentComponent implements OnInit {
   course;
   assessment;
   marks;
+  tmarks;
   reg_no;
   queryRef: QueryRef<Assessment, any>;
   constructor(private academicsService: AcademicsService, private studentDetailsService: StudentDetailsService, private router: Router, private route: ActivatedRoute) { }
@@ -57,6 +58,14 @@ export class AssessmentComponent implements OnInit {
             course_code: result[0].course_code,
             assess_num: this.assess_num
           }
+          let total_query:any = {
+            group_ref: result[0].group_ref,
+            session_ref: result[0].session_ref,
+            course_code: result[0].course_code,
+            reg_no: this.reg_no,
+            number: this.assess_num,
+            type: 1
+          }
           this.academicsService.getAssessment(new_query).subscribe((assessment_questions: any) => {
             new_query.reg_no=this.reg_no
             if(assessment_questions.length == 0)
@@ -64,6 +73,9 @@ export class AssessmentComponent implements OnInit {
             else{
               this.academicsService.getAssessEvaluation(new_query).subscribe((marks: any) => {
                 this.marks = marks;
+              });
+              this.academicsService.getEvaluation(total_query).subscribe((tmarks: any) => {
+                this.tmarks = tmarks;
               });
               var groupByName: any;
               const groupBy = (array: any, key: any) => {
