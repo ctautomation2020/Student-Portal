@@ -167,14 +167,6 @@ export class StudentComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        
-        if(result.Residential_Type_Ref!=96){  
-          result.Hostel_Block_Room='';
-        }
-        if(result.Scholarship_Received_Ref==87){  
-          result.Scholarship_Details='';
-        }
-        
         const req = gql `
         mutation updateStudent($data: updateStudentInput!) {
           updateStudent(data: $data) {
