@@ -19,9 +19,7 @@ export class CourseListComponent implements OnInit {
   courseCodes: any;
   subjAllotId: number;
   queryRef: QueryRef<any, any>;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute,private academicsService: AcademicsService, private title: Title,private studentDetailsService: StudentDetailsService) {
-    this.title.setTitle('Course Features');
-  }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,private academicsService: AcademicsService,private studentDetailsService: StudentDetailsService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {

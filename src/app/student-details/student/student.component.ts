@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import gql from 'graphql-tag';
 import {Apollo, QueryRef} from 'apollo-angular';
-
 import { StudentModelComponent } from './student-model/student-model.component';
 import { StudentModel } from './student.model';
 import { PersonReferenceModel } from './../person-reference.model';
 import { StudentDetailsService } from './../student-details.service';
 import { PersonModel } from './../person.model';
 import { ImageModelComponent } from './image-model/image-model.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-student',
@@ -30,7 +30,9 @@ export class StudentComponent implements OnInit {
   facultyAdvisors: PersonModel[];
   queryRef: QueryRef<StudentModel, any>;
   photoURL="../../../assets/img/student/back.jpg";
-  constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService) { }
+  constructor(public dialog: MatDialog,private apollo: Apollo,public studentDetailsService: StudentDetailsService, private title: Title) { 
+    this.title.setTitle('CT Automation');
+  }
   ngOnInit(): void {
     const id: number = this.studentDetailsService.getRegisterNo();
     const baseURL=this.studentDetailsService.getURL();
